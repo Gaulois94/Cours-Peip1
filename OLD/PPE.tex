@@ -1,0 +1,316 @@
+\documentclass[12pt,oneside,a4paper]{book}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning,shapes.geometric,shapes.symbols,shapes.misc,shapes.multipart}
+\usetikzlibrary{trees}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\addto\captionsfrench{%
+\renewcommand{\partname}{}
+\renewcommand{\chaptername}{}}
+\renewcommand{\headrulewidth}{0pt}
+\include{macro}
+\include{definestyle}
+
+\pagestyle{fancy}
+\fancyfoot[L]{\includegraphics[height=12mm]{jm.png}}
+\lhead{\rightmark}
+\rhead{\leftmark}
+\cfoot{\thepage}
+
+\fancypagestyle{firstPage}
+{
+	\fancyfoot[L]{\includegraphics[height=12mm]{jm.png}}
+	\fancyfoot[R]{\itshape{Au lycée Jean Macé}}
+	\cfoot{}
+}
+
+\fancypagestyle{TOC}
+{
+	\fancyfoot[L]{\includegraphics[height=12mm]{jm.png}}
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\cfoot{\thepage}
+	\fancyfoot[R]{}
+}
+
+\fancypagestyle{FM}
+{
+	\fancyfoot[L]{\includegraphics[height=12mm]{jm.png}}
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\cfoot{\thepage}
+	\fancyfoot[R]{}
+}
+\fancypagestyle{programme}
+{
+	\lhead{\rightmark}
+	\rhead{\leftmark}
+	\cfoot{\thepage}
+	\fancyfoot[L]{}
+}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    %\ifnum \c@secnumdepth >\m@ne
+    %    \huge\bfseries \@chapapp\space \thechapter
+    %    \par\nobreak
+    %    \vskip 20\p@
+    %\fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+\addtocontents{toc}{\protect\thispagestyle{TOC}}
+
+
+\begin{document}
+
+\begin{titlepage}
+
+	\thispagestyle{firstPage}
+	\renewcommand{\headrulewidth}{0pt}
+	\underline{SERENO Mickaël} \hfill \textbf{Robot Clean}
+	{\color{red}\rule{\linewidth}{0.5pt}}
+
+	\vfill
+
+	\begin{center}
+		{\huge \underline{\textbf{Café scientifique partie Robot Clean.}}}
+		\\
+		{\large Fait le \today }
+	\end{center}
+	\vfill
+\end{titlepage}
+
+\frontmatter
+\renewcommand{\contentsname}{Sommaire}
+
+\thispagestyle{TOC}
+\tableofcontents
+\renewcommand{\headrulewidth}{1pt}
+\setcounter{tocdepth}{2}
+
+\renewcommand{\headrulewidth}{0pt}
+\pagenumbering{arabic}
+\chapter{Introduction}
+	\thispagestyle{FM}
+	\paragraph{} Le but de ce projet est de réaliser un bar intelligent à l'aide de robots qui se déplaceront tout le long de la piste à la recherche de clients demandant un café, un soda, un sucre ou encore d'être débarrassé. Notre robot lui s'occupe de nettoyer la piste et de débarrasser les clients. À l'aide de sa pince et de son capteur de ligne, il sera capable de se retrouver géographiquement sur la piste et de prendre les déchets.
+	\paragraph{} Dans un groupe composé de 4 personnes, mon rôle a tout d'abord été de m'occuper de la partie programmation de ce robot "Clean". Plus loin, suite à la demande de mes professeurs, je me suis étendu à un programme global fonctionnant sur tous les robots de ce bar intelligent.
+	\paragraph{} Le robot est délivré avec une bibliothèque écrite en C ainsi qu'en Basic. Il est aussi possible de programmer ce robot à l'aide d'outils interactifs basés sur les algorigrammes tel que Orbee. De part mon expérience personnelle, j'ai choisi de le programmer en langage C.
+	\paragraph{} Le robot possède 8 ports pour actionneurs (servomoteurs par exemple) et 8 pour les différents capteurs. Le notre n'utilise que 2 servo-moteurs (le port 1 et 2) ainsi que 3 capteurs : un capteurs de ligne/distance, un capteur de distance pur et un bouton poussoir, branchés sur les ports 8, 4 et 1.
+
+\mainmatter
+\renewcommand{\headrulewidth}{1pt}
+
+\chapter{Le cahier des charges}
+	\thispagestyle{fancy}
+
+\section{Le but du robot}
+	\paragraph{} Le robot comme dit en introduction doit pouvoir prendre les déchets des consommateurs. Pour cela, la pince est équipée de deux servomoteurs : un pour monter la pince, et l'autre pour la serrer.
+	\paragraph{} Ce robot doit pouvoir se repérer sur la piste. Pour cela, la piste est divisée en plusieurs zones. On avait 4 zones consommateurs aux extrémités de la piste en longueurs, ainsi que une zone pour prendre les cafés, une pour prendre les sodas et deux pour déposer les cafés et les sodas.
+	\paragraph{} Pour savoir où le robot doit se diriger pour déposer les déchets, il doit démarquer les sodas des cafés. Pour cela, on avait deux manières de faire. La première était de jouer sur le diamètre des déchets (le soda étant plus petit que la tasse de café, on aurait avec un capteur angulaire, pu savoir si le déchet est un café ou un soda). La seconde était de jouer avec la hauteur des déchets : le soda étant plus long que le café, avec l'aide d'un capteur "haut", on aurait pu déterminé la nature de ce dernier. Comme le capteur angulaire fut égaré, on a opté pour la seconde solution.
+
+\section{Découpage de la piste}
+	\begin{minipage}[c]{\linewidth}
+		\begin{wrapfigure}{r}{0pt}
+			\begin{tikzpicture}
+				\node (rectangle) at (0.5,0.5) [draw, rectangle] {Clean};
+				
+				\draw[thick, red] (2.2,1) -- (2.2,0) coordinate (L);
+				\draw[thick] (2.2cm,0) -- (2.2cm, -1cm);
+				\draw[thick, red] (2.2cm,-1cm) |- (3cm,-1.2cm) coordinate (A);
+				\draw[thick] (3cm, -1.2cm) -- (4cm, -1.2cm);
+				\draw[thick, red] (4cm,-1.2cm) -- (5cm,-1.2cm) coordinate (B);
+				\draw[thick] (5cm, -1.2cm) -- (6cm, -1.2cm);
+				\draw[thick, red] (6cm,-1.2cm) -- (7cm,-1.2cm) coordinate (C);
+				\draw[thick] (7cm, -1.2cm) -- (8cm, -1.2cm);
+				\draw[thick, red] (8cm,-1.2cm) -| (8.8cm,-1cm) coordinate (D);
+				\draw[thick] (8.8cm, -1cm) -- (8.8cm, 0);
+				\draw[thick, red] (8.8cm,0cm) -- (8.8cm,1cm) coordinate (E);
+
+
+				\draw[thick] (8.8cm, 1cm) -- (8.8cm, 2);
+				\draw[thick, red] (8.8cm,2cm) |- (8cm,2.2cm) coordinate (F);
+				\draw[thick] (8cm, 2.2cm) -- (7cm, 2.2cm);
+				\draw[thick, red] (7cm,2.2cm) -- (6cm,2.2cm) coordinate (G);
+				\draw[thick] (6cm, 2.2cm) -- (5cm, 2.2cm);
+				\draw[thick, red] (5cm,2.2cm) -- (4cm,2.2cm) coordinate (H);
+				\draw[thick] (4cm, 2.2cm) -- (3cm, 2.2);
+				\draw[thick, red] (3cm,2.2cm) -| (2.2cm,2cm) coordinate (I);
+
+				\draw[thick] (2.2,2) -- (2.2,1);
+
+				\draw[thick] (4.5cm, -1.2cm) -- (4.5cm, 0);
+				\draw[thick, red] (4.5cm,0cm) -- (4.5cm,1cm) coordinate (J);
+				\draw[thick] (6.5cm, 1cm) -- (6.5cm, 2.2);
+				\draw[thick] (6.5cm, -1.2cm) -- (6.5cm, 0);
+				\draw[thick, red] (6.5cm,0cm) -- (6.5cm,1cm) coordinate (K);
+
+				\node[align=center, xshift=-5mm, below, black] at (A) {0};
+				\node[align=center, xshift=-5mm, below, black] at (B) {1};
+				\node[align=center, xshift=-5mm, below, black] at (C) {2};
+				\node[align=center, yshift=-1mm, right, black] at (D) {3};
+				\node[align=center, xshift=3mm, yshift=-5mm, right, black] at (E) {7};
+				\node[align=center, xshift=5mm, above, black] at (F) {11};
+				\node[align=center, xshift=5mm, above, black] at (G) {10};
+				\node[align=center, xshift=5mm, above, black] at (H) {9};
+				\node[align=center, xshift=5mm, yshift=2mm, above, black] at (I) {8};
+
+				\node[align=center, xshift=-3mm, yshift=-5mm, left, black] at (J){5};
+				\node[align=center, xshift=3mm, yshift=-5mm, right, black] at (K) {6};
+				\node[yshift=5mm, align=center, left, black] at (L) {4};
+
+				\draw[thick, blue, ->] (9.2, 0) -- (9.2,1);
+				\draw[thick, blue, <-] (4.3, 0) -- (4.3,1);
+				\draw[thick] (4.5cm, 1cm) -- (4.5cm, 2.2);
+				\draw[thick, blue, <-] (2, 0) -- (2,1);
+				\draw[thick, blue, ->] (6.7, 0) -- (6.7,1);
+			\end{tikzpicture}
+		\end{wrapfigure}
+
+		La piste est découpée comme suite. En sachant que le robot Clean démarre en position 4, il est possible de se repérer sur la piste. Lorsqu'un utilisateur appuie sur le bouton, le robot mémorise sa position pour connaître l'itinéraire. En effet il y a 3 itinéraire possible (voir les flèches bleus). Mais comment le robot peut vraiment savoir dans quel zone il se situe ? La réponse est simple : il compte. Il y a en effet des couleurs sur le circuit : le blanc (ce que doit suivre le robot), le noir (ce qui marque la limite de la piste) ainsi que du jaune (au départ était prévu du vert). Le passage d'un blanc vers un jaune fait que le robot dit "je suis passé à la zone suivante". Pour savoir qu'elle est la zone suivante, j'utilise une variable GoTo qui sert justement à savoir qu'elle est la zone suivante. La zone actuelle du robot sera donc l'ancienne valeur de GoTo.
+	\end{minipage}
+	\paragraph{} Mais comment la gestion des couleurs fonctionnent ? De base, le capteur de lignes envoie une information allant de 0 (extrême noir) jusqu'à 1024 (extrême blanc) au micro contrôleur. Ces valeurs dépende de l'intensité lumineuse reçu par rapport à celle émise. C'est en jouant sur ce contraste élevé que l'on peut connaître la nature de la couleur de la plaque située en dessous du capteur de ligne. À titre indicatif, on utilisera dans le programme les plages de couleurs suivantes : $ 0 < Noir < 120$ , $190 < Blanc < 260 $ et $590 < Jaune < 700$. Mais pourquoi le jaune a-t-il une intensité aussi élevée ? Cela est dû à la proximité physique de la plaque jaune par rapport au capteur de ligne. En effet, c'était l'unique manière d'avoir des valeurs aussi élevées. Le robot pour valider ou non la couleur fera 3 testes séparés de 3 millisecondes. Si les trois testes donnent le même résultat (même couleur), on accepte la couleur. Sinon on la rejette. Cela est pour limité les valeurs dîtes parasites.
+
+\section{Détecteur d'objet}
+\paragraph{} Le robot utilise deux capteurs de distance : un pour détecter les obstacles (ils se situent sur le bas du robot) ainsi qu'un qui servira à savoir si l'objet dans la pince est un café ou un soda au moment de la prise du déchet. Les capteurs de distances ont une portée de 80 cm ce qui est largement suffisant. En effet, je me limite dans le programme à une distance maximal de 45 cm. Lorsque un utilisateur appuiera sur le bouton pour être débarrassé, le robot tournera sur lui-même jusqu'à détecter l'objet en question. Si jamais il a fait un demi-tour complet, c'est qu'il n'y a pas d'objet à débarrasser (l'utilisateur aurait pu se tromper de robot ou voulait simplement jouer) et le robot continue son chemin.
+
+\section{Une vitesse modulable}
+
+\begin{minipage}[c]{\linewidth}
+	\begin{wrapfigure}{r}{0pt}
+		\begin{tikzpicture}[xscale=0.2, yscale=0.20]
+			\foreach \x in {0, 50, ..., 450} 
+				\node at (\x mm, 0) [below] {$\x$};
+
+			\foreach \y in {-150, -100, ..., 200} 
+				\node at (0, \y mm) [left] {$\y$};
+
+			\coordinate (A) at (-1,-16);
+			\coordinate (B) at (46,21);
+			\repere{A}{B}{5}{10}[5][0.2]
+
+			\node at (45cm, 0) [right, yshift=-0.2cm, xshift=0.2cm] {mm};
+			\node at (0, 20cm) [above, yshift=0.25cm, xshift=-0.2cm] {mm/s};
+			\draw [domain=-2:47, blue] plot (\x, {15/(45-20)*\x - 20*15/(45-20)}) node [thick, xshift=-5cm, above] {$f(x) = \cfrac{15}{45-20} * x - \cfrac{20*15}{45-20}$};
+		\end{tikzpicture}
+	\end{wrapfigure}
+	\paragraph{} Le robot a la possibilité de se déplacer jusqu'à une valeur maximum de $150 mm/s $. Avec la distance de la pince (environ 17 cm) on a décidé que la vitesse du robot sera représentatif d'une fonction affine avec $f(450mm) = 150 mm/s$ et $f(200mm) = 0 mm/s$, soit la fonction ci contre. En effet, $f(200) = 0$ et $f(450)=150 mm/s $, soit la vitesse maximum. Cette fonction n'est appliqué que lorsque le robot fait le tour de la piste (les fonctions pour prendre les objets, les déposés, etc. ne sont pas prient en compte).
+\end{minipage}
+
+\chapter{Améliorations}
+\thispagestyle{fancy}
+
+\section{De la piste}
+	\paragraph{} La piste tel qu'elle était au début avait de nombreux défauts. Tout d'abord, les plaques de lancement étaient d'une couleur trop claire. En effet, il n'y a rien entre le point de départ et la piste. Le robot avance jusqu'à détecter le blanc de la piste avant de faire une rotation pour se trouver dans l'axe. Si les plaques, du point de vue de la couleur se rapprochent trop du blanc, les robots tourneront directement sur le point de départ, ce qui n'est pas l'effet recherché (pouvoir être sur le circuit).
+	\paragraph{} Sur ce même principe, nous avons modifié les plaques des zones consommateurs qui étaient blanches au départ. En étant assombris, le robot pourra le confondre avec le noir et donc le détectera comme une limite.
+	\paragraph{} Le second problème était les bandes blanches avec une largeur trop petite. De ce fait, les robots voulant à chaque fois se remettre dans l'axe, n'avance plus beaucoup. Mais comment il se remet droit ? Le capteur de ligne possède 2 capteurs de couleurs. Si celui de droite détecte du blanc et celui de gauche détecte du noir, le robot fait une rotation de $-5^\circ$. Si au contraire celui de gauche détecte du blanc, le robot ne fait aucune rotation (pour éviter de perdre du temps sur les rotations). En effet, il ne fera une rotation de $7^\circ$ que si ce sont les deux capteurs qui détectent la limite de la piste.
+
+\section{Ça ne fonctionne pas...}
+	\paragraph{}Et oui c'était trop beau. Le robot possède énormément de défaut matériel. Le premier est le suivant. Au début, on était censé fonctionner avec les positions relatives depuis la mise en route du robot. Le seul soucis est que les valeurs de ces positions sont trop peu précises (après un tour complet on a des valeurs totalement aberrantes). On avait donc opté, après mon conseil (puisque je programmais les robots j'étais le premier à être au courant) d'utiliser des marqueurs de couleurs. Cependant, ceci ne fut pas concluant... Alors pourquoi ? On avait opté au début pour des marqueurs gris allant de 110 à 140. Ceci était trop proche du blanc et du noir et donc était impossible à utiliser. On avait ensuite utilisé plusieurs couleurs (du vert, du rose) jusqu'à, après ma remarque sur l'épaisseur, d'opter pour les plaques jaunes. Ceci fonctionnait tant que le robot était droit. Si le robot n'était pas droit, le capteur qui était sur le jaune et le noir donnait une valeur de blanc. De ce fait, le robot sautait énormément de zones. De plus la vitesse relative du robot en fonction de la proximité des autres était gêné (le capteur détectait les plaques).
+	\paragraph{} On a donc à la dernière minute voulu supprimer les zones consommateurs situé sur les corners de la piste. De ce fait, on pourrait utiliser l'orientation relatifs du robot afin de se savoir sur quel partie de la piste le robot se situe. Le soucis est que comme pour les positions, les orientations ne sont pas précises et donc ceci ne fonctionne que sur la moitié de la piste et encore...
+
+\section{Comment aurait-on pu améliorer le tout ?} 
+	\paragraph{} Pour pouvoir améliorer le tout, il faudrait une meilleure gestion de la position et de l'orientation. En effet, il y a dans le robot une roue d'engrenage de 36 dents ce qui est très peu précis. En effet, 36 dents peuvent nous faire tromper d'orientation de quelques degrés par rotation, soit un grand nombre d'erreur sur un tour. Comme il restait que peu de temps, on a pu terminer... 
+Si l'orientation n'ai pas précise, comment la position pourrait l'être ? Et bien ceci est impossible
+	\paragraph{} On aurait pu sinon avoir un meilleur capteur de couleur. En effet, si la distance séparant le capteur de ligne et les plaques influe énormément sur les valeurs, c'est que l'air absorbe énormément. De plus, comme la valeur de blanc n'est que de 260 en moyenne sur 1024, il nous laissent qu'une bande très petite de couleurs utilisables (à une même distance du capteur de ligne). Il aurait fallu un capteur pouvant différencier d'autres couleurs en plus du noir et du blanc (dans notre schéma actuel. Voir amélioration futur pour un autre schéma).
+	\paragraph{} Au niveau de la bibliothèque, on aurait pu utiliser comme un chronomètre (en récupérant le temps écoulé entre maintenant et où le robot est lancé) pour mieux gérer les positions et donc avoir moins d'erreurs. Mais il n'existe aucune fonction "GetTime" ou encore "Time" dans cette bibliothèque (il est impossible d'importer la bibliothèque C entièrement : elle est trop épaisse en mémoire : le robot ne peut la contenir et donc on est limité à celle fournis par le fournisseur).
+
+\section{Du cahier des charges}
+	\paragraph{} Malgré tous ces problèmes, cela ne nous a pas empêché d'améliorer le cahier des charges. J'avais trouvé le robot un peu trop lent. De ce fait, les clients pourraient attendre un très long moment avant d'appuyer sur le robot si celui-ci est occupé. C'est pour cela que le robot possède dans sa mémoire un tableau de 4 cases (une par client) qui enregistre ceux qui veulent une action. Ce tableau est très simple : lorsque un utilisateur appuie sur le bouton, le robot enregistre dans la case approprié la position du consommateur (si c'est le premier on le met sur la première case, si c'est le deuxième à appuyer sur le robot, on met la position sur la deuxième case, etc.). Une fois le client servit, on supprime de ce tableau la valeur du client et on va voir le client suivant (si jamais il y en a un). S'il n'y a plus de clients dans ce tableau, le robot continue de faire le tour en attendant que quelqu'un appuie sur le bouton.
+	\paragraph{} J'ai aussi personnellement fait un programme commun pour tous les robots. En initialisant les ports des servomoteurs et des capteurs ainsi que le nom du robot (CLEAN, CAFE, SODA, SUCRIER) dans le tout début du programme (à l'initialisation des variables), le programme va agir différemment. En effet, les modules chargées seront celles correspondant au nom du robot et les numéros des ports serviront à choisir les bons ports au niveau du programme (ceux pour monter la pince, la serrer, etc.).
+	\paragraph{} On a aussi, tous les groupes, améliorés la gestion des déplacements des robots. Au lieu de se déplacer uniquement autour de la piste, les robots ont la capacité de pouvoir couper en plein milieu. En effet, on a jugé les robots trop lents et donc on a voulu améliorer le temps de trajet de chacun.
+
+\section{Améliorations futurs}
+	\paragraph{} Certaines améliorations n'ont pu être effectués et aurait dû l'être. Commençons par la plus simple : le robot n'embarque pas en son sein des lingettes nettoyants fautes de places et de matériels (plus d'équerres disponible par exemple).
+
+	\begin{wrapfigure}{r}{0pt}
+		\begin{tikzpicture}
+			\fill [black, opacity=0.7] (0, -2) rectangle (8, 3);
+			\node (rectangle) at (0.7,0.5) [white, draw, rectangle, xscale=0.8] {Clean};
+			\draw [fill, ultra thin, white] (1.4, 1) rectangle (1.6, 0);
+			\draw [fill, ultra thin, white] (1.8, 1) rectangle (2, 0);
+			\draw [fill, ultra thin, black] (1.6, 1) rectangle (1.8, 0);
+			\draw [fill, ultra thin, white] (1.6, 0) rectangle (1.8, -1);
+			\draw [fill, ultra thin, white] (1.6, -1) arc (180:270:2mm) --++ (0, 0.2) --+ (-0.2, 0);
+			\draw [fill, ultra thin, white] (1.8, -1.2) rectangle (2.8, -1.0);
+			\draw [fill, ultra thin, white] (2.8, -1.4) rectangle (3.8, -1.2);
+			\draw [fill, ultra thin, white] (2.8, -1.0) rectangle (3.8, -0.8);
+			\draw [fill, ultra thin, black] (2.8, -1.2) rectangle (3.8, -1.0);
+
+			\draw [fill, ultra thin, white] (3.8, -1.2) rectangle (4.8, -1.0);
+			\draw [fill, ultra thin, white] (4.8, -1.4) rectangle (5.8, -1.2);
+			\draw [fill, ultra thin, white] (4.8, -1.0) rectangle (5.8, -0.8);
+			\draw [fill, ultra thin, black] (4.8, -1.2) rectangle (5.8, -1.0);
+
+			\draw [fill, ultra thin, white] (5.8, -1.2) rectangle (6.8, -1.0);
+			\draw [fill, ultra thin, white] (6.8, -1.2) arc (-90:0:2mm) --++ (-0.2,0) --+ (0, -0.2);
+
+			\draw [fill, ultra thin, white] (6.6, 1) rectangle (6.8, 0);
+			\draw [fill, ultra thin, white] (7, 1) rectangle (7.2, 0);
+			\draw [fill, ultra thin, black] (6.8, 1) rectangle (7, 0);
+			\draw [fill, ultra thin, white] (6.8, 0) rectangle (7, -1);
+
+			\draw [fill, ultra thin, white] (6.8, 1) rectangle (7, 2);
+			\draw [fill, ultra thin, white] (7, 2) arc (0:90:2mm) --++ (0,-0.2) --+ (0.2, 0);
+
+			\draw [fill, ultra thin, white] (1.8, 2) rectangle (2.8, 2.2);
+			\draw [fill, ultra thin, white] (2.8, 1.8) rectangle (3.8, 2);
+			\draw [fill, ultra thin, white] (2.8, 2.2) rectangle (3.8, 2.4);
+			\draw [fill, ultra thin, black] (2.8, 2) rectangle (3.8, 2.2);
+
+			\draw [fill, ultra thin, white] (3.8, 2) rectangle (4.8, 2.2);
+			\draw [fill, ultra thin, white] (4.8, 1.8) rectangle (5.8, 2);
+			\draw [fill, ultra thin, white] (4.8, 2.2) rectangle (5.8, 2.4);
+			\draw [fill, ultra thin, black] (4.8, 2.0) rectangle (5.8, 2.2);
+			\draw [fill, ultra thin, white] (5.8, 2) rectangle (6.8, 2.2);
+
+			\draw [fill, ultra thin, white] (1.6, 1) rectangle (1.8, 2);
+			\draw [fill, ultra thin, white] (1.6, 2) arc (-180:-270:2mm) --++ (0, -0.2) --+ (-0.2, 0);	
+
+			\draw [fill, ultra thin, white] (3, 1) rectangle (3.2, 0);
+			\draw [fill, ultra thin, white] (3.4, 1) rectangle (3.6, 0);
+			\draw [fill, ultra thin, black] (3.2, 1) rectangle (3.4, 0);
+			\draw [fill, ultra thin, white] (3.2, 0) rectangle (3.4, -0.8);
+			\draw [fill, ultra thin, white] (3.2, 1) rectangle (3.4, 1.8);
+
+			\draw [fill, ultra thin, white] (5, 1) rectangle (5.2, 0);
+			\draw [fill, ultra thin, white] (5.4, 1) rectangle (5.6, 0);
+			\draw [fill, ultra thin, black] (5.2, 1) rectangle (5.4, 0);
+			\draw [fill, ultra thin, white] (5.2, 0) rectangle (5.4, -0.8);
+			\draw [fill, ultra thin, white] (5.2, 1) rectangle (5.4, 1.8);
+
+		\end{tikzpicture}
+	\end{wrapfigure}
+	\paragraph{} Mais l'amélioration la plus important aurait sans doute été une amélioration du positionnement du robot. J'ai imaginé à la dernière minute un moyen assez simple pour que le robot puisse se repérer avec uniquement les couleurs blanc et noir. Pour cela, on aurait dû avoir un circuit du style ci-contre. Ici, on alterne la couleur noire comme limite et la couleur blanche pour le chemin. Si le robot voit avec ses deux capteurs du noir, alors il est dans une zone consommateur et les limites de la pistes sera du blanc. Sinon, c'est que c'est le blanc qui est le chemin à suivre et le noir la limite. 
+	\paragraph{} Avec ce principe, il faudrait élargir les bandes blanches. En effet, avant on ne tournait pas si le capteur gauche était sur une ligne blanche, sans se préoccuper du capteur droit. Cela avait la caractéristique d'éviter des rotations inutiles et que donc le robot "stagne" en faisant que de corriger sa rotation. Si on appliquait ces modifications, on ne tournerai pas si, et seulement si \underline{les deux capteurs détecteraient la même couleur}. C'est le passage du noir au blanc qui fait que l'on compte une zone en plus. On devrait aussi arrondir les bords de la piste pour éviter que les deux capteurs voient du noir (on ne prend pas en compte les utilisateurs du bord, se serait bien trop complexe à gérer et pas vraiment utile puisque le robot doit de toute manière se mettre dans l'axe pour une utilisation correct). Avec des bords arrondis, se sera le capteurs droit que détectera la limite noire et donc on fera une rotation de $7^\circ$ avant que les deux capteurs soient sur du noir.
+
+\appendix
+
+\chapter{Algorigramme de niveau 1}
+	\thispagestyle{fancy}
+\input{algolvl1.tex}
+
+\chapter{Programme langage C}
+\thispagestyle{programme}
+\pagestyle{programme}
+\includecode{c}{Programme.c}
+
+\end{document}

@@ -1,0 +1,111 @@
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning,shapes.geometric,shapes.symbols,shapes.misc,shapes.multipart}
+\usetikzlibrary{trees}
+
+\tikzset{
+	%Diagrammes style
+	macro/.style={
+		draw,
+		rectangle split,
+		minimum width=1.5cm,
+		rectangle split horizontal,
+		rectangle split parts=3,
+		minimum height=1.5cm,
+		align=center,
+		every two node part/.style={align=center, text width=5cm},
+		fill=red!30,
+	},
+    start-end/.style={
+        draw,
+        rectangle,
+        rounded corners,
+		minimum width = 2.5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=2cm,
+    },
+	cloud/.style={
+		draw,
+		draw,
+		ellipse,
+		minimum width = 5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=5cm,
+	},
+    input-output/.style={ % requires library shapes.geometric
+        draw,
+        trapezium,
+        trapezium left angle=60,
+        trapezium right angle=120,
+		minimum width = 5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=5cm,
+    },
+    operation/.style={
+        draw,
+        rectangle,
+		fill=blue!30,
+		minimum width = 5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=5cm,
+    },
+    loop/.style={ % requires library shapes.misc
+        draw,
+        chamfered rectangle,
+        chamfered rectangle xsep=1.5cm,
+		minimum width = 5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=5cm,
+    },
+    decision/.style={ % requires library shapes.geometric
+        draw,
+        diamond,
+		aspect=3,
+		minimum width = 5cm,
+		align=center,
+		text width=5cm,
+		fill=green!30,
+    },
+    print/.style={ % requires library shapes.symbols
+        draw,
+        tape,
+        tape bend top=none,
+		minimum width = 5cm,
+		minimum height=1.5cm,
+		align=center,
+		text width=5cm,
+    },
+    connection/.style={
+        draw,
+        circle,
+        radius=5pt,
+		node distance=0pt and 0pt,
+		text width=0cm,
+		align=center,
+    },
+	emptyConnection/.style={
+		draw=none,
+		node distance=0cm,
+		align=center,
+	}
+	vectors/.style={
+		red,
+		<-,
+		thick,
+	},
+	grid/.style={
+		gray,
+		step=0.5cm,
+		very thin,
+	},
+	probabilityName/.style={
+		text width=4em,
+		thick,
+		text centered,
+	}
+}

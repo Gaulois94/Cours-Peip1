@@ -1,0 +1,62 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\pagestyle{fancy}
+\usepackage{soul}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{trees}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{lipsum}
+\setlength{\fboxsep}{2mm}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{fancybox}
+\include{macro}
+
+\rhead{\leftmark}
+\lhead{\rightmark}
+\cfoot{\thepage}
+
+\chapterfont{\centering}
+\renewcommand*\thesection{\arabic{section}}
+\renewcommand\thechapter{\Roman{chapter}}
+
+\makeatletter
+\renewcommand{\@chapapp}{}
+\makeatother
+
+\begin{document}
+\begin{tikzpicture}[dirtree]
+\node {toplevel} 
+child{ node [->] {Foo}
+            child { node {foo} }
+            child { node {bar} }
+            child { node {baz}
+				child { node {bar} }}
+    }
+    child { node {Bar}
+        child { node {foo} }
+        child { node {foo} }
+        child { node {foo} }
+        child { node {foo} }
+        child { node {bar} }
+        child { node {baz} }
+    }
+    child { node {Baz}
+        child { node {foo} }
+        child { node {bar} }
+        child { node {baz} }
+    };
+\end{tikzpicture}
+
+\end{document}

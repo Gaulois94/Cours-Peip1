@@ -1,0 +1,365 @@
+\documentclass{beamer}
+ 
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{calc}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning,shapes.geometric,shapes.symbols,shapes.misc,shapes.multipart}
+\usetikzlibrary{trees}
+\include{definestyle}
+\include{macro}
+\include{diagrammeShapev2}
+ 
+\title{Bar robotisé partie robot CLEAN}
+\author{SERENO Mickael}
+\institute{Lycée Jean Macé}
+\date{\today}
+
+\logo{\includegraphics[height=12mm]{logo.jpg}}
+
+\usetheme{Warsaw}
+\hypersetup{pdfpagemode=FullScreen}
+
+\setbeamertemplate{background canvas}[vertical shading][top=white, bottom=blue!40]
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \transdissolve
+  \frametitle{Sommaire}
+  \tableofcontents[currentsection, hideothersubsections, pausesubsections]
+  \end{frame} 
+}
+ 
+\begin{document}
+    \begin{frame}
+		\titlepage
+    \end{frame}
+
+	\section{Présentation Générale}
+	\subsection{Les buts du robot}
+		\begin{frame}
+			\frametitle{Récapitulatif des buts du robot}
+			\transdissolve
+			\transduration{4}
+			\begin{itemize}
+				\pause
+				\item Prendre les déchets des consommateurs.
+				\pause
+				\item Se repérer sur la piste pour déposer ces déchets.
+				\pause
+				\item Faire attention aux autres robots.
+				\pause
+				\item Nettoyer à sec la piste.
+			\end{itemize}
+		\end{frame}
+
+	\subsection{Le montage du robot}
+		\begin{frame}
+			\transdissolve
+			\transduration{20}
+			\begin{center}
+				Le robot est composé de 8 ports pour actionneurs et 8 pour les capteurs. Nous n'utiliserons que 2 servomoteurs et 3 capteurs. On l'a aussi équipé d'un balai pour nettoyer à sec la piste (comme préciser dans le cahier des charges).
+				\pause
+				\includegraphics[height=36mm]{arriere.jpg}
+			\end{center}
+		\end{frame}
+	\section{Choix technique}
+	\subsection{Vitesse modulable}
+		\begin{frame}
+			\transdissolve
+			\begin{tikzpicture}[scale=0.2]
+				\coordinate (A) at (-1,-15);
+				\coordinate (B) at (46,21);
+				\repere{A}{B}{5}{10}[1][0.2]
+
+				\foreach \x in {0, 50, ..., 450} 
+				{
+					\draw[red] (\x mm, -15) -- (\x mm, 21);
+					\node at (\x mm, 0) [below] {$\x$};
+				}
+				\foreach \y in {-150, -100, ..., 200} 
+				{
+					\draw[red] (-1, \y mm) -- (46, \y mm);
+					\node at (0, \y mm) [left] {$\y$};
+				}
+				\node at (45cm, 0) [right, yshift=-0.5cm, xshift=0.5cm] {mm};
+				\node at (0, 20cm) [above, yshift=0.25cm, xshift=-0.5cm] {mm/s};
+
+				\draw [domain=-2:47, blue, thick] plot (\x, {15/(45-20)*\x - 20*15/(45-20)}) coordinate (A);
+				\pause
+				\node at (A) [blue, xshift=-5cm, yshift=-1cm, above] {$f(x) = \cfrac{15}{45-20} * x - \cfrac{20*15}{45-20}$};
+			\end{tikzpicture}
+		\end{frame}
+	\subsection{Prendre la Pince}
+		\begin{frame}
+			\transdissolve
+			\transduration{4}
+			Pour prendre la pince on :
+			\begin{itemize}
+				\pause
+				\item{Tourne jusqu'à détecter la limite de la piste}
+				\pause
+				\item{On tourne jusqu'à détecter l'objet}
+				\pause
+				\item{Si on détecte les bandes blanches, c'est qu'il n'y a pas de déchets et donc on se remet dans l'axe}
+				\pause
+				\item{Sinon on avance, on baisse la pince, on avance encore et on ferme la pince}
+				\pause
+				\item{On identifie la nature de l'objet avec le capteur haut puis on monte la pince}
+				\pause
+				\item{Je retourne à ma position initiale et dans mon orientation initiale}
+			\end{itemize}
+		\end{frame}
+	\section{Amélioration}
+	\subsection{Gestion des utilisateurs}
+		\begin{frame}
+			\transdissolve
+			\frametitle{Un tableau dynamique}
+				\begin{tabular}{|c|}
+					\hline
+					Position Consommateur 1 \\
+					\hline
+					Position Consommateur 2 \\
+					\hline
+					Position Consommateur 3\\
+					\hline
+				\end{tabular}
+				\begin{wrapfigure}[16]{r}{0pt}
+				\begin{tikzpicture}
+					\pause
+					\node (begin) at (0,-1) [draw] {Consommateur 4};
+					\pause
+					\draw [->, red] (begin.south) to[out=-70,in=-10] (-8,-5mm);
+					\node (espace) at (-9, -5mm) [minimum width=2] {};
+				\end{tikzpicture}
+			\end{wrapfigure}
+		\end{frame}
+
+		\begin{frame}
+			\transdissolve
+			\frametitle{Un tableau statique}
+			\begin{minipage}[c]{\linewidth}
+				\begin{tabular}{|c|}
+					\hline
+					Position Consommateur 1 \\
+					\hline
+					-1\\
+					\hline
+					-1\\
+					\hline
+					-1\\
+					\hline
+				\end{tabular}
+			\begin{tikzpicture}
+				\pause
+				\node (begin) at (0,0) {Consommateur 3};
+				\pause
+				\draw [->, red] (begin.south) to[out=-40,in=-10] (-3,-16mm);
+			\end{tikzpicture}
+		\end{minipage}
+		\end{frame}
+
+		\subsection{De le Piste}
+		\begin{frame}
+			\transdissolve
+			\begin{tikzpicture}
+				\node (rectangle) at (0.5,0.5) [draw, rectangle] {Clean};
+				
+				\draw[thick, red] (2.2,1) -- (2.2,0) coordinate (L);
+				\draw[thick] (2.2cm,0) -- (2.2cm, -1cm);
+				\draw[thick, red] (2.2cm,-1cm) |- (3cm,-1.2cm) coordinate (A);
+				\draw[thick] (3cm, -1.2cm) -- (4cm, -1.2cm);
+				\draw[thick, red] (4cm,-1.2cm) -- (5cm,-1.2cm) coordinate (B);
+				\draw[thick] (5cm, -1.2cm) -- (6cm, -1.2cm);
+				\draw[thick, red] (6cm,-1.2cm) -- (7cm,-1.2cm) coordinate (C);
+				\draw[thick] (7cm, -1.2cm) -- (8cm, -1.2cm);
+				\draw[thick, red] (8cm,-1.2cm) -| (8.8cm,-1cm) coordinate (D);
+				\draw[thick] (8.8cm, -1cm) -- (8.8cm, 0);
+				\draw[thick, red] (8.8cm,0cm) -- (8.8cm,1cm) coordinate (E);
+
+
+				\draw[thick] (8.8cm, 1cm) -- (8.8cm, 2);
+				\draw[thick, red] (8.8cm,2cm) |- (8cm,2.2cm) coordinate (F);
+				\draw[thick] (8cm, 2.2cm) -- (7cm, 2.2cm);
+				\draw[thick, red] (7cm,2.2cm) -- (6cm,2.2cm) coordinate (G);
+				\draw[thick] (6cm, 2.2cm) -- (5cm, 2.2cm);
+				\draw[thick, red] (5cm,2.2cm) -- (4cm,2.2cm) coordinate (H);
+				\draw[thick] (4cm, 2.2cm) -- (3cm, 2.2);
+				\draw[thick, red] (3cm,2.2cm) -| (2.2cm,2cm) coordinate (I);
+
+				\draw[thick] (2.2,2) -- (2.2,1);
+
+				\draw[thick] (4.5cm, -1.2cm) -- (4.5cm, 0);
+				\draw[thick, red] (4.5cm,0cm) -- (4.5cm,1cm) coordinate (J);
+				\draw[thick] (6.5cm, 1cm) -- (6.5cm, 2.2);
+				\draw[thick] (6.5cm, -1.2cm) -- (6.5cm, 0);
+				\draw[thick, red] (6.5cm,0cm) -- (6.5cm,1cm) coordinate (K);
+				\draw[thick] (4.5cm, 1cm) -- (4.5cm, 2.2);
+
+				\pause
+
+				\node[align=center, xshift=-5mm, below, black] at (A) {0};
+				\node[align=center, xshift=-5mm, below, black] at (B) {1};
+				\node[align=center, xshift=-5mm, below, black] at (C) {2};
+				\node[align=center, yshift=-1mm, right, black] at (D) {3};
+				\node[align=center, xshift=3mm, yshift=-5mm, right, black] at (E) {7};
+				\node[align=center, xshift=5mm, above, black] at (F) {11};
+				\node[align=center, xshift=5mm, above, black] at (G) {10};
+				\node[align=center, xshift=5mm, above, black] at (H) {9};
+				\node[align=center, xshift=5mm, yshift=2mm, above, black] at (I) {8};
+
+				\node[align=center, xshift=-3mm, yshift=-5mm, left, black] at (J){5};
+				\node[align=center, xshift=3mm, yshift=-5mm, right, black] at (K) {6};
+				\node[yshift=5mm, xshift=-1mm, align=center, left, black] at (L) {4};
+
+				\pause
+
+				\draw[thick, blue, ->] (9.2, 0) -- (9.2,1);
+				\draw[thick, blue, <-] (4.3, 0) -- (4.3,1);
+				\draw[thick, blue, <-] (2, 0) -- (2,1);
+				\draw[thick, blue, ->] (6.7, 0) -- (6.7,1);
+			\end{tikzpicture}
+		\end{frame}
+
+		\section{Algorigramme de niveau 1}
+		\begin{frame}
+			\transdissolve
+			\begin{center}
+			\begin{tikzpicture}[node distance=0.7cm and 2cm]
+				\node(declaration) at (0,0) [loop, align=center, scale=0.7] {Type inPince=Nothing \\
+				LineSensor sensorVal \\
+				entier rotationValue = 0 \\
+				entier robotPosition=-1 \\ 
+				entier goTo=4 \\
+				entier vitesse=0 \\ 
+				Couleur sensorColor=Black \\ 
+				tableau entier costumer[8] \\ 
+				entier nbCostumer};
+
+				\node [below of=declaration, yshift=-0.3cm, start-end] (begin) {Debut} edge (declaration);
+				\node [below of=begin, operation] (init) {Initialisation du robot} edge (begin);
+
+				\pause
+				\node [below of=init, operation] (setMotor) {On se déplace a vitesse maximum} edge(init);
+				\node [below of=setMotor, yshift=-0.3cm, decision] (whiteLine) {Ligne Blanche ?} edge (setMotor);
+				\node (no) at (whiteLine.east) [connection, text width=0cm, xshift=3pt] {};
+
+				\draw[->] (no.east) -| ([xshift=1cm, yshift=0.5cm]no.east) |- ([yshift=0.1cm]whiteLine.north);
+
+				\node [below of=whiteLine, operation, yshift=-3mm] (rotation) {faire une rotation de $-90^\circ$} edge (whiteLine);
+
+				\pause
+
+				\node [below of=rotation, yshift=-0.3cm, decision] (true) {Vrai ?} edge (rotation);
+				\node(connection1) at ([xshift=2pt]true.east) [connection] {};
+				\node [right of=connection1, start-end, text width=2cm, xshift=2cm] (end) {Fin} edge (connection1);
+				\node [below of=true, macro, yshift=-2mm] (update) {
+					\nodepart{two}update()} edge(true);
+				\node [below of=update, operation] (continue) {Appliquer les valeurs de rotations et la vitesse du robot} edge(update);
+				\draw[->] (continue.south) --+ (0,-0.1) -| ([xshift=-1cm]true.west) |- ([yshift=0.1cm]true.north);
+			\end{tikzpicture}
+		\end{center}
+		\end{frame}
+
+		\begin{frame}
+			\transdissolve
+		\begin{center}
+			\begin{tikzpicture}[node distance=0.7cm and 2cm]
+				\node(begin) at (0,0) [start-end] {Update};
+				\node [below of=begin, operation] (MAJCo) {Mise à jours de la position et de la couleur} edge (begin);
+				\node [below of=MAJCo, operation] (MAJR) {Mise à jours de la rotation du robot} edge (MAJCo);
+				\node [below of=MAJR, operation] (majv) {Mise à jours de la vitesse} edge (MAJR);
+
+				\pause
+
+				\node [below of=majv, decision, yshift=-0.3cm] (bouton) {Bouton actionné ?} edge (majv);
+				\node(connection1) at ([yshift=-2pt]bouton.south) [connection] {};
+				\node [right of=bouton, operation, xshift=5cm] (enre) {Enregistre la position du robot} edge (bouton);
+				\node [below of=bouton, decision, yshift=-1.3cm] (selon) {Café dans Pince ?} edge (connection1);
+				\draw [->] (enre.south) |- ([yshift=0.1cm]selon.north);
+				\node(connection2) at ([yshift=-2pt]selon.south) [connection] {};
+				\node [right of=selon, decision, xshift=5cm, xscale=0.8] (plusRapide) {Position Robot = Zone 2 ?} edge (selon);
+				\node(connection3) at ([yshift=-2pt]plusRapide.south) [connection] {};
+				\node[right of=plusRapide, operation, xshift=4cm] (tourner) {Ce mettre dans l'axe vers la zone 6} edge (plusRapide);
+
+				\node [below of=connection3, decision, xscale=0.8] (versZone) {Position Robot = Zone 9 ?} edge (connection3);
+				\node[right of=versZone, operation, xshift=4cm] (tourner5) {Ce mettre dans l'axe vers la zone 5} edge (versZone);
+				\node(connection4) at ([yshift=-2pt]versZone.south) [connection] {};
+
+				\node [below of=connection4, decision, xscale=0.8] (poseCafe) {Position Robot = Zone 6 ?} edge (connection4);
+				\node(connection5) at ([yshift=-2pt]poseCafe.south) [connection] {};
+				\node [right of=poseCafe, operation, xshift=4cm] (pose) {On pose le cafe} edge (poseCafe);
+
+				\getxy{\x}{\y}{connection2.south}
+				\coordinate (A) at ([yshift=-0.1cm]connection5.south);
+				\getxy{\xa}{\ya}{A}
+				\draw [->] (tourner.east) -- ([xshift=0.25cm]tourner.east) |- ([yshift=-0.1cm]connection5.south) |- (\x,\ya);
+				\node [below of=selon, connection, yshift=-8.3cm] {1} edge (connection2);
+				\draw [] (connection5.south) -- ([yshift=-0.1cm]connection5.south);
+				\draw [] (tourner5.east) -- ([xshift=0.25cm]tourner5.east);
+				\draw [] (pose.east) -- ([xshift=0.25cm]pose.east);
+			\end{tikzpicture}
+			\end{center}
+	\end{frame}
+
+	\begin{frame}
+		\transdissolve
+		\begin{center}
+		\begin{tikzpicture}[node distance = 0.5cm and 9cm]
+			\node(begin) at (0,0) [connection] {1};
+			\node[below of=begin, decision, yshift=-2mm, scale=0.9] (pinceSoda) {Soda dans Pince ?} edge (begin);
+			\node(connection) at ([yshift=-2pt]pinceSoda.south) [connection] {};
+
+			\node [right of=pinceSoda, decision, xshift=5cm, xscale=0.8] (zone2) {Position Robot = Zone 2 ?} edge (pinceSoda);
+			\node(connection2) at ([yshift=-2pt]zone2.south) [connection] {};
+			\node[right of=zone2, operation, xshift=5cm] (tourner) {Ce mettre dans l'axe vers la zone 6} edge (zone2);
+
+			\node [below of=connection2, decision, xscale=0.8, yshift=-1mm] (versZone) {Position Robot = Zone 9 ?} edge (connection2);
+			\node[right of=versZone, operation, xshift=5cm] (tourner5) {Ce mettre dans l'axe vers la zone 5} edge (versZone);
+			\node(connection3) at ([yshift=-2pt]versZone.south) [connection] {};
+
+			\node [below of=connection3, decision, xscale=0.8, yshift=-1mm] (poseSoda) {Position Robot = Zone 5 ?} edge (connection3);
+			\node(connection4) at ([yshift=-2pt]poseSoda.south) [connection] {};
+			\node [right of=poseSoda, operation, xshift=5cm] (pose) {On pose le soda} edge (poseSoda);
+
+			\getxy{\x}{\y}{connection.south}
+			\coordinate (A) at ([yshift=-0.05cm]connection4.south);
+			\getxy{\xa}{\ya}{A}
+			\draw [->] (tourner.east) -- ([xshift=0.25cm]tourner.east) |- ([yshift=-0.05cm]connection4.south) |- (\x,\ya);
+			\draw [] (connection4.south) -- ([yshift=-0.05cm]connection4.south);
+			\draw [] (tourner5.east) -- ([xshift=0.25cm]tourner5.east);
+			\draw [] (pose.east) -- ([xshift=0.25cm]pose.east);
+
+			\pause
+
+			\coordinate (B) at (\x,\ya);
+			\node (pinceN) at ([yshift=-0.6cm]B) [decision] {Rien dans la Pince ?} edge (connection);
+			\node (connectionEnd) at ([xshift=2pt]pinceN.east) [connection] {};
+			\node [right of=connectionEnd, xshift=5cm, start-end] (end) {Fin Fonction} edge (connectionEnd);
+
+			\pause
+			\node [below of=pinceN, yshift=-0.5cm, decision, scale=0.75] (decisionRapide) {Croisement et chemin plus rapide vers le premier consommateur ?} edge (pinceN);
+			\node [right of=decisionRapide, xshift=5cm, operation] (cheminRapide) {On tourne et ce place dans l'axe du croisement} edge (decisionRapide);
+			\node(connection5) at ([yshift=-2pt]decisionRapide.south) [connection] {};
+
+			\draw[->] (cheminRapide.south) |- ([yshift=-0.1cm]connection5.south);
+			\node[below of=connection5, yshift=-0.3cm, decision, scale=0.9] (consommateur) {Zone robot = zone du premier consommateur ? } edge (connection5);
+			\node[right of=consommateur, operation, xshift=6cm] (debarasser) {On vérifie s'il y a un objet et on le prend} edge (consommateur);
+			\node(connection6) at ([yshift=-2pt]consommateur.south) [connection] {};
+
+			\node [below of=connection6, start-end, yshift=-1mm] (end2) {Fin Fonction} edge (connection6);
+			\draw[->] (debarasser.south) |- ([yshift=0.1cm]end2.north);
+		\end{tikzpicture}
+		\end{center}
+
+	\end{frame}
+\end{document}

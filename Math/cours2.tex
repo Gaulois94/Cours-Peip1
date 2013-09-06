@@ -1,0 +1,136 @@
+\paragraph{Exemple} (de composition)
+
+\begin{align*}
+	f: & E & \rightarrow & \mathbb{R} \\
+	& x & \mapsto & \sqrt{x^2 - 4x + 3}
+\end{align*}
+composé de fonction $f=gou$
+
+\begin{align*}
+	u : & \mathbb{R} & \rightarrow & \mathbb{R} \\
+	\text{} & x : & \mapsto & x^2-4x+3
+\end{align*}
+
+\begin{align*}
+	g : & \mathbb{R}^2 & \rightarrow & \mathbb{R} \\
+	 & x & \mapsto & \sqrt{x}
+\end{align*}
+
+$\Delta = 16 - 12 = 4$
+racine de u : 1 et 3
+~\\
+
+$u(x) > 0$ si et seulement si $ x \in ]-\infty; 1] \cup [3; +\infty[$
+$E = x \in ]-\infty; 1] \cup [3; +\infty[$
+~\\
+
+\begin{align*}
+	h : & \mathbb{R}^* & \rightarrow & \mathbb{R} \\
+		& x & \mapsto & ln(x^2)
+\end{align*}
+
+Pour composer $v : \mathbb{R} \rightarrow \mathbb{R}^+$
+$v : x \mapsto x^2$ ou doit enlever les points où v s'annule, c'est à dire $v^{-1}(\{0\}) = \{0\}$
+~\\
+
+\begin{align*}
+g : &  \mathbb{R}^{+*} & \rightarrow & \mathbb{R} \\
+	   & x & \mapsto & 2ln(x)
+\end{align*}
+
+$ln(x^2) = ln(x*x) = ln(x) + ln(x) = 2ln(x)$
+mais $ln(a*b) = ln(a) + ln(b)$ n'est valable que si a et $b > 0$
+
+\section{Application, surjectives, injectives, bijectives}
+\paragraph{Définition} $w : E \rightarrow F$ ($E, F \in \mathbb{R}$)
+On dit que w est surjective si $w(E) = F$
+De manière équivalente : ($y \in F$ tel que il existe $x \in E$ avec $w(x) = y$) $= F$ c'est à dire tout les éléments de F admette un antécédent.
+c'est à dire $ \forall y \in F$, il existe un $x \in E$ tel que $w(x) = y$
+
+\paragraph{Définition} $w : E \rightarrow F$ ($E, F \subset R$)
+On dit que w est injective si tout élément de F admet au plus un antécédent.
+c'est à dire que si x et x' des éléments de E qui sont différents, $w(x)$ différent $w(x')$
+
+Exemple $w(x) = x^2$ n'est pas injectifs car -2 et 2 ont la meme image (4).
+
+Exemple :
+\begin{align*}
+	f : & \mathbb{R} & \rightarrow & \mathbb{R} \\
+	& x & \mapsto & x^3
+\end{align*}
+Cette fonction est surjective car pour tout y de $\mathbb{R}$, il existe un $x \in \mathbb{R}$ tel que $f(x) = y$ . On a aussi $\forall y \in \mathbb{R}$, cet antécédent est unique.
+
+\begin{align*}
+	f : & \mathbb{R} & \rightarrow & \mathbb{R} \\
+	& x & \mapsto & x^2
+\end{align*}
+
+Cette fonction n'est pas surjective (-1 par exemple n'a pas d'antécédent) et pas injective car $y=4$ par exemple possède 2 antécédents.
+
+\paragraph{Remarque} : Si on considère 
+\begin{align*}
+	g : & \mathbb{R} & \rightarrow & \mathbb{R}^+ \\
+	& x & \mapsto & x^2
+\end{align*}
+
+g est surjective (il y a toujours au minimum un antécédent) mais toujours pas injective
+Plus généralement, si on considère $f:E \rightarrow f(E)$ est toujours surjective.
+
+$sin : R \rightarrow [-1;1]$ elle est subjective mais pas injective : 0 est compris entre [-1;1] mais possède plusieurs antécédent ($k*\pi$ avec $k\in\mathbb{R}$)
+
+
+\begin{align*}
+	g : & \mathbb{R} & \rightarrow & \mathbb{R}^+ \\
+   & x & \mapsto & e^{2x}
+\end{align*}
+Cette fonction n'est pas surjective (antécédent de 0 n'existe pas) mais est injective.
+
+\paragraph{Definition} $w : E \rightarrow F (E,R \subset \mathbb{R})$
+w est dîtes bijective si elle est injective \ul{et} surjective, c'est à dire tout élément de F admet exactement  un antécédent.
+
+\section{Fonction réciproque}
+Si $f:E\rightarrow F$ est bijective, pour tout y de F , il existe un unique x dans E tel que $f(x) = y$
+On peut donc définir $g:F\rightarrow E$ par $g(y) = x$ (tel que $f(x)=y$)
+g est la réciproque de f, notée $f^{-1}$
+
+\paragraph{Exemple}
+\begin{align*}
+	f: & \mathbb{R} & \rightarrow & \mathbb{R}^{*+} \\
+	   & x & \mapsto & exp(x)
+\end{align*}
+ et g 
+\begin{align*}
+	g: & \mathbb{R}{*+} & \rightarrow & \mathbb{R} \\
+	   & x & \mapsto & ln(x)
+\end{align*}
+
+\paragraph{Remarque} si $g=f^{-1}$ avec $f: E \rightarrow F$ et $g: F \rightarrow E$ alors
+\begin{align*}
+	fog: & F & \rightarrow & F \\
+	   & x & \mapsto & x
+\end{align*}
+
+et $fog = gof$
+
+\paragraph{Démonstration} 
+Soit $y \in F$ , quelconque, on veut calculer fog(y)
+Par définition de g comme fonction réciproque de f, $g(y) = x$ tel que $f(x) = y$ donc $f(g(y)) = f(x) = y$
+
+\paragraph{Proposition} $f:E\rightarrow F$ une fonction impaire. supposons que $f_{| E \cap \mathbb{R}^+}$ est croissante, Alors $f_{|E \cap \mathbb{R}^-}$ est croissante
+
+\paragraph{Démonstration} 
+\begin{align*}
+	f_{|E\cap \mathbb{R}^-} : & E\cap \mathbb{R}^- &\rightarrow &\mathbb{R}\\
+												 & x & \mapsto & f(x)
+\end{align*}
+
+Soit x et x' dans $E \cap \mathbb{R}^-$ tels que $x \leq x'$ . 
+\begin{align*}
+	f(x) & = & f(-x) & \text{ car f impaire} \\
+	f(x') & = & -f(-x)
+\end{align*}
+
+Comme $x, x' \in E \cap \mathbb{R}^-$, $-x, -x' \in E \cap \mathbb{R}^-$
+Comme $x \leq x'$, $-x \geq -x'$
+et donc $f(-x) \geq f(-x')$ car f est coissante sur $E\cap \mathbb{R}^+$
+Conclusion, $-f(-x) \leq -f(-x')$ et donc $f(x) \leq f(x')$ et donc $f(x) \leq f(x')$. On a prouvé que $f_{|E \cap \mathbb{R}^-}$ est croissante.

@@ -1,0 +1,546 @@
+\documentclass[12pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=0cm,bottom=0cm,left=0cm,right=0cm]{geometry}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{version}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning,shapes.geometric,shapes.symbols,shapes.misc,shapes.multipart}
+\usetikzlibrary{trees}
+\usetikzlibrary{decorations.markings}
+\include{macro}
+
+\begin{document}
+\include{diagrammeShape}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm, text width=5cm]
+	\node(declaration) at (0,0) [loop, align=center] {Type inPince=Nothing \\
+	LineSensor sensorVal \\
+	entier rotationValue = 0 \\
+	entier robotPosition=-1 \\ 
+	entier goTo=4 \\
+	entier vitesse=0 \\ 
+	Couleur sensorColor=Black \\ 
+	tableau entier costumer[8] \\ 
+	entier nbCostumer};
+	\node [below of=declaration, yshift=-3cm, start-end] (begin) {Debut} edge (declaration);
+	\node [below of=begin, operation] (init) {Initialisation du robot} edge (begin);
+	\node [below of=init, operation] (pince) {Monter et serrer la pince} edge (init);
+	\node [below of=pince, operation] (delay1) {Attendre 500 ms} edge (pince);
+	\node [right of=delay1, xshift=6cm] {On attend que la pince soit prête};
+	\node [below of=delay1, operation] (initTable) {Initialiser le tableau de consommateur} edge(delay1);
+	\node [below of=initTable, operation] (setMotor) {On se déplace a vitesse maximum} edge(initTable);
+	\node [below of=setMotor, yshift=-1cm, decision] (whiteLine) {Ligne Blanche ?} edge (setMotor);
+	\node (no) at (whiteLine.east) [connection, text width=0cm, xshift=5pt] {};
+	\draw[->, thick] (no.east) -| ([xshift=1cm]no.east) |- ([yshift=0.5cm]whiteLine.north) -- (whiteLine.north);
+	\node (end) at ([yshift=-1cm]whiteLine.south) [connection] {$1$} edge (whiteLine);
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(begin) at (0,0) [connection] {$1$};
+	\node [below of=begin, operation] (comeOn) {Avancer de 5 cm en avant} edge (begin);
+	\node [below of=comeOn, operation] (rotation) {faire une rotation de $-90^\circ$} edge (comeOn);
+	\node [below of=rotation, yshift=-1cm, decision] (true) {Vrai ?} edge (rotation);
+	\node(connection1) at ([xshift=5pt]true.east) [connection] {};
+	\node [right of=connection1, start-end, text width=2cm, xshift=2cm] (end) {Fin} edge (connection1);
+	\node [below of=true, macro] (update) {
+		\nodepart{two}update()} edge(true);
+	\node [below of=update, macro] (continue) {\nodepart{two}continueRound()} edge(update);
+	\draw[->, thick] (continue.south) --+ (0,-0.5) -| ([xshift=-1cm]true.west) |- ([yshift=0.5cm]true.north);
+\end{tikzpicture}
+~\\
+~\\
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(beginF) at (-8,0) [start-end, text width=4cm] {continueRound()};
+	\node [below of=beginF, operation] (motor) {Met les motors à la vitesse "vitesse"} edge (beginF);
+	\node [below of=motor, operation] (rotation) {Tourner de $"rotationValue"^\circ$} edge (motor);
+	\node [below of=rotation, start-end] (endF) {Fin Fonction} edge (rotation);
+	\node (begin) at (0,0) [start-end, text width=4cm] {UpdateNormalGoTo()};
+	\node (condition) [yshift=-1cm, decision, below of=begin] {robotPosition = GoTo et sensorColor=Gris ?} edge(begin);
+	\node (connect1) at (condition.east) [connection, xshift=5pt]{};
+	\node (end1) [right of=connect1, xshift=1cm, start-end] {Fin Fonction} edge(connect1);
+	\node (prem) [yshift=-1cm, below of=condition, decision] {$0\leq robotPosition \leq 2$ ?} edge(condition);
+	\node (connect2) at (prem.south) [connection, yshift=-5pt] {};
+	\node (goTo1) [right of=prem, operation, xshift=4cm, minimum width=3cm, text width=3cm] {$GoTo+=1$} edge (prem);
+
+	\node (prem1) [yshift=-1cm, below of=connect2, decision] {$robotPosition =$\\ 3 ou 7 ou 6 ?} edge(connect2);
+	\node (connect3) at (prem1.south) [connection, yshift=-5pt] {};
+	\node (goTo2) [right of=prem1, operation, xshift=4cm, minimum width=3cm, text width=3cm] {$GoTo+=4$} edge (prem1);
+
+	\node (prem2) [yshift=-1cm, below of=connect3, decision] {$9 \leq robotPosition \leq 11$ ?} edge(connect3);
+	\node (connect4) at (prem2.south) [connection, yshift=-5pt] {};
+	\node (goTo3) [right of=prem2, operation, xshift=4cm, text width=3cm,  minimum width=3cm] {$GoTo-=1$} edge (prem2);
+
+	\node (goTo4) [below of=connect4, operation, minimum width=3cm, text width=3cm] {$GoTo-=4$} edge (connect4);
+	\node (end) [yshift=-1cm, below of=goTo4, start-end] {Fin Fonction} edge(goTo4);
+	\draw [->] (goTo3.east) -| ([xshift=1cm]goTo3.east) |- ([yshift=1cm]end.north);
+	\draw [->] (goTo2.east) -| ([xshift=1cm]goTo2.east) |- ([yshift=1cm]end.north);
+	\draw [->] (goTo1.east) -| ([xshift=1cm]goTo1.east) |- ([yshift=1cm]end.north);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (-10,0) [start-end, minimum width=5cm, text width=4.5cm] {UpdatePosition(Couleur color)};
+	\node (condition1) [below of=begin, decision, yshift=-1cm] {color = sensorColor \\ ou color = Noire ?} edge(begin);
+	\node (end1) [left of=condition1, start-end, xshift=-4cm] {Fin Fonction} edge(condition1);
+	\node (connect1) at (condition1.south) [yshift=-5pt, connection] {};
+	\node (condition2) [below of=connect1, decision] {color=Gris ?} edge (connect1);
+	\node (action1) [left of=condition2, operation, text width=4cm, minimum width=4cm, xshift=-4cm] {robotPosition=GoTo} edge(condition2);
+	\node (connect2) at (condition2.south) [yshift=-5pt, connection] {};
+	\node (action2) [below of=connect2, operation, text width=3cm, minimum width=4cm, yshift=-0.5cm] {robotPosition=-1} edge(connect2);
+	\node (change) [below of=action2, operation, yshift=-1.5cm] {sensorColor = color} edge(action2);
+	\draw[->] (action1.south) |- ([yshift=1cm]change.north);
+	\node (end) [below of=change, start-end] {Fin FOnction} edge (change);
+\end{tikzpicture}
+~\\
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin1) at (0,0) [start-end] {Ligne Blanche};
+	\node (maj) [below of=begin1, operation, yshift=0.5] {Mettre à jours dans sensorVal} edge (begin1);
+	\node (condition10) [below of=maj, decision, text width=6cm, yshift=-1cm] {$Capteur gauche \geq 100$ \\ ou $capteur droit \geq 100$ ?} edge (maj);
+	\node (faux) at (condition10.east) [xshift=5pt, connection] {};
+	\node (return1) [right of=faux, start-end, xshift=1cm] {Retourne Faux} edge (faux);
+	\node (return2) [below of=condition10, start-end, yshift=-1cm] {Retourne Vrai} edge (condition10);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(begin1) at (0,0) [start-end, minimum width=4cm, text width=4cm] {addValue(value)};
+	\node(condition1) [decision, yshift=-2cm] {customerNumber $\leq$ 7 ?} edge (begin1);
+	\node(faux) at (condition1.west) [connection, xshift=-5pt] {};
+	\node(end1) [left of=condition1, xshift=-5cm, start-end] {Fin Fonction} edge (faux);
+	\node(add) [below of=condition1, operation, yshift=-1cm] {A la case customerNumber ajouter value} edge (condition1);
+	\node(add1) [below of=add, operation] {customerNumber+=1} edge (add);
+	\node (end2) [below of=add1, start-end] {Fin Fonction} edge(add1);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin1) at (0,0) [start-end, minimum width=4cm, text width=4cm] {deleteValue(value)};
+	\node (condition10) [below of=begin1, decision, yshift=-0.5cm] {customerNumber $\geq 1$ ?} edge(begin1);
+	\node (connecteur1) at (condition10.east) [xshift=5pt, connection] {};
+	\node (end10) [right of=connecteur1, start-end] {Fin Fonction} edge (connecteur1);
+	\node (create) [below of=condition10, operation, yshift=-1cm] {entier $i=0$} edge (condition10);
+	\node (for1) [below of=create, decision, yshift=-1.5cm] {$i < costumerNumber$?} edge (create);
+	\node (add) [below of=for1, operation, yshift=-0.5cm] {$i+=1$} edge (for1);
+	\node (stop) [below of = add, decision, yshift=-0.5cm] {$costumer[i] = value$ ?} edge(add);
+	\node (connecteur3) at (stop.west) [connection, xshift=-5pt]{};
+	\node (connecteur2) at (for1.east) [connection, xshift=5pt]{};
+	\draw[->] (connecteur3.west) -| ([xshift=-1cm]for1.west) |- ([yshift=0.5cm]for1.north);
+	\node (end1) [right of=connecteur2, start-end, xshift=2cm] {Fin fonction} edge(connecteur2);
+	\node (init2) [below of=stop, operation, yshift=-0.5cm] {$i=0$} edge (stop);
+	\node (for2) [below of=init2, decision, yshift=-1cm] {$i<7$ ?} edge (init2);
+	\node (action2) [below of=for2, operation, yshift=-0.5cm] {costumer[i] = costumer[i+1]} edge (for2);
+	\node (add2) [below of=action2, operation] {$i+=1$} edge (action2);
+	\node (connecteur4) at (for2.east) [connection, xshift=5pt] {};
+	\node (maj) [right of=connecteur4, xshift=2cm, operation] {costumer[7]=0 \\ costumerNumber -= 1} edge (connecteur4);
+	\node (end) [right of=maj, start-end, xshift=3cm] {Fin Fonction} edge (maj);
+	\draw[->] (add2.south) |- ([yshift=-0.5cm]add2.south) -| ([xshift=-0.5cm]for2.west) |- ([yshift=0.5cm]for2.north);
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[node distance = 2cm and 9cm]
+	\node (begin) at (0,0) [start-end] {Update()};
+	\node (action1) [below of=begin, operation] {Mettre à jours le robot dans status} edge (begin);
+	\node (getO) [below of=action1, operation] {Récupérer l'orientation du robot dans orientation} edge (action1);
+	\node (addVD) [below of=getO, decision, yshift=-0.5cm] {sensorColor = Vert \\
+		et appuyer sur bouton ?} edge (getO);
+	\node (noAddVD) at (addVD.west) [xshift=-5pt, connection] {};
+
+	\node (initI) [below of=addVD, operation, yshift=-0.75cm] {nombre $i=0$} edge (addVD);
+	\node (forAddVD) [below of=initI, yshift=-0.5cm, decision] {i $<$ costumerNumber ?} edge (initI);
+	\node (noP) at (forAddVD.south) [connection, yshift=-5pt] {};
+	\node (addV) [below of=noP, macro] {\nodepart{two}AddValue(robotPosition)} edge (noP);
+	\node (addI) [right of=forAddVD, xshift=5cm, operation] {i += 1} edge (forAddVD);
+	\node (testI) [below of=addI, yshift=-0.5cm, decision] {costumer[i]=RobotPosition ?} edge (addI);
+	\node (noI) at (testI.east) [xshift=5pt, connection] {};
+	\draw[->] (noI.east) --+ (0.5, 0) |- ([yshift=0.25cm]forAddVD.north);
+	\node (getD) [below of=addV, yshift=-0.5cm, operation] {Récupérer distance obstacle dans distance} edge(addV);
+	\draw[->] (testI.south) |- ([yshift=0.5cm]getD.north);
+	\node (vD) [below of=getD, decision, yshift=-0.5cm] {distance > 450 ?} edge (getD);
+	\node (no450) at (vD.south) [yshift=-5pt, connection]{};
+	\node (vMax) [right of=vD, xshift=5cm, operation] {vitesse$=450$} edge (vD);
+	\node (newV) [below of=vD, yshift=-0.5cm, operation] {vitesse = $\cfrac{150*distance}{450-200} - \cfrac{200*150}{450-200}$} edge (no450);
+
+	\node (majC) [below of=newV, yshift=-0.5cm, operation] {Mettre à jours capteur de ligne dans sensorVal} edge(newV);
+	\draw[->] (vMax.south) |- ([yshift=0.5cm]majC.north);
+	\node (continue) [right of=majC, xshift=5cm, connection] {1} edge (majC);
+	\draw[->] (noAddVD.west) --+(-0.5, 0) |- ([yshift=0.5cm]getD.north);
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) [connection] {1};
+	\node (initI) [operation, below of=begin] {nombre i=0} edge (begin);
+	\node (test1) [below of=initI, yshift=-1cm, decision, aspect=2] {capteur gauche < 100 et capteur droit > 100 ?} edge (initI);
+	\node (no1) at (test1.south) [yshift=-5pt, connection] {};
+	\node (roV1) [right of=test1, xshift=4.5cm, operation, minimum width=4cm, text width=4cm] {rotationValue=-2} edge (test1);
+	\node (while1) [right of=roV1, xshift=4.5cm, decision, aspect=2] {capteur droit > 190 et i < 3 ?} edge (roV1);
+	\node (stopWhile1) at (while1.east) [xshift=5pt, connection] {};
+	\node (delay1) [below of=while1, operation, yshift=-0.75cm] {Attendre 3 ms} edge (while1);
+	\node (majSV1) [below of=delay1, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay1);
+	\node (addI) [below of=majSV1, operation, yshift=0.25cm] {i+=1} edge (majSV1);
+	\node (ok10) [below of=addI, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur droit>190 ?};
+	\draw[->] (stopWhile1.south) |- ([yshift=0.5cm]ok10.north) --+(0, -0.5cm);
+	\draw[->] (addI.west) -| ([xshift=-0.25cm]while1.west);
+	\node (white1) [left of=ok10, xshift=-4.75cm, macro] {\nodepart{two}updatePosition(White)} edge(ok10);
+
+	\getxy{\tx}{\ty}{test1.north}
+	\node (noOK) at (ok10.south) [yshift=-5pt, connection] {};
+	\node (initi1) [below of=noOK, yshift=1cm, operation] {i=0} edge (noOK);
+	\node (while2) [below of=initi1, yshift=-1cm, decision, aspect=2] {capteur droit < 190 et i < 3 ?} edge (initi1);
+	\node (stopWhile2) at (while2.east) [xshift=5pt, connection] {};
+	\node (delay2) [below of=while2, operation, yshift=-0.75cm] {Attendre 3 ms} edge (while2);
+	\node (majSV2) [below of=delay2, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay2);
+	\node (end1) [below of=majSV2, yshift=-1.5cm, connection] {2} edge (majSV2);
+	\node (co3) [left of=end1, xshift=-4cm, connection] {3};
+	\draw[->] (co3.north) |- ([yshift=0.25cm]while2.north);
+	\getxy{\cx}{\cy}{co3.west}
+	\getxy{\dx}{\dy}{stopWhile2}
+	\node (co5) at (\tx,\cy) [connection] {5} edge (no1);
+	\node (co4) at (\dx,\cy) [connection] {4} edge (stopWhile2);
+	\path(white1.west) --+ (-0.5,0) coordinate(tmp);
+	\getxy{\x}{\y}{tmp}
+	\node (co6) at (\x,\cy) [connection] {6};
+	\draw[<-] (co6.north) |- (white1.west);
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at(0,0) [connection] {2};
+	\node (add2) [below of=begin, operation] {i+=1} edge (begin);
+	\node (co5) [left of=begin, xshift=-12cm, connection] {5};
+	\node (co4) [right of=begin, xshift=4cm, connection] {4};
+	\node (ok) [below of=add2, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur droit<190 ?};
+	\node (co3) [left of=begin, xshift=-5cm, connection] {3};
+	\draw[->] (add2.west) -| (co3.south);
+	\draw[->] (co4.south) |- ([yshift=0.5cm]ok.north) --  (ok.north);
+
+	\node (green1) [left of=ok, xshift=-4.75cm, macro] {\nodepart{two}updatePosition(Gray)} edge(ok);
+	\node (co61) [left of=green1, xshift=-4cm, connection] {6} edge (green1);
+	\node (noOk) at (ok.south) [yshift=-5pt, connection] {};
+	\node (co62) [below of=noOk, yshift=-3cm, connection] {6} edge (noOk);
+
+	\node (test1) [below of=co5, yshift=-7cm, decision] {Ligne Blanche ?} edge (co5);
+	\node (yes1) [right of=test1, xshift=5cm, operation] {rotationValue=7} edge (test1);
+	\draw[->] (yes1.south) --+(0, -0.25cm) |- (co62.west);
+
+	\node (no1) at (test1.south) [yshift=-5pt, connection] {};
+	\node (test2) [below of=no1, yshift=-0.5cm, decision, aspect=2] {capteur droit > 100 et capteur gauche > 100 ?} edge (no1);
+	\node (no2) at (test2.south) [yshift=-5pt, connection] {};
+
+
+	\node (roV1) [right of=test2, xshift=4.25cm, operation, minimum width=4cm, text width=4cm] {rotationValue=0} edge (test2);
+	\node (while1) [right of=roV1, xshift=4.75cm, decision, aspect=2] {capteur droit > 190 et capteur gauche > 190 et i < 3 ?} edge (roV1);
+	\node (stopWhile1) at (while1.east) [xshift=5pt, connection] {};
+	\node (delay1) [below of=while1, operation, yshift=-1.25cm] {Attendre 3 ms} edge (while1);
+	\node (majSV1) [below of=delay1, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay1);
+	\node (addI) [below of=majSV1, operation, yshift=0.25cm] {i+=1} edge (majSV1);
+	\node (ok2) [below of=addI, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur droit > 190 et capteur gauche > 190 ?};
+	\draw[->] (stopWhile1.south) |- ([yshift=0.5cm]ok2.north) --+(0, -0.5cm);
+	\draw[->] (addI.west) -| ([xshift=-0.25cm]while1.west);
+	\node (white1) [left of=ok2, xshift=-5.25cm, macro] {\nodepart{two}updatePosition(White)} edge(ok2);
+	\node (co63) [left of=white1, xshift=-4cm, connection] {6} edge (white1);
+	\node (noOK1) at (ok2.south) [yshift=-5pt, connection] {};
+	\node (co7) [below of=noOK1, connection, yshift=-1cm] {7} edge (noOK1);
+	\getxy{\xc}{\yc}{co7.west}
+	\getxy{\xn}{\yn}{no2.south}
+	\node at (\xn,\yc) [connection] {8} edge (no2);
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection]{7};
+	\node (co8) [left of=begin, xshift=-14cm, connection] {8};
+
+	\node (initi1) [below of=begin, yshift=0.5cm, operation] {i=0} edge (begin);
+	\node (while2) [below of=initi1, yshift=-1.5cm, decision, aspect=2] {capteur droit < 190 et capteur gauche < 190 et i < 3 ?} edge (initi1);
+	\node (stopWhile2) at (while2.east) [xshift=5pt, connection] {};
+	\node (delay2) [below of=while2, operation, yshift=-0.75cm] {Attendre 3 ms} edge (while2);
+	\node (majSV2) [below of=delay2, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay2);
+
+	\node (addI) [below of=majSV2, operation, yshift=0.25cm] {i+=1} edge (majSV2);
+	\draw[->] (addI.west) -| ([xshift=-0.25cm]while2.west) |- ([yshift=0.5cm]while2.north);
+	\node (ok) [below of=addI, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur droit < 190 et capteur gauche < 190 ?};
+	\draw[->] (stopWhile2.south) |- ([yshift=0.25cm]ok.north) -- (ok.north);
+	\node (green1) [left of=ok, xshift=-5.25cm, macro] {\nodepart{two}updatePosition(Gray)} edge(ok);
+	\node (co61) [left of=green1, xshift=-4cm, connection] {6} edge (green1);
+	\node (noOk) at (ok.south) [yshift=-5pt, connection] {};
+	\node (co62) [below of=noOk, yshift=-3cm, connection] {6} edge (noOk);
+
+	\node (rV) [below of=co8, yshift=-17cm, operation] {$rotationValue=0$} edge (co8);
+	\node (while3) [right of=rV, xshift=5cm, decision, aspect=2] {capteur gauche > 190 et i < 3 ?} edge (rV);
+	\node (stopWhile3) at (while3.east) [xshift=5pt, connection] {};
+	\node (delay3) [below of=while3, operation, yshift=-0.75cm] {Attendre 3 ms} edge (while3);
+	\node (majSV3) [below of=delay3, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay3);
+	\node (addI) [below of=majSV3, operation, yshift=0.25cm] {i+=1} edge (majSV3);
+	\draw[->] (addI.west) -| ([xshift=-0.25cm]while3.west);
+	\node (co9) [below of=stopWhile3, yshift=-7cm, connection] {9} edge (stopWhile3);
+	\getxy{\xc}{\yc}{co9}
+	\getxy{\xs}{\ys}{rV}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {9};
+	\node (co6) [left of=begin, xshift=-14cm, connection] {6};
+
+	\node (ok20) [below of=begin, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur gauche > 190 ?} edge (begin);
+	\node (noOk20) at (ok20.south) [yshift=-5pt, connection] {};
+	\node (white1) [left of=ok20, xshift=-5.25cm, macro] {\nodepart{two}updatePosition(White)} edge(ok20);
+
+	\node (initi1) [below of=noOk20, yshift=0.5cm, operation] {i=0} edge (noOk20);
+	\node (while2) [below of=initi1, yshift=-1.5cm, decision, aspect=2] {capteur gauche < 190 et i < 3 ?} edge (initi1);
+	\node (stopWhile2) at (while2.east) [xshift=5pt, connection] {};
+	\node (delay2) [below of=while2, operation, yshift=-0.75cm] {Attendre 3 ms} edge (while2);
+	\node (majSV2) [below of=delay2, operation, yshift=0.25cm] {Mettre à jours le capteur dans sensorVal} edge (delay2);
+
+	\node (addI) [below of=majSV2, operation, yshift=0.25cm] {i+=1} edge (majSV2);
+	\draw[->] (addI.west) -| ([xshift=-0.25cm]while2.west) |- ([yshift=0.5cm]while2.north);
+	
+	\node (ok) [below of=addI, decision, aspect=2, yshift=-1.5cm] {i=3 et capteur gauche < 190 ?};
+	\draw[->] (stopWhile2.south) |- ([yshift=0.25cm]ok.north) -- (ok.north);
+	\node (green1) [left of=ok, xshift=-5.25cm, macro] {\nodepart{two}updatePosition(Gray)} edge(ok);
+	\node (noOK) at (ok.south) [yshift=-5pt, connection] {};
+
+	\getxy{\xc}{\yc}{co6.south}
+	\getxy{\xa}{\ya}{green1.west}
+	\getxy{\xb}{\yb}{white1.west}
+	\getxy{\xd}{\yd}{noOK.south}
+
+	\draw[->] (green1.west) -- (\xc,\ya);
+	\draw[->] (white1.west) -- (\xc,\yb);
+	\path (noOK.south) -- (\xc, \yd) --+ (0, -0.25) coordinate(tmp);
+	\draw[->] (noOK.south) --+ (0, -0.25) -- (tmp);
+	\node (c10) [below of=co6, yshift=-25cm, connection] {10} edge (co6);
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {10};
+	
+	\node (rien) [below of=begin, decision] {Rien dans la pince ?} edge (begin);
+	\node (noRien) at (rien.east) [xshift=5pt, connection] {};
+	
+	\node (canTake) [below of=rien, yshift=-1.5cm, decision, aspect=3] {($160\leq orientation \leq 200$ ou $340 \leq orientation \leq 360$) et costumer[0] = robotPosition ?} edge (rien);
+	\node (noOrien) at (canTake.south) [yshift=-5pt, connection] {};
+	\node (deleteV) [xshift=8cm, right of=canTake, macro] {\nodepart{two}deleteValue(robotPosition)} edge (canTake);
+	\node (takeTrash) [below of=deleteV, macro] {\nodepart{two}takeTrash()} edge (deleteV);
+	\node (update) [below of=takeTrash, macro] {\nodepart{two}update()} edge (takeTrash);
+	\node (end1) [below of=update, start-end] {Fin Fonction} edge(update);
+
+	\node (updateNormal1) [below of=noOrien, yshift=-1.5cm, macro] {\nodepart{two}updateNormalGoTo()} edge (noOrien);
+	\node (firstTest) [below of=updateNormal1, yshift=-0.25cm, decision] {costumerNumber > 0 ?} edge (updateNormal1);
+	\node (firstN) at (firstTest.east) [xshift=5pt, connection] {};
+	\node (end2) [right of=firstN, xshift=3cm, start-end] {Fin fonction} edge (firstN);
+	\node (itineraire1) [below of=firstTest, yshift=-1cm, decision] {($1\leq costumer[0] \leq 3$ ou $costumer[0]=11$) et $robotPosition=9$ ?} edge (firstTest);
+	\node (noI1) at (itineraire1.south) [yshift=-5pt, connection] {};
+	\node (rotation) [right of=itineraire1, operation, xshift=7cm] {Faire une rotation de $90^\circ$} edge (itineraire1);
+	\node (cGoTo1) [below of=rotation, operation] {GoTo=5} edge (rotation);
+	\node (end3) [below of=cGoTo1, start-end] {Fin Fonction} edge(cGoTo1);
+	\node (itineraire2) [below of=itineraire1, yshift=-4cm, decision] {($8\leq costumer[0] \leq 10$ ou $costumer[0]=0$) et $robotPosition=2$ ?} edge (noI1);
+	\node (noI2) at (itineraire2.south) [yshift=-5pt, connection] {};
+	\node (rotation2) [right of=itineraire2, operation, xshift=7cm] {Faire une rotation de $90^\circ$} edge (itineraire2);
+	\node (cGoTo2) [below of=rotation2, operation] {GoTo=6} edge (rotation2);
+	\node (end4) [below of=cGoTo2, start-end] {Fin Fonction} edge (cGoTo2);
+	\getxy{\xc}{\yc}{noI2.south}
+	\getxy{\xb}{\yb}{end4.west}
+	\node (end5) at (\xc,\yb) [start-end] {Fin Fonction} edge (noI2);
+	\node (co11) [right of=rien, xshift=12cm, connection] {11} edge (noRien);
+
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {11};
+
+	\node (cafe) [below of=begin, decision] {cafe dans Pince ?} edge (begin);
+	\node (noCafe) at (cafe.east) [xshift=5pt, connection] {};
+	\node (co12) [right of=cafe, xshift=12cm, connection] {12} edge (noCafe);
+	\node (firstTest) [below of=cafe, yshift=-1cm, decision] {$robotPosition=GoTo$ et sensorColor=Gray ?} edge (cafe);
+	\node (firstN) at (firstTest.east) [xshift=5pt, connection] {};
+	\node (end2) [right of=firstN, xshift=3cm, start-end] {Fin fonction} edge (firstN);
+
+	\node (itineraire1) [below of=firstTest, decision, yshift=-1cm] {$goTo=9$ ?} edge (firstTest);
+	\node (noI1) at (itineraire1.south) [yshift=-5pt, connection] {};
+	\node (rotation) [right of=itineraire1, operation, xshift=7cm] {Faire une rotation de $80^\circ$} edge (itineraire1);
+	\node (cGoTo1) [below of=rotation, operation] {GoTo=5} edge (rotation);
+	\node (end3) [below of=cGoTo1, start-end] {Fin Fonction} edge(cGoTo1);
+	\node (itineraire2) [below of=itineraire1, yshift=-4cm, decision] {$goTo=2$ ?} edge (noI1);
+	\node (noI2) at (itineraire2.south) [yshift=-5pt, connection] {};
+	\node (rotation2) [right of=itineraire2, operation, xshift=7cm] {Faire une rotation de $90^\circ$} edge (itineraire2);
+	\node (cGoTo2) [below of=rotation2, operation] {GoTo=6} edge (rotation2);
+	\node (end4) [below of=cGoTo2, start-end] {Fin Fonction} edge (cGoTo2);
+
+	\node (itineraire3) [below of=noI2, decision]{$goTo=6$ ?} edge (noI2);
+	\node (noI3) at (itineraire3.west) [xshift=-5pt, connection] {};
+	\node (putObj) [below of=itineraire3, yshift=-0.5cm, macro]{\nodepart{two}putDownTrash()} edge (itineraire3);
+	\node (updateN1) [below of=putObj, macro]{\nodepart{two}updateNormalGoTo()} edge (putObj);
+	\draw[->] (noI3.west) --+ (-0.5,0) |- (updateN1.west);
+	\node (end5) [below of=updateN1, start-end] {Fin Fonction} edge (updateN1);
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {11};
+
+	\node (soda) [below of=begin, decision] {soda dans Pince ?} edge (begin);
+	\node (noSoda) at (soda.east) [xshift=5pt, connection] {};
+	\node (end1) [right of=soda, xshift=12cm, start-end] {Fin Fonction} edge (noSoda);
+	\node (firstTest) [below of=soda, yshift=-1cm, decision] {$robotPosition=GoTo$ et sensorColor=Gray ?} edge (soda);
+	\node (firstN) at (firstTest.east) [xshift=5pt, connection] {};
+	\node (end2) [right of=firstN, xshift=3cm, start-end] {Fin fonction} edge (firstN);
+
+	\node (itineraire1) [below of=firstTest, decision, yshift=-1cm] {$goTo=9$ ?} edge (firstTest);
+	\node (noI1) at (itineraire1.south) [yshift=-5pt, connection] {};
+	\node (rotation) [right of=itineraire1, operation, xshift=7cm] {Faire une rotation de $80^\circ$} edge (itineraire1);
+	\node (cGoTo1) [below of=rotation, operation] {GoTo=5} edge (rotation);
+	\node (end3) [below of=cGoTo1, start-end] {Fin Fonction} edge(cGoTo1);
+	\node (itineraire2) [below of=itineraire1, yshift=-4cm, decision] {$goTo=2$ ?} edge (noI1);
+	\node (noI2) at (itineraire2.south) [yshift=-5pt, connection] {};
+	\node (rotation2) [right of=itineraire2, operation, xshift=7cm] {Faire une rotation de $90^\circ$} edge (itineraire2);
+	\node (cGoTo2) [below of=rotation2, operation] {GoTo=6} edge (rotation2);
+	\node (end4) [below of=cGoTo2, start-end] {Fin Fonction} edge (cGoTo2);
+
+	\node (itineraire3) [below of=noI2, decision]{$goTo=5$ ?} edge (noI2);
+	\node (noI3) at (itineraire3.west) [xshift=-5pt, connection] {};
+	\node (putObj) [below of=itineraire3, yshift=-0.5cm, macro]{\nodepart{two}putDownTrash()} edge (itineraire3);
+	\node (updateN1) [below of=putObj, macro]{\nodepart{two}updateNormalGoTo()} edge (putObj);
+	\draw[->] (noI3.west) --+ (-0.5,0) |- (updateN1.west);
+	\node (end5) [below of=updateN1, start-end] {Fin Fonction} edge (updateN1);
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [start-end] {takeTrash()};
+	\node (roB) [below of=begin, operation] {Récupérer rotation dans nombre entier rotationBack} edge (begin);
+	\node (ligneB1) [below of=roB, yshift=-1cm, decision] {Ligne Blanche ?} edge (roB);
+	\node (noLigneB1) at (ligneB1.south) [yshift=-5pt, connection] {};
+	\node (ro1) [right of=ligneB1, xshift=6cm, yshift=-0.5cm, operation] {Tourner de $-1^\circ$};
+	\draw (ligneB1.east) -| ([xshift=-1cm]ro1.west) -- (ro1.west);
+	\draw[->] (ro1.east) --+ (0.5cm,0) |- ([yshift=0.5cm]ligneB1.north);
+	\node (vrai) [below of=noLigneB1, decision] {Vrai ?} edge (noLigneB1);
+	\node (noVrai) at (vrai.east) [xshift=5pt, connection] {};
+
+	\node (endx) [right of=noVrai, xshift=10cm, start-end] {Fin Fonction} edge (noVrai);
+	\node (getD) [below of=vrai, operation, yshift=-0.25cm] {Récupérer la distance dans un entier distance} edge (vrai);
+	\node (decisionD) [below of=getD, decision, yshift=-0.5cm] {$150 \leq distance \leq 300$ ?} edge (getD);
+	\node (noDecision) at (decisionD.south) [yshift=-5pt, connection] {};
+	\node (delay) [right of=decisionD, operation, xshift=5.5cm] {Attendre 100ms} edge (decisionD);
+	\node (ro11) [right of=delay, operation, xshift=5cm] {faire une rotation de $1^\circ$} edge (delay);
+	\node (takeObj) [below of=ro11, macro] {\nodepart{two}takeObject} edge (ro11);
+	\node (roB1) [below of=takeObj, operation] {récupérer l'orientation dans un entier rotationBackBis} edge (takeObj);
+	\node (roBB) [below of=roB1, operation] {Faire une rotation de $rotationBackBis-rotationBack$} edge (roB1);
+	\node (lignB2) [below of=noDecision, decision] {Ligne Blanche ?} edge (noDecision);
+	\node (noLignB2) at (lignB2.south) [yshift=-5pt, connection] {};
+	\node (faireRotation) [right of=lignB2, operation, xshift=5.75cm] {Tourner de $10^\circ$} edge (lignB2);
+	\node (lignB3) [below of=faireRotation, decision, yshift=-0.5cm] {Ligne Blanche ?} edge (faireRotation);
+	\node (noLignB3) at (lignB3.west) [connection, xshift=-5pt] {};
+	\getxy{\xa}{\ya}{faireRotation.west}
+	\getxy{\xb}{\yb}{noLignB3.north}
+	\draw[->] (noLignB3.north) -- (\xb,\ya);
+
+	\node (end1) [below of=lignB3, yshift=-4.5cm, start-end] {Fin Fonction} edge(lignB3);
+	\getxy{\xa}{\ya}{end1.east}
+	\getxy{\xb}{\yb}{roBB.south}
+	\node (endroB) at (\xb,\ya) [start-end] {Fin Fonction} edge (roBB);
+	\node (doRoAgain) [below of= noLignB2, operation] {Tourner de $-1^\circ$} edge (noLignB2);
+	\draw[->] (doRoAgain.west) -| ([xshift=-0.25cm]lignB2.west) |- (vrai.west);
+
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [start-end] {takeObject()};
+	\node (monter) [below of=begin, operation] {Monter la Pince} edge (begin);
+	\node (wait1) [below of=monter, operation] {Attendre 500 ms} edge (monter);
+	\node (desserer) [below of=wait1, operation] {Desserer la Pince} edge (wait1);
+	\node (wait2) [below of=desserer, operation] {Attendre 500 ms} edge (desserer);
+	\node (getXY) [below of=wait2, operation] {Récupérer la position du robot dans entier x et y} edge (wait2);
+	\node (objD) [below of=getXY, decision, yshift=-0.75cm] {Distance obsacle $\geq$ 160 ?} edge (getXY);
+	\node (noObjD) at (objD.south) [yshift=-5pt, connection] {};
+	\node (avancer) [right of=objD, operation, xshift=5cm] {Mettre les moteurs à fond} edge (objD);
+	\draw[->] (avancer.north) |- ([yshift=0.5cm]objD.north);
+	\node (stopM) [below of=noObjD, operation, yshift=0.75cm] {On stop les moteurs} edge (noObjD);
+	\node (descendre) [below of=stopM, operation] {Descendre la pince} edge (stopM);
+	\node (wait3) [below of=descendre, operation] {Attendre 500 ms} edge (descendre);
+	\node (testCH) [below of=wait3, decision, yshift=-0.5cm] {$0\leq distance capteur haut \leq 150$ ?} edge (wait3);
+	\node (testY) [right of=testCH, operation, xshift=5.5cm] {Dans pince il y a un soda} edge (testCH);
+	\node (noTestCH) at (testCH.west) [xshift=-5pt, connection] {};
+	\node (testN) [right of=noTestCH, xshift=-5.5cm, operation] {Dans pince il y a un cafe} edge (noTestCH);
+	\node (avancer35) [below of=testCH, operation, yshift=-0.75cm] {Avancer de 35 mm} edge (testCH);
+	\node (co1) [below of=avancer35, yshift=-1.5cm, connection] {1} edge (avancer35);
+	\draw[->] (testY.south) |- ([yshift=0.25cm]avancer35.north);
+	\draw[->] (testN.south) |- ([yshift=0.25cm]avancer35.north);
+\end{tikzpicture}
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {1};
+	\node (serrer) [below of=begin, operation, yshift=-0.5cm] {Serrer la pince} edge (begin);
+	\node (wait2) [below of=serrer, operation] {Attendre 500 ms} edge (serrer);
+	\node (monter) [below of=wait2, operation] {Monter la pince} edge (wait2);
+	\node (wait1) [below of=monter, operation] {Attendre 500 ms} edge (monter);
+
+	\node (getXY) [below of=wait1, operation] {Récupérer nouvelles positions du robot dans entier xbis et ybis} edge (wait1);
+	\node (test) [below of=getXY, decision, yshift=-1cm] {$x>xbis$ ?} edge (getXY);
+	\node (noTest) at (test.west) [xshift=-5pt, connection] {};
+	\node (testY) [right of=test, operation, xshift=5cm] {Dans entier realX mettre $xbis-x$} edge (test);
+	\node (testN) [left of=noTest, operation, xshift=-3cm] {Dans entier realX mettre $x-xbis$} edge (noTest);
+
+	\node (test2) [below of=test, yshift=-1cm, decision] {$y>ybis$ ?} edge (test);
+	\node (noTest2) at (test2.west) [xshift=-5pt, connection] {};
+	\node (test2Y) [right of=test2, operation, xshift=5cm] {Dans entier realY mettre $ybis-y$} edge (test2);
+	\node (test2N) [left of=noTest2, operation, xshift=-3cm] {Dans entier realY mettre $y-ybis$} edge (noTest2);
+	\draw[->] (testY) |- ([yshift=0.25cm]test2.north);
+	\draw[->] (testN) |- ([yshift=0.25cm]test2.north);
+	\node (goTo) [below of=test2, yshift=-1cm, operation] {Aller depuis notre position a realX et realY} edge (test2);
+	\draw[->] (test2Y) |- ([yshift=0.25cm]goTo.north);
+	\draw[->] (test2N) |- ([yshift=0.25cm]goTo.north);
+	\node (end) [below of=goTo, start-end] {Fin Fonction} edge (goTo);
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [start-end] {putDown()};
+	\node (ro) [below of=begin, operation] {Faire une rotation de $90^\circ$} edge (begin);
+	\node (avancer10) [below of=ro, operation] {Avancer de 10cm} edge (ro);
+
+	\node (desserer) [below of=avancer10, operation, yshift=-0.5cm] {Desserer la pince} edge (avancer10);
+	\node (wait2) [below of=desserer, operation] {Attendre 500 ms} edge (desserer);
+	\node (descendre) [below of=wait2, operation] {Descendre la pince} edge (wait2);
+	\node (wait1) [below of=descendre, operation] {Attendre 500 ms} edge (descendre);
+
+	\node (envers) [below of=wait1, operation] {Faire tourner les moteurs à fond à l'envers durant 130ms} edge (wait1);
+	\node (ro1) [below of=envers, yshift=-0.5cm, operation] {Faire une rotation de $-90^\circ$} edge (envers);
+
+	\node (serrer) [below of=ro1, operation, yshift=-0.5cm] {Serrer la pince} edge (ro1);
+	\node (wait4) [below of=serrer, operation] {Attendre 500 ms} edge (serrer);
+	\node (co1) [below of=wait4, yshift=-3cm, connection] {1} edge (wait4);
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (0,0) [connection] {1};
+	\node (monter) [below of=begin, operation, yshift=-0.5cm] {Monter la pince} edge (begin);
+	\node (wait3) [below of=monter, operation] {Attendre 500 ms} edge (monter);
+	\node (rien) [below of=wait3, operation] {Dans Pince il n'y a rien} edge (wait3);
+	\node (end) [below of=rien, start-end] {Fin Fonction} edge (rien);
+	
+\end{tikzpicture}
+\end{center}
+\end{document}

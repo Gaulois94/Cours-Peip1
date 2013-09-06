@@ -1,0 +1,72 @@
+%tikz Macro
+
+\usepackage{xargs}
+\usepackage{calc}
+\usetikzlibrary{calc}
+\makeatletter
+
+
+\newcommand{\getxy}[3]{%
+	\path (#3);\pgfgetlastxy{#1}{#2} 
+}
+
+\newcommand{\extractangle}[3]{%
+    \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}
+                              {\pgfpointanchor{#3}{center}}
+	\global\let#1\pgfmathresult
+}
+
+\newcommand{\extractLength}[3]{%
+	\pgfpointdiff{\pgfpointanchor{#2}{center}}
+                 {\pgfpointanchor{#3}{center}}
+    \pgfmathparse{veclen(\pgf@x,\pgf@y)}
+    \global\let#1\pgfmathresult % we need a global macro
+}
+
+\newcommandx{\repere}[6][5=0.5, 6=1]{
+	\draw[gray, very thin, step=#5] (#1) grid (#2);
+	\getxy{\xtpp}{\ytpp}{#1}
+	\getxy{\xtpm}{\ytpm}{#2}
+	\draw[->, black, thick] (0,{\ytpp/#6}) -- (0,{\ytpm/#6});
+	\draw[->, black, thick] ({\xtpp/#6},0) -- ({\xtpm/#6},0);
+	\draw[->, red,thick] (0,0) -- (#3,0);
+	\draw[->, red,thick] (0,0) -- (0,#4);
+}
+
+%pour les arbres comme pour les dossiers. Utiliser \begin{tikzpicture}[dirtree]
+\newcount\dirtree@lvl
+\newcount\dirtree@plvl
+\newcount\dirtree@clvl
+\def\dirtree@growth{%
+  \ifnum\tikznumberofcurrentchild=1\relax
+  \global\advance\dirtree@plvl by 1
+  \expandafter\xdef\csname dirtree@p@\the\dirtree@plvl\endcsname{\the\dirtree@lvl}
+  \fi
+  \global\advance\dirtree@lvl by 1\relax
+  \dirtree@clvl=\dirtree@lvl
+  \advance\dirtree@clvl by -\csname dirtree@p@\the\dirtree@plvl\endcsname
+  \pgf@xa=1cm\relax
+  \pgf@ya=-1cm\relax
+  \pgf@ya=\dirtree@clvl\pgf@ya
+  \pgftransformshift{\pgfqpoint{\the\pgf@xa}{\the\pgf@ya}}%
+  \ifnum\tikznumberofcurrentchild=\tikznumberofchildren
+  \global\advance\dirtree@plvl by -1
+  \fi
+}
+
+\tikzset{
+  dirtree/.style={
+    growth function=\dirtree@growth,
+    every node/.style={anchor=north},
+    every child node/.style={anchor=west},
+    edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
+  }
+}
+
+\makeatother
+
+\newcommand{\cfbox}[2]{%
+    \colorlet{currentcolor}{.}%
+    {\color{#1}%
+    \fbox{\color{currentcolor}#2}}%
+}

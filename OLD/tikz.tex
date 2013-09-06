@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage[bottom=0cm, top=0cm, left=0cm, right=0cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning,shapes.geometric,shapes.symbols,shapes.misc,shapes.multipart}
+\usetikzlibrary{trees}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\include{macro}
+
+\begin{document}
+\include{diagrammeShape}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm, text width=5cm]
+	\node(declaration) at (0,0) [loop, align=center] {Type inPince=Nothing \\
+	LineSensor sensorVal \\
+	entier rotationValue = 0 \\
+	entier robotPosition=-1 \\ 
+	entier goTo=4 \\
+	entier vitesse=0 \\ 
+	Couleur sensorColor=Black \\ 
+	tableau entier costumer[8] \\ 
+	entier nbCostumer};
+	\node [below of=declaration, yshift=-3cm, start-end] (begin) {Debut} edge (declaration);
+	\node [below of=begin, operation] (init) {Initialisation du robot} edge (begin);
+	\node [below of=init, operation] (pince) {Monter et serrer la pince} edge (init);
+	\node [below of=pince, operation] (delay1) {Attendre 500 ms} edge (pince);
+	\node [right of=delay1, xshift=6cm] {On attend que la pince soit prête};
+	\node [below of=delay1, operation] (initTable) {Initialiser le tableau de consommateurs} edge(delay1);
+	\node [below of=initTable, operation] (setMotor) {On se déplace a vitesse maximum} edge(initTable);
+	\node [below of=setMotor, yshift=-1cm, decision] (whiteLine) {Ligne Blanche ?} edge (setMotor);
+	\node (no) at (whiteLine.east) [connection, text width=0cm, xshift=5pt] {};
+	\draw[->, thick] (no.east) -| ([xshift=1cm]no.east) |- ([yshift=0.5cm]whiteLine.north) -- (whiteLine.north);
+	\node (end) at ([yshift=-1cm]whiteLine.south) [connection] {$1$} edge (whiteLine);
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(begin) at (0,0) [connection] {$1$};
+	\node [below of=begin, operation] (comeOn) {Avancer de 5 cm en avant} edge (begin);
+	\node [below of=comeOn, operation] (rotation) {faire une rotation de $-90^\circ$} edge (comeOn);
+	\node [below of=rotation, yshift=-1cm, decision] (true) {Vrai ?} edge (rotation);
+	\node(connection1) at ([xshift=5pt]true.east) [connection] {};
+	\node [right of=connection1, start-end, text width=2cm, xshift=2cm] (end) {Fin} edge (connection1);
+	\node [below of=true, macro] (update) {
+		\nodepart{two}update()} edge(true);
+	\node [below of=update, macro] (continue) {\nodepart{two}continueRound()} edge(update);
+	\draw[->, thick] (continue.south) --+ (0,-0.5) -| ([xshift=-1cm]true.west) |- ([yshift=0.5cm]true.north);
+\end{tikzpicture}
+~\\
+~\\
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(beginF) at (-8,0) [start-end, text width=4cm] {continueRound()};
+	\node [below of=beginF, operation] (motor) {Met les motors à la vitesse "vitesse"} edge (beginF);
+	\node [below of=motor, operation] (rotation) {Tourner de $"rotationValue"^\circ$} edge (motor);
+	\node [below of=rotation, start-end] (endF) {Fin Fonction} edge (rotation);
+	\node (begin) at (0,0) [start-end, text width=4cm] {UpdateNormalGoTo()};
+	\node (condition) [yshift=-1cm, decision, below of=begin] {robotPosition = GoTo et sensorColor=Gris ?} edge(begin);
+	\node (connect1) at (condition.east) [connection, xshift=5pt]{};
+	\node (end1) [right of=connect1, xshift=1cm, start-end] {Fin Fonction} edge(connect1);
+	\node (prem) [yshift=-1cm, below of=condition, decision] {$0\leq robotPosition \leq 2$ ?} edge(condition);
+	\node (connect2) at (prem.south) [connection, yshift=-5pt] {};
+	\node (goTo1) [right of=prem, operation, xshift=4cm, minimum width=3cm, text width=3cm] {$GoTo+=1$} edge (prem);
+
+	\node (prem1) [yshift=-1cm, below of=connect2, decision] {$robotPosition =$\\ 3 ou 7 ou 6 ?} edge(connect2);
+	\node (connect3) at (prem1.south) [connection, yshift=-5pt] {};
+	\node (goTo2) [right of=prem1, operation, xshift=4cm, minimum width=3cm, text width=3cm] {$GoTo+=4$} edge (prem1);
+
+	\node (prem2) [yshift=-1cm, below of=connect3, decision] {$9 \leq robotPosition \leq 11$ ?} edge(connect3);
+	\node (connect4) at (prem2.south) [connection, yshift=-5pt] {};
+	\node (goTo3) [right of=prem2, operation, xshift=4cm, text width=3cm,  minimum width=3cm] {$GoTo-=1$} edge (prem2);
+
+	\node (goTo4) [below of=connect4, operation, minimum width=3cm, text width=3cm] {$GoTo-=4$} edge (connect4);
+	\node (end) [yshift=-1cm, below of=goTo4, start-end] {Fin Fonction} edge(goTo4);
+	\draw [->] (goTo3.east) -| ([xshift=1cm]goTo3.east) |- ([yshift=1cm]end.north);
+	\draw [->] (goTo2.east) -| ([xshift=1cm]goTo2.east) |- ([yshift=1cm]end.north);
+	\draw [->] (goTo1.east) -| ([xshift=1cm]goTo1.east) |- ([yshift=1cm]end.north);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin) at (-10,0) [start-end, minimum width=5cm, text width=4.5cm] {UpdatePosition(Couleur color)};
+	\node (condition1) [below of=begin, decision, yshift=-1cm] {color = sensorColor \\ ou color = Noire ?} edge(begin);
+	\node (end1) [left of=condition1, start-end, xshift=-4cm] {Fin Fonction} edge(condition1);
+	\node (connect1) at (condition1.south) [yshift=-5pt, connection] {};
+	\node (condition2) [below of=connect1, decision] {color=Gris ?} edge (connect1);
+	\node (action1) [left of=condition2, operation, text width=4cm, minimum width=4cm, xshift=-4cm] {robotPosition=GoTo} edge(condition2);
+	\node (connect2) at (condition2.south) [yshift=-5pt, connection] {};
+	\node (action2) [below of=connect2, operation, text width=3cm, minimum width=4cm, yshift=1cm] {robotPosition=-1} edge(connect2);
+	\node (change) [below of=action2, operation, yshift=-2cm] {sensorColor = color} edge(action2);
+	\draw[->] (action1.south) |- ([yshift=1cm]change.north);
+	\node (end) [below of=change, start-end] {Fin FOnction} edge (change);
+\end{tikzpicture}
+~\\
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin1) at (0,0) [start-end] {Ligne Blanche};
+	\node (maj) [below of=begin1, operation, yshift=0.5] {Mettre à jours dans sensorVal} edge (begin1);
+	\node (condition10) [below of=maj, decision, text width=6cm, yshift=-1cm] {$Capteur gauche \leq 100$ \\ ou $capteur droit \leq 100$} edge (maj);
+	\node (faux) at (condition10.east) [xshift=5pt, connection] {};
+	\node (return1) [right of=faux, start-end, xshift=-0.5cm] {Retourne Faux} edge (faux);
+	\node (return2) [below of=condition10, start-end, yshift=-1cm] {Retourne Vrai} edge (condition10);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node(begin1) at (0,0) [start-end, minimum width=4cm, text width=4cm] {addValue(value)};
+	\node(condition1) [decision, yshift=-2cm] {customerNumber $\leq$ 8} edge (begin1);
+	\node(faux) at (condition1.west) [connection, xshift=-5pt] {};
+	\node(end1) [left of=condition1, xshift=-5cm, start-end] {Fin Fonction} edge (faux);
+	\node(add) [below of=condition1, operation, yshift=-1cm] {A la case customerNumber ajouter value} edge (condition1);
+	\node(add1) [below of=add, operation] {customerNumber+=1} edge (add);
+	\node (end2) [below of=add1, start-end] {Fin Fonction} edge(add1);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm and 9cm]
+	\node (begin1) at (0,0) [start-end, minimum width=4cm, text width=4cm] {deleteValue(value)};
+	\node (condition10) [below of=begin1, decision, yshift=-0.5cm] {customerNumber $\geq 1$} edge(begin1);
+	\node (connecteur1) at (condition10.east) [xshift=5pt, connection] {};
+	\node (end10) [right of=connecteur1, start-end] {Fin Fonction} edge (connecteur1);
+\end{tikzpicture}
+\end{center}
+\end{document}
