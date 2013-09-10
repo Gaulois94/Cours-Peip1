@@ -1,0 +1,202 @@
+\paragraph{Fonction de référence}
+\begin{align*}
+	f: &\mathbb{R} &\rightarrow &\mathbb{R} \\
+	& x & \rightarrow &x^n 
+\end{align*}
+\[\lim_{x \to 0} f(x) = 0\]
+
+
+\begin{align*}
+	f: &\mathbb{R}^{+*} &\rightarrow &\mathbb{R} \\
+	   & x & \rightarrow &x^{ln(n)} 
+\end{align*}
+\[\lim_{x \to 0} f(x) = 0\]
+
+\begin{align*}
+	f: &\mathbb{R}^{+*} &\rightarrow &\mathbb{R} \\
+	   & x & \rightarrow &x^{(\alpha * ln(\beta))^2}
+\end{align*}
+\[\alpha >0, \beta>0, \lim_{x \to 0} f(x) = 0\]
+
+\begin{align*}
+	f: &\mathbb{R}^* &\rightarrow &\mathbb{R} \\
+	   & x & \rightarrow &\frac{\sin{x}}{x}
+\end{align*}
+\[\lim_{x \to 0} f(x) = 1\]
+
+\paragraph{Methode}
+\begin{align*}
+	f:&\mathbb{R} &\rightarrow &\mathbb{R}\\
+	  &x& \rightarrow & \frac{1}{x} - \frac{1}{x(x+1)}
+\end{align*}
+
+$f(x) = \frac{(x+1)-1}{x(x+1)} = \frac{x}{x+1} = \frac{1}{x+1}$
+donc \[\lim_{x \to 0}f(x) = 1\]
+
+\begin{align*}
+	f:&\mathbb{R}^+ &\rightarrow &\mathbb{R}\\
+	  &x& \rightarrow & \frac{\sqrt{3+x} - \sqrt{3}}{2x}
+\end{align*}
+
+\begin{align*}
+	f(x) &=& \frac{\sqrt{3+x} - \sqrt{3}}{2x} . \frac{\sqrt{3+x} + \sqrt{3}}{\sqrt{3+x} + \sqrt{3}} \\
+			   &=& \frac{\sqrt{3+x}^2 - \sqrt{3}^2}{2x(\sqrt{3+x} + \sqrt{3})} \\
+			   &=& \frac{1}{2(\sqrt{3+x}+\sqrt{3})}
+\end{align*}
+
+Donc \[\lim_{x \to 0} f(x) = \frac{1}{4\sqrt{3}}\]
+
+\paragraph{Comportement local}
+\paragraph{Proposition} Si f(x) admet une limite $l \in \mathbb{R}$ quand x tends vers $x_0$, alors f est localement bornée.
+c'est à dire il existe un voisinnage de x, V, tel que il existe $M \in \mathbb{R}, \forall x \in V, |f(x)| < M$
+\paragraph{Remarque} Il existe un voisinnage de $x_0$ si et seulement si il existe un tervalle ouvert contenant $x_0$ si et seilement si il existe $\delta > 0, ]x_0 - \delta, x_0 + \delta[$
+
+\paragraph{Demonstration}
+	Par hypothèse, 
+\begin{align*}
+	f(x) &\rightarrow & l\\
+	  x & \rightarrow & x_0
+\end{align*}
+
+c'est à dire $\forall \epsilon > 0, \text{ il existe } \delta > 0 \text{ tel que } |x-x_0| < \delta$   $|f(x)-l| < \epsilon$
+
+Soit $\epsilon = 1$, On trouve $\delta$ tel que $\forall x \in ]x_0 - \delta, x_0 + \delta[ $
+
+	$|f(x) - l| < 1$, c'est à dire $-1 < f(x) - l < 1$ Soit $|f(x)| < l+1$ 
+
+\paragraph{Propriété}Si f(x) admet $l \neq 0$ comme limite quand x tends vers $x_0$, alors localement (autour de $x_0$), alors f est de signe constant
+\paragraph{Démonstration} bornée en $x_0$ (meme style que la précédente), $\epsilon = \frac{l}{3}$
+
+\paragraph{Exemple} \[\lim_{x \to 1} f(x) = 6 = f(1) \text{ avec } f=x^2+2x+3\]
+\begin{align*}
+	|f(1+h) - f(1)| &=& |(1+h)^2 + (1+h)*2 + 3 - 6| \\
+	&=& |1+2h+h^2 + 2 + 2h -3| \\
+	&=& |h(h+4)| \\
+	&=& |h|*(h+4)  & \text{      si } |h| < 1 \\
+	&\leq& 5|h|\\
+	&& \lim_{h \to 0} 5|h| = 0
+\end{align*}
+
+Par le théorème des gendarmes, \[\lim_{h \to 0} |f(1+h)-f(1)| =1\]
+
+\paragraph{Remarque} $x = 1+h$ quand h tends vers 0 et x tends vers 1.
+
+\section{Opération sur les limites}
+
+$f, g : E \rightarrow \mathbb{R}; x_0 \text{ adherent à E}$
+Supposons que \[\lim_{x \to x_0} f(x) = l, \lim_{x \to 0} g(x) = m\]
+Alors 
+\begin{itemize}
+	\item[] \[\lim_{x \to x_0} (f+g)(x) \text{} ste et vaut+m\]
+\item[] \[\lim_{x \to x_0} (f.g)(x) \text{ existe et vaut} l.m \]
+	\item[] si $m \neq 0$, alors \[\lim_{x \to x_0} (f/g)(x) \text{ existe et vaut } $\frac{l}{m}\]
+\end{itemize}
+
+Composition $f:E \rightarrow F, g:F \rightarrow G$
+~\\
+$gof : E \rightarrow G$, $x_0$ adhérent à E.
+
+Supposons que \begin{itemize}
+	\item[] \[\lim_{x \to x_0} f(x) = l \in \mathbb{R}\]
+	\item[] F est un voissinage de l.
+	\item[] \[\lim_{y \to l} g(y) = m\]
+\end{itemize}
+
+Alors \[\lim_{x \to x_0} gof(x)\] existe et vaut m.
+
+\paragraph{Exemple} \begin{align*}
+	g:& y&\rightarrow & e^y \\
+	f:& x&\rightarrow \sqrt{1+x}
+\end{align*}
+
+\begin{itemize}
+	\item[] gof est bien défini car le domaine de g est $\mathbb{R}$
+	\item[] 0 est bien adhérent  au domaine de f (qui est $[-1, +\infty[$)
+	\item[] \[\lim_{x \to 0} f(x) = l\]
+	\item[] \[\lim_{y \to 1} g(x) = e\]
+\end{itemize}
+
+\section{Limites infinies, et limites en l'infinie}
+\paragraph{Définition} $f:E\rightarrow \mathbb{R}, x_0$ adhérent à E
+
+On dit que f(x) tend vers $+\infty$ (ou $-\infty$) quand x tend vers $x_0$ si$\forall A > 0, \text{ il existe } \delta > 0 \text{tel que} |x - x_0| < \delta > 0$, alors $f(x) > A$ (ou $f(x) < -A$ pour f(x) tend vers $-\infty$).
+
+\paragraph{Exemple} \[\lim_{x \to 0; x > 0} \frac{1}{x} = +\infty\]
+~\\
+
+\[\lim_{x \to 0; x < 0} \frac{1}{x} = -\infty\]
+
+\paragraph{Définition} $f:E \rightarrow \mathbb{R}$ tel qu'il existe $A >0$ tel que $]A; +\infty[ \subset E$
+	On dit que f(x) tend vers $l \in E$ quand x tend vers $+\infty$ 
+	~\\
+	c'est à dire $\forall \epsilon > 0, \text{ il existe } A >0, x > A, \text{ alors } |f(x) - l| < \epsilon$
+
+\paragraph{Définition} $f:E \rightarrow \mathbb{R}$ tel qu'il existe $A <0$ tel que $]-\infty, x[ \subset E$
+	On dit que f(x) tend vers $l \in E$ quand x tend vers $-\infty$ 
+	c'est à dire $\forall \epsilon > 0, \text{ il existe } A <0, x < A, \text{ alors } |f(x) - l| < \epsilon$
+
+	$\lim_{x \to -\infty} f(x) = +\infty$ veut dire 
+	$\forall A >0, \text{ il existe } B > 0, x < -B$ tel que $f(x) > A$
+
+\paragraph{Exemple}
+
+\begin{align*}
+	f:& \mathbb{R}^* &\rightarrow & \mathbb{R} \\
+	x&\mapsto& \frac{1}{x}
+\end{align*}
+
+$\lim_{x \to 0; x > 0} f(x) = +\infty$
+\paragraph{Démonstration} Soit $A>0$. On cherche $\delta$ tel que si $0<x$, $0<\delta$ alors $f(x) = \frac{1}{x} > A$
+
+Choisir $\delta = \frac{1}{A}$ suffit, en effet $0<x<\frac{1}{A}$ alors $\frac{1}{x} > \frac{1}{A}$.
+
+\paragraph{Exemple}
+$g(x) = 1+e^{-x}$ Montrons que \[\lim_{x \to +\infty} g(x) = 1\] et \[\lim_{x \to -\infty}g(x) = +\infty\]
+
+\paragraph{Exemple}
+\begin{align*}
+f:& ]-\frac{\pi}{2}; \frac{\pi}{2} &\rightarrow & \mathbb{R} \\
+	x&\rightarrow& tan(x)
+\end{align*}
+
+\[\lim_{x \to -\frac{pi}{2}, x > - \frac{\pi}{2}} tan(x) = -\infty\]
+
+\section{Opération sur les limites}
+\begin{itemize}
+	\item[] Limites finies ($l\in \mathbb{R}$) en l'infini sont exactement les memes opérations.
+	\item[] Limites infinies ($l = +- \infty$) Attention aux cas inderminé :
+		$+\infty - \infty, \frac{+- \infty}{+-\infty}, 0*(+-\infty)$
+\end{itemize}
+
+\paragraph{Exemple} $\frac{+\infty}{+\infty} = ?$
+
+\begin{align*}
+	f:x & \mapsto & x \\
+	g:x &\mapsto & x^2
+\end{align*}
+
+$\lim_{x \to +\infty} \frac{f(x)}{g(x)} = 0$
+
+\begin{align*}
+	f_2:x &\mapsto & x^3 \\
+	g_2x&\mapsto& x^2
+\end{align*}
+
+$\lim_{x \to +\infty} \frac{f_2(x)}{g_2(x)} = +\infty$
+
+\begin{align*}
+	f_3:x &\mapsto & 3x \\
+	x&\mapsto& x
+\end{align*}
+
+\[\lim_{x \to +\infty} \frac{f_3(x)}{g_3(x)} = 3\]
+
+Plus généralement, P,Q deux polynomes, que vaut $\lim_{x\to +\infty} \frac{P(x)}{Q(x)}$ ? Elle est égale au rapport des thermes du plus haut degrés.
+Exemple : \[\lim_{x \to +\infty} \frac{3x^2 -2x + 4x^5 +2}{x^4+3} = \lim_{x \to +\infty} \frac{4x^5}{x^4} = +\infty\]
+
+\paragraph{Exemple}
+\[\lim_{x \to 0} x*\sin(\frac{1}{x}) = 0\]
+
+car $\forall x \neq 0$, $1 \leq \sin(\frac{1}{x}) \leq 1$
+~\\
+donc $ 0 \leq |x*\sin(\frac{1}{x})| \leq |x|$ avec |x| tend vers 0 pour x tend vers 0.

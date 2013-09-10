@@ -44,7 +44,7 @@
 
 \subsection{Calcul / Analyse Dimensionnel}
 $[Q] = M^\alpha * T^\beta * L^\gamma * \Theta^\delta * I^\epsilon$
-Si Q est sans dimensions, $\alpha = \beta =...=\epsilon=0$
+Si Q est sans dimensions, alors $\alpha = \beta =...=\epsilon=0$ et 
 $[Q]=1$
 
 \paragraph{Propriétés Générales des Equations en physique}
@@ -60,12 +60,12 @@ $[Q]=1$
 		$[\frac{dQ}{dx}] = [\frac{df(x)}{dx}]=[\frac{\Delta Q}{\Delta x}] = \frac{[Q]}{[x]} = [Q][x]^{-1}$
 \end{itemize}
 
-\section{Mesures - Incertidude - Calcul des variations}
+\section{Mesures - Incertidude - Calcul des variations}{Incertitudes}
 Espériences sont susceptibles d'erreurs et donne des incertitudes. On donnes donc une estimation.
 
 2 approches d'estimations d'incertitudes. 
 \paragraph{1)} incertitude due à l'expérimentation / répétition de la mesure. On estime donc l'incertitude statistique.
-\paragraph{2)} $G_V \in [G_exp - \delta G ; G_exp + \delta G]$
+\paragraph{2)} $G_V \in [G_{exp} - \delta G ; G_{exp} + \delta G]$
 $\delta G = \text{incertitude absolue}$~\\
 $\frac{\delta G}{G} = \text{incertitude relative (ou Précision)}$
 
@@ -73,7 +73,7 @@ $\frac{\delta G}{G} = \text{incertitude relative (ou Précision)}$
 \begin{align*}
 	G & = & f(x) \\
 	G_{mesure} & = & f(x_{mesure}) \\
-	G_{ex} & = & f(x_\alpha) = f(x + \Delta x)
+	G_{exp} & = & f(x_\alpha) = f(x + \Delta x)
 \end{align*}
 
 \begin{tikzpicture}
@@ -83,8 +83,8 @@ $\frac{\delta G}{G} = \text{incertitude relative (ou Précision)}$
 \end{tikzpicture}
 
 \begin{align}
-	G_ex & = & f(x_{mesure}) + \frac{df}{dx} (x_{mes}) (x-x_{mes}) + ... \\ 
-	G_ex - G_{mes} & \simeq & \frac{df}{dx}(x_{mes})(x-x_{mes}) \\
+	G_{ex} & = & f(x_{mesure}) + \frac{df}{dx} (x_{mes}) (x-x_{mes}) + ... \\ 
+	G_{ex} - G_{mes} & \simeq & \frac{df}{dx}(x_{mes})(x-x_{mes}) \\
 	\Delta G & \simeq & \frac{df}{dx}(x_{mes}) * \Delta x \\
 	\delta G & \simeq & |\frac{df}{dx}(x_{mes})| * \delta x
 \end{align}
@@ -99,10 +99,10 @@ $\frac{\delta G}{G} = \text{incertitude relative (ou Précision)}$
 	\frac{\delta G}{G} & = & |\frac{a}{x}| * \delta x
 \end{align*}
 
-Ecriture d'un résultat : $G = (G_exp +- \delta G)$(Unité) ~\\
-$G = G_exp $ à $(\frac{\delta x}{G})$ près.
+Ecriture d'un résultat : $G = (G_{exp} +- \delta G)$(Unité) ~\\
+$G = G_{exp} $ à $(\frac{\delta x}{G})$ près.
 Exemple :
-$V_mesuree$ avec $\delta V $
+$V_{mesuree}$ avec $\delta V $
 Précision(incertitude relative) $\frac{\delta V}{V}$
 
 \begin{align*}
