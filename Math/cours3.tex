@@ -28,7 +28,7 @@ $f(A) = im(f_{|A})$
 \chapter{Limites}
 
 \section{Voisinage et adhérence}
-\paragraph{Definition} si $x \in E$, on dit que E est un voisinage de x si E contient un intervalle ouvert qui contient x. Ceci est équivalent à E voisinage de x si il existe $\delta > 0$  tel que $]x - \delta; x + \delta[ \in E$.
+\paragraph{Definition} si $x \in E$, on dit que E est un voisinage de x si E contient un intervalle ouvert qui contient x. Ceci est équivalent à E voisinage de x si il existe $\delta > 0$  tel que $]x - \delta; x + \delta[ \subset E$.
 
 \paragraph{Définition} Soit $E \subset \mathbb{R}$. Un réel x est \ul{adherent} à E, si tout voisinage V de x intersecte E, c'est à dire $(V \cap E \neq \o)$
 
@@ -96,8 +96,8 @@ $\forall \epsilon > 0, \text{ il existe } \delta > 0, \forall x \in A, \text{tel
 La fonction f de l'exemple [x] admet une limite à droite en 0 : \[ \lim_{x \to 0 ; x > 0} f(x)\], $f(x) = 1$
 La fonction f de l'exemple [x] admet une limite à gauche en 0 : \[ \lim_{x \to 0 ; x < 0} f(x)\], $f(x) = 0$
 
-\paragraph{Remarque} On écrit aussi \[ \lim_{x \to x_0} f(x)\] par \[ \lim_{x \to 0 ; x < 0} f(x)\] et ~\\
-\[ \lim_{x \to 0} f(x)\] par \[ \lim_{x \to x_0 ; x > 0} f(x)\]
+\paragraph{Remarque} On écrit aussi \[ \lim_{x \to x_0} f(x)\] par \[ \lim_{x \to x_0 ; x > x_0} f(x)\] et ~\\
+\[ \lim_{x \to 0} f(x)\] par \[ \lim_{x \to 0 ; x > 0} f(x)\]
 
 \section{Propriété}
 \paragraph{Unicité} Si la limite existe, elle est unique.
@@ -114,7 +114,7 @@ Choisissons $\epsilon < \frac{l_1+l_2}{2}$, on remarque $]l_1 - \epsilon, l_1 + 
 ~\\
 	On trouve $\delta_1$ et $\delta_2$ tel que (*) et (**) soient vraies.
 ~\\
-On appelle $\delta = min\{d_1, d_2\}, ]x_0-\delta; x_0+\delta[ \subset ]x_0 - \delta_1; x_0+\delta_1[ \cap ]x_0-\delta_2;x_0+\delta_2[$
+On appelle $\delta = min\{\delta_1, \delta_2\}, ]x_0-\delta; x_0+\delta[ \subset ]x_0 - \delta_1; x_0+\delta_1[ \cap ]x_0-\delta_2;x_0+\delta_2[$
 ~\\
 
 Soit $x \in ]x_0-\delta; x_0+\delta[$ Par (*), $f(x) \in ]l_1-\epsilon; l_1+\epsilon[$
