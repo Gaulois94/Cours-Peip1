@@ -121,10 +121,10 @@ Alors \[\lim_{x \to x_0} gof(x)\] existe et vaut m.
 
 On dit que f(x) tend vers $+\infty$ (ou $-\infty$) quand x tend vers $x_0$ si$\forall A > 0, \text{ il existe } \delta > 0 \text{tel que} |x - x_0| < \delta > 0$, alors $f(x) > A$ (ou $f(x) < -A$ pour f(x) tend vers $-\infty$).
 
-\paragraph{Exemple} \[\lim_{x \to 0; x > 0} \frac{1}{x} = +\infty\]
+\paragraph{Exemple} \[\lim_{\substack{x \to 0 \\ x > 0}} \frac{1}{x} = +\infty\]
 ~\\
 
-\[\lim_{x \to 0; x < 0} \frac{1}{x} = -\infty\]
+\[\lim_{\substack{x \to 0 \\ x < 0}} \frac{1}{x} = -\infty\]
 
 \paragraph{Définition} $f:E \rightarrow \mathbb{R}$ tel qu'il existe $A >0$ tel que $]A; +\infty[ \subset E$
 	On dit que f(x) tend vers $l \in E$ quand x tend vers $+\infty$ 
@@ -145,7 +145,7 @@ On dit que f(x) tend vers $+\infty$ (ou $-\infty$) quand x tend vers $x_0$ si$\f
 	x&\mapsto& \frac{1}{x}
 \end{align*}
 
-$\lim_{x \to 0; x > 0} f(x) = +\infty$
+$\lim_{\substack{x \to 0 \\ x > 0}} f(x) = +\infty$
 \paragraph{Démonstration} Soit $A>0$. On cherche $\delta$ tel que si $0<x$, $0<\delta$ alors $f(x) = \frac{1}{x} > A$
 
 Choisir $\delta = \frac{1}{A}$ suffit, en effet $0<x<\frac{1}{A}$ alors $\frac{1}{x} > \frac{1}{A}$.
@@ -155,11 +155,11 @@ $g(x) = 1+e^{-x}$ Montrons que \[\lim_{x \to +\infty} g(x) = 1\] et \[\lim_{x \t
 
 \paragraph{Exemple}
 \begin{align*}
-f:& ]-\frac{\pi}{2}; \frac{\pi}{2} &\rightarrow & \mathbb{R} \\
+f:& ]-\frac{\pi}{2}; \frac{\pi}{2}[ &\rightarrow & \mathbb{R} \\
 	x&\rightarrow& tan(x)
 \end{align*}
 
-\[\lim_{x \to -\frac{pi}{2}, x > - \frac{\pi}{2}} tan(x) = -\infty\]
+\[\lim_{\substack{x \to -\frac{pi}{2} \\  x > - \frac{\pi}{2}}} tan(x) = -\infty\]
 
 \section{Opération sur les limites}
 \begin{itemize}
@@ -175,14 +175,14 @@ f:& ]-\frac{\pi}{2}; \frac{\pi}{2} &\rightarrow & \mathbb{R} \\
 	g:x &\mapsto & x^2
 \end{align*}
 
-$\lim_{x \to +\infty} \frac{f(x)}{g(x)} = 0$
+\[\lim_{x \to +\infty} \frac{f(x)}{g(x)} = 0\]
 
 \begin{align*}
 	f_2:x &\mapsto & x^3 \\
 	g_2x&\mapsto& x^2
 \end{align*}
 
-$\lim_{x \to +\infty} \frac{f_2(x)}{g_2(x)} = +\infty$
+\[\lim_{x \to +\infty} \frac{f_2(x)}{g_2(x)} = +\infty\]
 
 \begin{align*}
 	f_3:x &\mapsto & 3x \\

@@ -89,21 +89,20 @@ On dit que f(x) tend vers $l \in \mathbb{R}$ quand x tends vers $x_0$ dans A.
 
 $\forall \epsilon > 0, \text{ il existe } \delta > 0, \forall x \in A, \text{tel que} |x-x_0| < \delta, |f(x) - l| < \epsilon$
 
-\paragraph{Exemple limite à gauche} de f en $x_0$ est \[ \lim_{x \to x_0 ; x < x_0} f(x)\] c'est à dire la limite de f(x) quand x tends vers $x_0$ dans $]-\infty, x_0[$
-\paragraph{Exemple limite à droite} de f en $x_0$ est \[ \lim_{x \to x_0 ; x > x_0} f(x)\] c'est à dire la limite de f(x) quand x tends vers $x_0$ dans $]x_0, +\infty[$
+\paragraph{Exemple limite à gauche} de f en $x_0$ est $\lim_{\substack {x \to x_0 \\ x < x_0}} f(x)$ c'est à dire la limite de f(x) quand x tends vers $x_0$ dans $]-\infty, x_0[$
+\paragraph{Exemple limite à droite} de f en $x_0$ est $\lim_{\substack{x \to x_0 \\ x > x_0}} f(x)$ c'est à dire la limite de f(x) quand x tends vers $x_0$ dans $]x_0, +\infty[$
 
 \paragraph{Exemple}
-La fonction f de l'exemple [x] admet une limite à droite en 0 : \[ \lim_{x \to 0 ; x > 0} f(x)\], $f(x) = 1$
-La fonction f de l'exemple [x] admet une limite à gauche en 0 : \[ \lim_{x \to 0 ; x < 0} f(x)\], $f(x) = 0$
+La fonction f de l'exemple [x] admet une limite à droite en 0 : $\lim_{\substack{x \to 0 \\ x > 0}} f(x)$, pour $f(x) = 1$
+La fonction f de l'exemple [x] admet une limite à gauche en 0 : $\lim_{\substack{x \to 0 \\ x < 0}} f(x)$, pour $f(x) = 0$
 
-\paragraph{Remarque} On écrit aussi \[ \lim_{x \to x_0} f(x)\] par \[ \lim_{x \to x_0 ; x > x_0} f(x)\] et ~\\
-\[ \lim_{x \to 0} f(x)\] par \[ \lim_{x \to 0 ; x > 0} f(x)\]
+\paragraph{Remarque} On écrit aussi $\lim_{x \to x_0} f(x)$ par $\lim_{\substack{x \to x_0 \\ x > x_0}} f(x)$ et $\lim_{x \to 0} f(x)$ par $\lim_{\substack{x \to 0 \\ x > 0}} f(x)$
 
 \section{Propriété}
 \paragraph{Unicité} Si la limite existe, elle est unique.
 
 démontration par l'absurde : $f : E \rightarrow \mathbb{R}, x_0$ adhérent à E. On suppose que la limite en $x_0$ existe mais qu'elle n'est pas unique.
-Supposons que \[\lim_{x \to x_0} f(x) = l_1 \text{et} \lim_{x \to x_0} f(x) = l_2\] avec $l_1 \neq l_2$
+Supposons que $\lim_{x \to x_0} f(x) = l_1 \text{et} \lim_{x \to x_0} f(x) = l_2$ avec $l_1 \neq l_2$
 
 Comme \[ \lim_{x \to x_0} f(x) = l_1\], $\forall \epsilon_1 > 0$, il existe $\delta_1, \forall x \in E |x-x_0|< \delta_1, \text{alors} |f(x) - l_1| < \epsilon_1$ (*)
 ~\\

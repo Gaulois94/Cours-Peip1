@@ -3,7 +3,7 @@
 
 \paragraph{Définition} $f:E \rightarrow \mathbb{R}$ et $x \in E$ \\
 \begin{itemize}
-	\item On dit que f est continue en $x_0$ (au point $x_0$) si \[\lim_{x\to x_0} f(x)\] et vaut $f(x_0)$
+	\item On dit que f est continue en $x_0$ (au point $x_0$) si $\displaystyle \lim_{x\to x_0} f(x) \text{ existe et vaut }f(x_0)$
 	\item f est continue sur E si f est continue en tout point $x_0 \in E$
 \end{itemize}
 o
@@ -12,7 +12,7 @@ Fonctions continues:
 \begin{itemize}
 	\item $x \mapsto x^2$ est continue sur $\mathbb{R}$
 	\item $x \mapsto \frac{1}{x}$ (domaine $\mathbb{R}^*$) est continue sur $\mathbb{R}^*$
-	\item $\sin, \cos$
+	\item $\sin, \cos$ sont continues sur $\mathbb{R}$
 \end{itemize}
 
 \begin{wrapfigure}{r}{0pt}
@@ -23,10 +23,13 @@ Fonctions continues:
 		\draw[red, thick] (1, 1) -- (2, 1);
 		\draw[fill=white] (1, 0) circle (0.05);
 		\draw[fill=black] (1, 1) circle (0.05);
+		\foreach \x in {0, 1, 2} 
+			\node at (\x, 0) [below, fill=white] {\x};
 \end{tikzpicture}
 \end{wrapfigure}
 Fonctions discontinues:
-$x \mapsto [x]$ n'est pas continue en 1 par exemple. En effet, \[\lim_{x\to 1; x<1} f(x) = 0 \text{et} \lim_{x\to 1; x>1} f(x) = 1\] Les limites à gauches et à droite étant différentes donc \[\lim_{x\to 1} \text{ n'existe pas }\]
+$x \mapsto [x]$ n'est pas continue en 1 par exemple. En effet, $\displaystyle \lim_{\substack{x\to 1 \\ x<1}} f(x) = 0 \text{et} \lim_{\substack{x\to 1 \\  x>1}} f(x) = 1$.~\\
+Les limites à gauches et à droite étant différentes donc $\lim_{x\to 1} \text{ n'existe pas }$
 
 
 \begin{wrapfigure}{l}{0pt}
@@ -39,13 +42,13 @@ $x \mapsto [x]$ n'est pas continue en 1 par exemple. En effet, \[\lim_{x\to 1; x
 \end{tikzpicture}
 \end{wrapfigure}
 $g(x) = 1$ pour tout x différent de 0
-mais \[\lim_{x\to 0; x > 0} g(x) = \lim_{x \to 0; x <0} g(x) \]
+mais $\lim_{\substack{x\to 0 \\  x > 0}} g(x) = \lim_{x \to 0; x <0} g(x) $
 
 \paragraph{Remarque} f continue en $x_0$ si et seulement si $\forall \epsilon > 0,$ il existe $\delta >0$ tel que $|x-x_0| < \delta$ et $|f(x) - f(x_0)| < \epsilon$
 
 \paragraph{Définition} \begin{itemize}
-\item f est continue à droite en $x_0$ si limite de f(x) par valeur supérieur (\begin{math} \lim_{x \to x_0; x > x_0} f(x) \end{math}) en $x_0$ et vaut $f(x_0)$
-\item f est continue à gauche e en $x_0$ si limite de f(x) par valeur inférieur (\begin{math} \lim_{x \to x_0; x < x_0} f(x) \end{math}) en $x_0$ et vaut $f(x_0)$
+\item f est continue à droite en $x_0$ si limite de f(x) par valeur supérieur (\begin{math} \lim_{\substack{x \to x_0 \\ x > x_0}} f(x) \end{math}) en $x_0$ et vaut $f(x_0)$
+\item f est continue à gauche e en $x_0$ si limite de f(x) par valeur inférieur (\begin{math} \lim_{\substack{x \to x_0 \\ x < x_0}} f(x) \end{math}) en $x_0$ et vaut $f(x_0)$
 \end{itemize}
 
 \paragraph{Exemple} \begin{itemize}
@@ -71,10 +74,12 @@ si f est continue en $x \in E$ et g est continue en $f(x) \in F$, alors gof est 
 	\item Polynôme , $\sin+\cos, \tan + exp$ sont continues sur $\mathbb{R}$
 	\item $\sin(ln(\frac{e^x}{1+x^2}))$ est continue sur $\mathbb{R}$ car $exp, 1+x^2$ sont continue, de plus $1+x^2 \neq 0$ pour $x \in \mathbb{R}$ donc $\frac{e^x}{1+x^2}$ est continue sur $\mathbb{R}$.
 	Finallement, $e^x$ n'est jamais null donc $im(x\mapsto \frac{e^x}{1+x^2}) = \phi \subset \mathbb{R}^{+*}$, d'où $ln(\phi)$ est continue sur $\mathbb{R}$
-\item $x\mapsto \frac{\sin(x)}{x}$ est continue sur $\mathbb{R}^*$~\\
-	$\mathbb{R^*} \rightarrow \mathbb{R}$
-	~\\
-	de plus, \[\lim_{x \to 0} \frac{\sin(x)}{x} = 1\] 
+
+\item $\begin{array}{l}
+	x\mapsto \frac{\sin(x)}{x} \\
+	\mathbb{R^*} \rightarrow \mathbb{R}
+\end{array}$
+	 est continue sur $\mathbb{R}^*$, de plus, $\lim_{x \to 0} \frac{\sin(x)}{x} = 1$ 
 \end{itemize}
 
 \paragraph{Définition} Soit $f:E \rightarrow \mathbb{R}$, \fbox{$x_0$ adhérent à E}.
@@ -84,9 +89,8 @@ Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow 
 				f(x)& \text{ si } x \in  E \\
 				l&\text{ si } x = x_0
 			\end{array}
-			\right.
+			\right. \text{Est continue sur} \mathbb{R}
 		\]
-		Est continue sur $\mathbb{R}$
 
 \paragraph{Exemple} 
 
@@ -96,9 +100,8 @@ Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow 
 				\frac{sin(x)}{x} & \text{ si } x \neq 0 \\
 				l&\text{ si } x = 0
 			\end{array}
-			\right.
+			\right. \text{Est continue sur} \mathbb{R}
 		\]
-		 est continue sur $\mathbb{R}$
 
 \[h(x) =
 	\left\{
@@ -106,9 +109,8 @@ Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow 
 				xln(x) & \text{ si } x > 0 \\
 				0&\text{ si } x = 0
 			\end{array}
-			\right.
+			\right. \text { est le prolongement par continuité en 0 de } x\mapsto xln(x)
 		\]
-		est le prolongement par continuité en 0 de $x\mapsto xln(x)$
 
 		\[x \mapsto \frac{1}{x} \text{ , } \lim_{x \to 0^-} \frac{1}{x} = -\infty \text{ et }
 			\lim_{x \to 0^+} \frac{1}{x} = +\infty \]
@@ -124,11 +126,11 @@ Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow 
 		\]
 
 		est continue ? f est continue si et seulement si $x=2$ En effet, \begin{align*} 
-			\lim_{x\to 0; x < 0} f(x) &= \lim_{x\to 0; x <0} \frac{sin(2x)}{x} \\
+		\lim_{\substack{x\to 0 \\ x < 0}} f(x) &= \lim_{\substack{x\to 0 \\ x <0}} \frac{sin(2x)}{x} \\
 									  &= \frac{sin(2x)}{2x} * 2 = 2
 		\end{align*}
 
-		($2^{eme}$ méthode : $sin(2x) = 2sin(x)*cos(x), \frac{sin(2x)}{x} = 2*\frac{sin(x)}{x}.\cos(x)$ ce qui tend vers 2 pour x tend vers 0, et \[\lim_{x\to 0, x > 0} f(x) = c\] donc \[\lim_{x\to 0; x > 0} f(x) = \lim_{x\to 0; x<0} f(x) \text{ si et seulement si } c =2\]
+		($2^{eme}$ méthode : $sin(2x) = 2sin(x)*cos(x), \frac{sin(2x)}{x} = 2*\frac{sin(x)}{x}.\cos(x)$ ce qui tend vers 2 pour x tend vers 0, et \[\lim_{\substack{x\to 0 \\  x > 0}} f(x) = c\] donc \[\lim_{\substack{x\to 0 \\  x > 0}} f(x) = \lim_{\substack{x\to 0 \\  x<0}} f(x) \text{ si et seulement si } c =2\]
 		Donc f est continue en 0 si $c=0$. De plus, pour tout $x_0 > 0$, $f(x) = x+c$ qui est continue sur $\mathbb{R}^{+*}$ et pour tout $x_0 < 0$, $f(x) = \frac{sin(2x)}{x}$ qui est continue sur $\mathbb{R}^{-*}$
 		Le seule problème possible était en 0.
 
