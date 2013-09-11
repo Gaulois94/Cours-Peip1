@@ -23,8 +23,9 @@ Fonctions continues:
 		\draw[red, thick] (1, 1) -- (2, 1);
 		\draw[fill=white] (1, 0) circle (0.05);
 		\draw[fill=black] (1, 1) circle (0.05);
-		\foreach \x in {0, 1, 2} 
-			\node at (\x, 0) [below, fill=white] {\x};
+		\foreach \x in {1, 2} 
+			\node at (\x, 0) [below] {\x};
+		\node at (0, 0) [below left] {0};
 \end{tikzpicture}
 \end{wrapfigure}
 Fonctions discontinues:
@@ -38,7 +39,7 @@ Les limites à gauches et à droite étant différentes donc $\lim_{x\to 1} \tex
 		\draw[->, thick] (0, -1) -- (0, 2.2);
 		\draw[red, thick] (-1, 1) -- (2, 1);
 		\draw[fill=white] (0, 1) circle (0.05) node [above left] {1};
-		\draw[fill=black] (0, 2) circle (0.05) node [above left] {2};
+		\draw[fill=black] (0, 2) circle (0.05) node [left] {2};
 \end{tikzpicture}
 \end{wrapfigure}
 $g(x) = 1$ pour tout x différent de 0
@@ -73,7 +74,7 @@ si f est continue en $x \in E$ et g est continue en $f(x) \in F$, alors gof est 
 \paragraph{Exemple} \begin{itemize}
 	\item Polynôme , $\sin+\cos, \tan + exp$ sont continues sur $\mathbb{R}$
 	\item $\sin(ln(\frac{e^x}{1+x^2}))$ est continue sur $\mathbb{R}$ car $exp, 1+x^2$ sont continue, de plus $1+x^2 \neq 0$ pour $x \in \mathbb{R}$ donc $\frac{e^x}{1+x^2}$ est continue sur $\mathbb{R}$.
-	Finallement, $e^x$ n'est jamais null donc $im(x\mapsto \frac{e^x}{1+x^2}) = \phi \subset \mathbb{R}^{+*}$, d'où $ln(\phi)$ est continue sur $\mathbb{R}$
+	Finallement, $e^x$ n'est jamais null donc $im(x\mapsto \frac{e^x}{1+x^2}) = \varphi \subset \mathbb{R}^{+*}$, d'où $ln(\varphi)$ est continue sur $\mathbb{R}$
 
 \item $\begin{array}{l}
 	x\mapsto \frac{\sin(x)}{x} \\
@@ -83,7 +84,7 @@ si f est continue en $x \in E$ et g est continue en $f(x) \in F$, alors gof est 
 \end{itemize}
 
 \paragraph{Définition} Soit $f:E \rightarrow \mathbb{R}$, \fbox{$x_0$ adhérent à E}.
-Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow \mathbb{R}$ par la fonction ~\\
+Si $\lim_{x\to x_0} f(x) = l$, alors la fonction $g:E\cup \{x_0\} \rightarrow \mathbb{R}$ par la fonction
 	\[g(x) = \left\{
 			\begin{array}{rl}
 				f(x)& \text{ si } x \in  E \\
@@ -130,12 +131,14 @@ Si \[\lim_{x\to x_0} f(x) = l\], alors la fonction $g:E\cup \{x_0\} \rightarrow 
 									  &= \frac{sin(2x)}{2x} * 2 = 2
 		\end{align*}
 
-		($2^{eme}$ méthode : $sin(2x) = 2sin(x)*cos(x), \frac{sin(2x)}{x} = 2*\frac{sin(x)}{x}.\cos(x)$ ce qui tend vers 2 pour x tend vers 0, et $\lim_{\substack{x\to 0 \\  x > 0}} f(x) = c$ donc $\lim_{\substack{x\to 0 \\  x > 0}} f(x) = \lim_{\substack{x\to 0 \\  x<0}} f(x) \text{ si et seulement si } c =2$
+		($2^{eme}$ méthode : $sin(2x) = 2sin(x)*cos(x), \frac{sin(2x)}{x} = 2*\frac{sin(x)}{x}.\cos(x)$ ce qui tend vers 2 pour x tend vers 0, et $\lim_{\substack{x\to 0 \\  x > 0}} f(x) = c$ donc ~\\
+		$\lim_{\substack{x\to 0 \\  x > 0}} f(x) = \lim_{\substack{x\to 0 \\  x<0}} f(x) \text{ si et seulement si } c =2$)
+		~\\
 		Donc f est continue en 0 si $c=0$. De plus, pour tout $x_0 > 0$, $f(x) = x+c$ qui est continue sur $\mathbb{R}^{+*}$ et pour tout $x_0 < 0$, $f(x) = \frac{sin(2x)}{x}$ qui est continue sur $\mathbb{R}^{-*}$
 		Le seule problème possible était en 0.
 
 \paragraph{Comportement local}
-\paragraph{Proposition} Si f est continue en $x_0$, alors f est localement bornée autour de $x_0$ (c'est à dire il existe un voisinnage de $x_0$ sur lequel f est bornée, c'est à dire il existe $\delta > 0$ et $M > 0$, $|x-x_0| < \delta$ et $|f(x)| < M$).
+\paragraph{Proposition} Si f est continue en $x_0$, alors f est localement bornée autour de $x_0$ (c'est à dire il existe un voisinnage de $x_0$ sur lequel f est bornée, c'est à dire il existe $\delta > 0$ et $M > 0$ tel que $|x-x_0| < \delta$ et $|f(x)| < M$).
 Si f est continue en $x_0$ et $f(x) \neq 0$, alors f est de signe constant (celui de $f(x_0$) localement autour de $x_0$
 
 \section{Théorème des valeurs intermédiaires}
