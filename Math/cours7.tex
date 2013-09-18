@@ -50,7 +50,7 @@ $\forall x \neq x_0, x_0 \in \mathbb{R}^{+*} \begin{array}{rcl}
 	\begin{tikzpicture}
 		\draw[->, thick] (-1, 0) -- (4, 0);
 		\draw[->, thick] (0, -1) -- (0, 4);
-		\draw[name path=courbe] (-1, 0.1) .. controls (1, 0.3) and (2, 1) .. (3, 3);
+		\draw[name path=courbe] (-1, 0.1) .. controls (1, 0.3) and (2, 1) .. (3, 3) node [above] {$D_{x_1}$};
 		\node at (1, 0) [below] {$x_0$};
 		\node at (2, 0) [below] {$x_1$};
 		\path[name path=da] (1, 0) --(1, 3);
@@ -70,7 +70,7 @@ $\forall x \neq x_0, x_0 \in \mathbb{R}^{+*} \begin{array}{rcl}
 \end{wrapfigure}
 $f'(x_0)$ est le coefficient directeur de la tangente du graphe de f en $(x_0,f(x_0))$
 
-$\tau (x_1) = \frac{f(x_1)-f(x_0)}{x_1-x_0}$ est le coefficient de la droite passant $P_x$ et $P_{x_0}$ avec $P_x$ du graph au point x, et $P_{x_0}$ celui de $x_0$
+$\tau (x_1) = \frac{f(x_1)-f(x_0)}{x_1-x_0}$ est le coefficient de la droite passant $P_{x_1}$ et $P_{x_0}$ avec $P_{x_1}$ du graph au point $x_1$, et $P_{x_0}$ celui de $x_0$
 $y=\tau (x_1)(x-x_0) + f(x_0)$ avec $x_1 \in \mathbb{R}$
 
 Quand x tend vers $x_0$, la droite $D_{x_1}$  "converge" vers la tangeante au graph de f au point ($x_0, f(x_0)$), d'équation :
