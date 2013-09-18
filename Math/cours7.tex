@@ -91,7 +91,7 @@ f admet une dérivée à droite en $x_0$, que l'on note $f'_d(x_0) = l^+$
 \begin{tikzpicture}
 		\draw[->, thick] (-1, 0) -- (2, 0);
 		\draw[->, thick] (0, -1) -- (0, 2.2);
-		\draw[red, thick] (-1, 1) -- (3, 1);
+		\draw[red, thick] (-1, 1) -- (2, 1);
 		\draw[fill=white] (0, 1) node [above left] {1};
 		\draw[fill=white] (1, 1) circle (0.05);
 \end{tikzpicture}
@@ -124,10 +124,10 @@ On définit $\varphi : [a, c] \rightarrow \mathbb{R}$ par la formule $\varphi(x)
 	\end{array}
 	\right.$
 
-	$\varphi $ est continue sur $[a, c]$ si $\begin{array}{rcl} 
+	$\varphi $ est continue sur $[a, c]$ si \[\begin{array}{rcl} 
 		\lim_{\substack{x \to b \\ x < b}}\varphi (x) &= \lim_{\substack{x \to b \\ x > b}}\varphi (x) &= \varphi(b) \\
 		f(b) &= g(x) & = f(b) 
-		\end{array}$
+	\end{array}\]
 
 		Si $\varphi$ est continue, $\varphi$ est dérivable sur $[a, c]$ si $f'_g(b) = g'_d(b)$
 
@@ -154,22 +154,31 @@ On définit $\varphi : [a, c] \rightarrow \mathbb{R}$ par la formule $\varphi(x)
 				\item si $g(x_0) \neq 0$ f/g est dérivable en $x_0$ et $(\frac{f}{g})'(x_0) = \frac{f'(x_0)*g(x_0)-f(x_0)*g'(x_0)}{g^(x_0)}$
 			\end{itemize}
 
-			\paragraph{Démonstration} $\begin{array}{rcl}
+			\paragraph{Démonstration} 
+			Pour la somme : 
+			\[\begin{array}{rcl}
 				(f+g)(x) - (f+g)(x_0) &=& f(x)+g(x) - (f(x_0)+g(x_0)) \\
 																							   &=& f(x) - f(x_0) + g(x) - g(x_0) \\
 				\frac{(f+g)(x)-(f+g)(x_0)}{x-x_0} &=& \frac{f(x) - f(x_0)}{x_0} + \frac{g(x) - g(x_0)}{x-x_0}
-			\end{array}$
+		\end{array}\]
 
+			Pour le produit :
+			
 			$\begin{array}{rcl}
 				(f*g)(x) - (f*g)(x_0) &=& f(x)*g(x) - (f(x_0)*g(x_0)) \\
 																							   &=& (f(x)-f(x_0))g(x) + f(x_0)g(x) - f(x_0)g(x_0) \\
 																							   &=& (f(x)-f(x_0))g(x) + f(x_0)(g(x) -g(x_0) \\
 				\frac{(f*g)(x)-(f*g)(x_0)}{x-x_0} &=& \frac{f(x) - f(x_0)}{x_0}g(x) + \frac{g(x) - g(x_0)}{x-x_0}g(x_0)
 			\end{array}$
-			Comme précédemment, $\lim_{x \to x_0}{g(x)} = g(x_0)$ car $g(x_0)$ est continue en $x_0$
+			~\\
+			~\\
+			Comme précédemment, $\lim_{x \to x_0}{g(x)} = g(x_0)$ car $g$ est continue en $x_0$
 
-			$\frac{f}{g} = f . \frac{1}{g}$ ~\\
-			$(\frac{f}{g})' = f'.\frac{1}{g'} + f.(\frac{1}{g})'$
+			\[\begin{array}{rcl}
+					\frac{f}{g} &=& f . \frac{1}{g} \\
+					(\frac{f}{g})' &=& f'.\frac{1}{g'} + f.(\frac{1}{g})'
+				\end{array}
+			\]
 
-			\paragraph{COmposition} $f:E \rightarrow F, f : F \rightarrow G$ ~\\
+			\paragraph{Composition} $f:E \rightarrow F, f : F \rightarrow G$ ~\\
 			On suppose f dérivable en $x_0$, g dérivable en $f(x_0)$ alors $gof$ est dérivable en x et $(gof)'(x_0) = f'(x_0)\cdot g'(f(x_0))$
