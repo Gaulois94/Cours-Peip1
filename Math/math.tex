@@ -5,8 +5,8 @@
 \usepackage{amsmath}
 \usepackage{cancel}
 \usepackage{amssymb}
-\usepackage[pdfmenubar=true]{hyperref}
 \usepackage{mathrsfs}
+\usepackage[pdfmenubar=true]{hyperref}
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{sectsty}
@@ -29,6 +29,10 @@
 \rhead{\leftmark}
 \lhead{\rightmark}
 \cfoot{\thepage}
+
+\hypersetup{%
+    pdfborder = {0 0 0}
+}
 
 \chapterfont{\centering}
 \renewcommand*\thesection{\arabic{section}}
