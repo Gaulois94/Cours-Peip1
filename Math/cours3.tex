@@ -18,7 +18,7 @@ On écrit $y = e^{3x+2}-7$ et on détermine x en fonction des y.
 	x &=& \frac{1}{3}(ln(y+7)-2)
 \end{array}\]
 
-d'où $f^{-1} = \frac{1}{3}(ln(x+7)-2)$
+d'où $f^{-1}(x) = \frac{1}{3}(ln(x+7)-2)$
 
 \paragraph{Etablie} $f : E \rightarrow \mathbb{R}$ et $A \subset E$ ~\\
 $f(A) = \{y \in \mathbb{R} \text{ tel que } x \in A, f(x) = y\}$
@@ -36,20 +36,21 @@ $f(A) = im(f_{|A})$
 	\item si $x \in E$, x est adhérent à E, car pour tout voisinage V de x, $x \in V \cap E$
 	\item E = ]0; 1], 0 est adhérent à E.
 	\item $E = \{1 + \frac{1}{n}; n \in \mathbb{N}^*\} = \{2, \frac{3}{2}, \frac{4}{3}\}$
-		1 est adhérent à E car \[\lim_{n \to +\infty} = 1\]
+	1 est adhérent à E car $\lim_{n \to +\infty}1+\frac{1}{n} = 1$
 \end{itemize}
 
 \section{Limite finie en un point de $\mathbb{R}$}
 
-\paragraph{Definition} $f : E \rightarrow \mathbb{R}; x_0$ un point adhérent de E.
+\paragraph{Definition} $f : E \rightarrow \mathbb{R}; x_0$ un point adhérent de E. ~\\
 On dit que f(x) \ul{tend vers} l en $x_0$ ou que f(x) \ul{admet la limite} l en $x_0$ si :
 $\forall \epsilon > 0, \text{il existe } \delta > 0, |x - x_0| < \delta \rightarrow |f(x) - l| < \epsilon$
 ~\\
 ~\\ 
-Ceci est équivalent à dire que $\forall \epsilon > 0, \text{ il existe } \delta > 0 \text{ tel que } \forall x \in [x-\delta, x+\delta], f(x) \in [l-\epsilon, l+\epsilon]$
+Ceci est équivalent à dire que $\forall \epsilon > 0, \text{ il existe } \delta > 0 \text{ tel que } \forall x \in [x_0-\delta, x_0+\delta], f(x) \in [l-\epsilon, l+\epsilon]$
 
 Pour tout voisinage V de l il existe un voisinage de $x_0$ U tel que si x est dans U, alors f(x) est dans V.
-\paragraph{Notation} \[\lim_{x \to x_0} f(x) = l\] ou \[f(x) \rightarrow_{x \to x_0} l\]
+\paragraph{Notation} $\lim_{x \to x_0} f(x) = l$ ou $f(x) \xrightarrow[x \to x_0]{} l$
+\newpage
 \paragraph{Exemple} $ f:\mathbb{R}^+ \rightarrow \mathbb{R}$ dont le graph est :
 
 \begin{tikzpicture}
@@ -61,15 +62,17 @@ Pour tout voisinage V de l il existe un voisinage de $x_0$ U tel que si x est da
 
 \[ \lim_{x \to 0} f(x) = 1\] Soit $\epsilon > 0$, tout $\delta > 0$ convient.
 
+\begin{wrapfigure}[0]{r}{0pt}
 \begin{tikzpicture}
 	\draw[->] (-3, 0) -- (3, 0);
 	\draw[->] (0, -1) -- (0, 2);
 	\draw[red] (0, 1) -- (3, 1);
 	\draw[red] (-3, 0) -- (0, 0);
 	\draw[fill=black] (0,0) circle (0.05);
-	\draw[fill=black] (0,1) circle (0.05);
+	\draw[fill=white] (0,1) circle (0.05);
 	\node at ([xshift=-0.4cm]0, 1) [fill=white] {1};
 \end{tikzpicture}
+\end{wrapfigure}
 
 \[f(x) = 
 \left\{
@@ -103,9 +106,9 @@ La fonction f de l'exemple [x] admet une limite à gauche en 0 : $\lim_{\substac
 démontration par l'absurde : $f : E \rightarrow \mathbb{R}, x_0$ adhérent à E. On suppose que la limite en $x_0$ existe mais qu'elle n'est pas unique.
 Supposons que $\lim_{x \to x_0} f(x) = l_1 \text{et} \lim_{x \to x_0} f(x) = l_2$ avec $l_1 \neq l_2$
 
-Comme \[ \lim_{x \to x_0} f(x) = l_1\], $\forall \epsilon_1 > 0$, il existe $\delta_1, \forall x \in E |x-x_0|< \delta_1, \text{alors} |f(x) - l_1| < \epsilon_1$ (*)
+Comme $\lim_{x \to x_0} f(x) = l_1$, $\forall \epsilon_1 > 0$, il existe $\delta_1, \forall x \in E |x-x_0|< \delta_1, \text{alors} |f(x) - l_1| < \epsilon_1$ (*)
 ~\\
-De plus\[ \lim_{x \to x_0} f(x) = l_2\], $\forall \epsilon_2 > 0$, il existe $\delta_2, \forall x \in E |x-x_0|< \delta_2, \text{alors} |f(x) - l_2| < \epsilon_2$ (**)
+De plus $\lim_{x \to x_0} f(x) = l_2$, $\forall \epsilon_2 > 0$, il existe $\delta_2, \forall x \in E |x-x_0|< \delta_2, \text{alors} |f(x) - l_2| < \epsilon_2$ (**)
 ~\\
 
 Choisissons $\epsilon < \frac{l_1+l_2}{2}$, on remarque $]l_1 - \epsilon, l_1 + \epsilon[ \cap ]l_2 - \epsilon, l_2 + \epsilon[ = \o$
@@ -122,13 +125,13 @@ et par (**), $f(x) \in ]l_2-\epsilon; l_2+\epsilon[$ donc $f(x) \in ]l_1 - \epsi
 
 \section{Théorème des gendarmes}
 f, g, h 3 fonctions $E \rightarrow \mathbb{R}$, $x\in \mathbb{R}$ adhérent à E. \newline
-(i) Si f, g, h admettent pour limites respectivs l, m, n en $x_0$ et si f(x) $\leq g(x) \leq h(x)$ pour tout x de t, alors $l \leq m \leq n$
+(i) Si f, g, h admettent pour limites respectivs l, m, n en $x_0$ et si f(x) $\leq g(x) \leq h(x)$ pour tout x de E, alors $l \leq m \leq n$
 ~\\
-(ii) Si $f(x) \leq g(x) \leq h(x)$ sur E et si f et h admettent une limite (identique) l en $x_0$, alors g admet une limite en $x_0$ et \[\lim_{x \to x_0} g(x) = l\]
+(ii) Si $f(x) \leq g(x) \leq h(x)$ sur E et si f et h admettent une limite (identique) l en $x_0$, alors g admet une limite en $x_0$ et $\lim_{x \to x_0} g(x) = l$
 
 \paragraph{Remarque} On remplace les inégalité de (i) par $\forall x \in E$, $f(x) < g(x) < h(x)$, on obtient aussi $l \leq m \leq n$
 
-\paragraph{Exemple} $f(x) = |x|$ et $g(x) = 2\dot |x|$ Sur $E \subset R^+, f<g$ mais \[\lim_{x \to 0}f(x) = \lim_{x \to 0} g(x) \]
+\paragraph{Exemple} $f(x) = |x|$ et $g(x) = 2\dot |x|$ Sur $E \subset R^+, f<g$ mais $\lim_{x \to 0}f(x) = \lim_{x \to 0} g(x)$
 
 \paragraph{Exemple} \[\lim_{x \to 0} x .\sin(\frac{1}{x}) \text{ existe ?}\]
 ($\sin(\frac{1}{x})$ n'a pas de limite en 0)
@@ -137,4 +140,4 @@ Soit f, g, h $\mathbb{R}^* \rightarrow \mathbb{R}$, $f(x) = -|x|, g(x) = x \sin(
 
 On a bien $\forall x \in \mathbb{R}^*, f(x) \leq g(x) \leq h(x)$ car $\forall x \in \mathbb{R}, -1 \leq \sin(x) \leq 1$
 
-Donc par le théorème des gendarmes, Comme \[\lim_{x \to 0} f(x) = 0 \text{ et } \lim_{x \to 0} h(x) = 0\] g admet 0 comme limite quand x tends vers 0.
+Donc par le théorème des gendarmes, Comme $\lim_{x \to 0} f(x) = 0 \text{ et } \lim_{x \to 0} h(x) = 0$ g admet 0 comme limite quand x tends vers 0.
