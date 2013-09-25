@@ -11,7 +11,7 @@ $\mathbb{R} = ]-\infty; +\infty[ \mathbb{R}^* = ]-\infty; 0[ \cup ]0; +\infty[ \
 
 \draw[->, thick, black] (0, -1.2) -- (0, 1.2);
 \draw[->, thick] (-4.71, 0) -- (4.17, 0);
-\draw[domain=-4.71:4.71] plot (\x, {sin(\x r)});
+\draw[domain=-4.71:4.71, samples=500] plot (\x, {sin(\x r)});
 \draw[fill=black] (0, 0) circle (0.1);
 \foreach \x/\text in {
 	-3.14/$-\pi$, 
@@ -25,8 +25,10 @@ $\mathbb{R} = ]-\infty; +\infty[ \mathbb{R}^* = ]-\infty; 0[ \cup ]0; +\infty[ \
 
 \paragraph{Définitions} Soit E, F 2 ensemble de R. Une fonction f est procédé pour associer à tout élément de R un unique élément de F
 Le graph de F "vit" dans $\mathbb{R}^2 = \mathbb{R}*\mathbb{R}$
-\paragraph{Définitions} : Soit E et F 2 ensembles, on définit leur \ul{produit cartesien} :  comme l'ensemble dont les éléments sont les couples $(x, y)$ avec x "vit" dans E et y dans F. ExF = \{(x, y), $x \in E, y \in F$\}
-\paragraph{Définitions} : Le \ul{graphe} de f :$ E \rightarrow F$ est un sous ensemble de $E*F$ donné par
+\paragraph{Définitions} : Soit E et F 2 ensembles, on définit leur \ul{produit cartesien} :  comme l'ensemble dont les éléments sont les couples $(x, y)$ avec x "vit" dans E et y dans F. ~\\
+ExF = \{(x, y), $x \in E, y \in F$\}
+\paragraph{Définitions} : Le \ul{graphe} de f :$ E \rightarrow F$ est un sous ensemble de $E*F$ donné par ~\\
+
 $\begin{array} {r l}
 = & \{(x, y), x \in E, y =(x)\}\\
 = & \{x:\rightarrow f(x) = y\}

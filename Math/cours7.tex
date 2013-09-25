@@ -70,7 +70,8 @@ $\forall x \neq x_0, x_0 \in \mathbb{R}^{+*} \begin{array}{rcl}
 \end{wrapfigure}
 $f'(x_0)$ est le coefficient directeur de la tangente du graphe de f en $(x_0,f(x_0))$
 
-$\tau (x_1) = \frac{f(x_1)-f(x_0)}{x_1-x_0}$ est le coefficient de la droite passant $P_{x_1}$ et $P_{x_0}$ avec $P_{x_1}$ du graph au point $x_1$, et $P_{x_0}$ celui de $x_0$
+$\tau (x_1) = \frac{f(x_1)-f(x_0)}{x_1-x_0}$ est le coefficient de la droite passant par $P_{x_1}$ et $P_{x_0}$ avec $P_{x_1}$ du graph au point $x_1$, et $P_{x_0}$ celui de $x_0$
+~\\
 $y=\tau (x_1)(x-x_0) + f(x_0)$ avec $x_1 \in \mathbb{R}$
 
 Quand x tend vers $x_0$, la droite $D_{x_1}$  "converge" vers la tangeante au graph de f au point ($x_0, f(x_0)$), d'équation :
@@ -106,7 +107,7 @@ Cette fonction n'est pas dérivable en $1$, pourtant $f'_d(1) = f'_g(1)$, f doit
 	Si $x > x_0$, on obtient : \[ \begin{array}{rcl}
 			(l-1)(x-x_0) \leq & f(x) - f(x_0) \leq & (l+1)(x-x_0) \\
 			\lim_{x \to x_0} (l-1)(x-x_0) \leq & \lim_{x \to x_0}f(x) - f(x_0) \leq & \lim_{x \to x_0}(l+1)(x-x_0) \\
-			0 & \lim_{x \to x_0}f(x) - f(x_0) \leq & 0 \\
+			0 \leq & \lim_{x \to x_0}f(x) - f(x_0) \leq & 0 \\
 			  & \lim_{x \to x_0}f(x) - f(x_0) = 0 & \text{ par le théorème des gendarmes, et de même pour } x < x_0 \end{array} \]
 
 
@@ -168,7 +169,7 @@ On définit $\varphi : [a, c] \rightarrow \mathbb{R}$ par la formule $\varphi(x)
 				(f*g)(x) - (f*g)(x_0) &=& f(x)*g(x) - (f(x_0)*g(x_0)) \\
 																							   &=& (f(x)-f(x_0))g(x) + f(x_0)g(x) - f(x_0)g(x_0) \\
 																							   &=& (f(x)-f(x_0))g(x) + f(x_0)(g(x) -g(x_0) \\
-				\frac{(f*g)(x)-(f*g)(x_0)}{x-x_0} &=& \frac{f(x) - f(x_0)}{x_0}g(x) + \frac{g(x) - g(x_0)}{x-x_0}g(x_0)
+				\frac{(f*g)(x)-(f*g)(x_0)}{x-x_0} &=& \frac{f(x) - f(x_0)}{x_0}g(x) + \frac{g(x) - g(x_0)}{x-x_0}f(x_0)
 			\end{array}$
 			~\\
 			~\\
@@ -180,5 +181,5 @@ On définit $\varphi : [a, c] \rightarrow \mathbb{R}$ par la formule $\varphi(x)
 				\end{array}
 			\]
 
-			\paragraph{Composition} $f:E \rightarrow F, f : F \rightarrow G$ ~\\
+			\paragraph{Composition} $f:E \rightarrow F, g : F \rightarrow G, gof E \rightarrow G$ ~\\
 			On suppose f dérivable en $x_0$, g dérivable en $f(x_0)$ alors $gof$ est dérivable en x et $(gof)'(x_0) = f'(x_0)\cdot g'(f(x_0))$

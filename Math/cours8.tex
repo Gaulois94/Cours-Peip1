@@ -1,0 +1,109 @@
+\paragraph{Exemple} $f,g : E \rightarrow F$ dérivables en $x_0$, avec $f(x_0)\neq 0, \frac{f}{g}'(x_0) = (g*\frac{1}{g})'(x_0)$ Et $\frac{1}{g}$ est la composée de g et de $\varphi : x \mapsto \frac{1}{x}$
+
+$\varphi '(x) = -\frac{1}{x^2}$ d'où $(\frac{1}{g})'(x_0) =  -\frac{g'(x_0)}{(g(x_0))^2}$
+
+Soit finalement $ \begin{array}{rcl}
+(\frac{f}{g})'(x_0) = (f\cdot\frac{1}{g})'(x_0) &=& f'(x_0)\cdot\frac{1}{g(x_0)}-f(x_0)\frac{-g'(x_0)}{(g(x_0))^2} \\
+&=& \frac{f'(x_0)g(x_0)-f(x_0)g'(x_0)}{(g(x_0))^2}
+\end{array}$
+
+\paragraph{Exemple} dérivée $e^{\sin(x)}$
+
+\[
+\begin{array}{rcl}
+f:&\mathbb{R} \rightarrow &\mathbb{R} \\
+& x \mapsto &\sin(x) \\
+g:&\mathbb{R} \rightarrow &\mathbb{R} \\
+&x \mapsto &e^x \\
+h:&\mathbb{R} \rightarrow &\mathbb{R} \\
+&x \mapsto &gof(x) 
+\end{array}\]
+
+D'où $\forall x \in \mathbb{R} h'(x)=\cos(x)\cdot e^{\sin(x)}$
+
+Définissons f par la formule $f(x) = \frac{1}{1+x^2}$, $\forall x \in \mathbb{R}, 1+x^2 \neq 0$ Donc :
+\begin{itemize}
+\item f est définie sur $\mathbb{R}$
+\item f est dérivable sur $\mathbb{R}$
+\end{itemize}
+et $f'(x) = \frac{-1x}{(1+x^2)^2}$
+
+\paragraph{Dérivée de la fonction réciproque}
+$f:E \rightarrow F$ dérivable sur E et bijective (Sa réciproque est notée $f^{-1}$)
+On note $f^{-1}of(x) = x \forall x \in E$ Donc $(f^{-1}of)'(x) = f'(x)\cdot(f^{-1})'(f(x))=1 \forall x \in E$
+
+On obtient $(f^{-1})'(f(x))=\frac{1}{f'(x)}$
+
+\paragraph{Exemple} $\tan]-\frac{\pi}{2}, \frac{\pi}{2}[ \rightarrow \mathbb{R}, x\mapsto \frac{\sin x}{\cos x}$
+
+Pour $x\in \tan]-\frac{\pi}{2},\frac{\pi}{2}[, \cos x \neq 0$ et donc \[
+		\begin{array}{rcl}
+			(tan)'(x) &=& \frac{\cos x \cdot \cos x - \sin x(-\sin x)}{(\cos x)^2} \\
+										   &=& \frac{1}{\cos^2 x} = 1+\tan^2(x)
+	\end{array}\]
+
+	En effet, $1+\tan^2(x) = 1+\frac{\sin^2x}{\cos^2x} = \frac{\cos^2x+\sin^2x}{\cos^2x} = \frac{1}{\cos^2x}$
+
+De plus, tan est bijective, de réciproque $arctan \mathbb{R} \rightarrow ]-\frac{\pi}{2}, \frac{\pi}{2}[$ arctan est dérivable sur $\mathbb{R}$ et $arctan(\tan x)=x$ ~\\
+	donc $\tan'(x) \cdot (arctan)'(\tan(x)) = 1$ c'est à dire ~\\
+	$arctan'(\tan x) = \frac{1}{\tan'(x)} = \frac{1}{1+\tan^2x}$ ~\\
+	On note $z=\tan x, $ $arctan'(z) = \frac{1}{1+z^2}$
+
+	\paragraph{Exercice} a)
+$\begin{array}{rcl}
+f:&]-\frac{\pi}{2}, \frac{\pi}{2}[&\rightarrow ]-1, 1[ \\
+							 &x&\mapsto \sin x
+\end{array}$
+
+f est bijective et $f'(x)$ ne s'annule pas, donc $\forall x \in ]-1, 1[, archsin'(x) = \frac{1}{\sqrt{1-x^2}}$
+
+b) de même, $arccos'(x) = -\frac{1}{\sqrt{1-x^2}}$ sur $]-1, 1[$
+
+	\section{Extreima et points critiques}
+
+	\paragraph{Définitions} $f:E \rightarrow F$ ~\\
+	f admet un \ul{maximum local} en $\alpha \in E$, s'il existe un voisinage V de $\alpha$, $V\subset E$, tel que $\forall x \in V\cap E,f(x) \leq f(\alpha)$ ~\\
+	f admet un \ul{minimum local}en $\beta \in E$, s'il existe un voisinage V de $\beta$, $W\subset E$, tel que $\forall x \in W\cap E,f(x) \geq f(\beta)$ ~\\
+	Un extremum local est un minimum local, soit un maximum local.
+
+	\paragraph{Proposition} $f:E \rightarrow \mathbb{R}, x_0\in E$ avec E voisinage de $x_0$ Si $x_0$ est un extremum local de f, alors $f'(x_0)=0$ ~\\
+	ON dit alors que $x_0$ est un \ul{point critique} de f.
+
+	\paragraph{Remarque}  $f:[a, b] \rightarrow \mathbb{R}$
+	Les extrema sont inclus dans $\{x \in ]a, b[$ tel que $f'(x)=0\} \cup \{a, b\}$
+
+	\paragraph{Exemple (inhabituel)}
+	$f:[0, 1] \cup \{3\}$
+
+	\begin{wrapfigure}[5]{l}{0pt}
+	\begin{tikzpicture}
+		\draw (-0.5, 0) -- (3.5, 0);
+		\draw (0, -0.5) -- (0, 2);
+	\draw[thick, blue] (2.6, 0) node {$]$}-- (3.4, 0) node {[} node [midway, above] {V};
+
+		\draw[fill=black] (3, 0) circle (0.05) node [below] {3};
+		\draw[] (0, 0) .. controls (0.3, 1.1) and (0.6, 1.1) .. (1.1, 0.9);
+	\end{tikzpicture}
+\end{wrapfigure}
+
+$V \cap E = \{3\}$ $\forall x \in V \cap E, f(x) \geq f(3)$ donc $f(3)$ est un minimum local, de même, il est aussi un maximum local car $\forall x \in V \cap E, f(x) \leq f(3)$
+
+\paragraph{Exemple} $\sin [-\frac{\pi}{4}, \pi] \rightarrow [-1, 1]$
+
+La restriction de la fonction sinus à $[-\frac{\pi}{4}, \pi]$ admet un unique point critique.
+
+\paragraph{Théorème de Rolle} Soit $f:[a, b] \rightarrow \mathbb{R}$, continue sur $[a, b]$, dérivble sur $]a, b[$ si $f(x)=f(b)$, alors il existe au moins un $c\in ]a, b[$ tel que $f'(c)=0$
+
+	\paragraph{Démonstration} Notons $y=f(a)=f(b)$ f continue sur $[a, b]$ (fermé) donc il existe un minimum global et un maximum global (atteints respectivement) en $\alpha$ et $\beta$, c'est à dire $\forall x \in [a, b], f(\alpha) \leq f(x) \leq f(\beta)$
+	\begin{itemize}
+		\item[1er cas] $f(\alpha) = y = f(\beta)$ ~\\
+		La fonction est donc constante sur $[a, b]$. N'importequel $c \in ]a, b[$ convient.
+
+		\item[2er cas] soit $f(\alpha) < y$ ou $y < f(\beta)$ ~\\
+		Supposons que $f(\alpha) < y$
+		$f(\alpha)$ est un minimum global donc un minimum local. ~\\
+		$\alpha \in ]a, b[$, car $f(x) \neq y$
+			Par la proposition, $f'(\alpha)=0$
+
+			De même, si $y < f(\beta)$, prendre $c=\beta$ convient.
+	\end{itemize}
