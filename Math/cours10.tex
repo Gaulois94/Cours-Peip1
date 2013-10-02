@@ -1,0 +1,111 @@
+\begin{itemize}
+	\item degré de $P = n$
+	\item $\epsilon$ définie près de $x_0$ et tel que $\epsilon(x) \xrightarrow[x \to x_0]{} 0$
+\end{itemize}
+
+\paragraph{Théorème} Si un tel développement limité existe, alors il est unique.
+\paragraph{Exemple} $p(x) = x^4 + 3x^2 -x 17$ . $DL_3(0) = 17 -x +3x^2 + x^3\cdot \epsilon(x)$
+
+\paragraph{Formule de Taylor-Young}
+\paragraph{Théorème} $f : I \rightarrow R, I$ intervalle ouvert et $x_0 \in I$ ~\\
+Si f est $C^n$ sur I, alors f admet un développement limité à l'ordre n en $x_0$ ~\\
+De plus, $\forall x \in ]x_0-\delta, x_0+\delta[, f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2}*(x-x_0)^2 + ... + \frac{f^n(x_0)}{n!}(x-x_0)^n + (x-x_0)^n \epsilon(x)$
+
+avec $\epsilon (x) \xrightarrow[x \to x_0]{} 0$ pour $\delta > 0, ]x_0-\delta, x_0+\delta[ \subset I$
+
+	\paragraph{Exemple} \begin{enumerate}
+		\item$f(x) = exp(x)$ en $x_0=0$ ~\\
+				$e^x = 1+x+\frac{x^2}{2} + \frac{x^3}{6} + ... + \frac{x^n}{n!} + x^n \epsilon(x)$ avec $\epsilon (x) \xrightarrow[x \to 0]{} 0$
+		\item $Q(x) = x^3 + 3x^2 + 1$ ~\\
+			$DL_6(0) : Q(x) = 1+3x^2 + x^3 + x^6 \epsilon(x) $ ($\epsilon (x) = 0 \xrightarrow[x \to 0]{} 0$) ~\\
+			$DL_2(0) : Q(x) = 1 +3x^2 + x^2 \epsilon (x)$ avec ($\epsilon (x) \xrightarrow[x \to 0]{} 0$) ~\\
+			$DL_2(1) : Q(x) = Q(1) + Q'(1) + \frac{Q''(1)}{2} + (x-1)^2\epsilon (x)$ \[\begin{array}{rcl}
+					\text{Or} & Q'(x) &= 3x^2 + 6x \\
+					\text{donc} & Q'(1) &= 9 \\
+					\text{et} & Q''(x) &= 6x+6 \\
+			\text{donc} & Q''(x) &=12 \end{array}\]
+
+					\[ \begin{array}{rcl}
+							DL_2(1) : Q(x) &=& 5+9(x-1)+\frac{12}{2}(x-1)^2 + (x-1)^2 \epsilon (x) \\
+										   &=& 5 + 9(x-1)+6(x-1)^2 + (x-1)^2 \epsilon (x)
+					\end{array}\]
+
+				\item $f(x) = \ln(1+x) $ ~\\
+					$DL_3(0) : f(x) = 0 + 1 \cdot x + -\frac{1}{2}x^2 + \frac{2}{3!}x^3 + x^3 \epsilon (x) $ ~\\
+					\[\text{car } \begin{array}{rclr}
+							f'(x) &=& \frac{1}{1+x} & \text{ d'ou } f'(0) = 1 \\
+							f''(x) &=& -\frac{1}{(1+x)^2} & \text{ d'ou } f''(0) = - 1 \\
+							f'''(x) &=& \frac{2}{(1+x)^3} & \text{ d'ou } f'''(0) = 2
+					\end{array}\]
+
+	Comme $3! = 1 * 2 * 3$ on obtient $\ln (1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + x^3 \epsilon (x)$ avec $\epsilon(x) \xrightarrow[x \to 0]{} 0$
+
+	$f(x) = \frac{1}{1-x} DL_n(0) ?$ ~\\
+	$\frac{1}{1-x} = 1+x+x^2+x^3 + ... + x^n + x^n\epsilon(x)$ ~\\ ~\\
+	En effet, la somme des N premiers termes de la suite géométrique de premier terme q et de raison x est : $q\frac{1-x^N}{1-x}$ ~\\ ~\\
+	pour $q=1$ : ~\\
+	$\frac{1-x^N}{1-x} = 1+x+x^2+...+x^{N-1}$ ~\\ ~\\
+	\[\text{Donc } \begin{array}{rcl}
+			\frac{1}{1-x} - \underbrace{(1+x+x^2 + ...+x^n)}_{N-1=n} &=& \frac{1}{1+x} - \frac{1-x^{n+1}}{1+x} \\
+				   &=& \frac{1-(1-x^{n+1}}{1-x} \\
+				   &=& \frac{x^{n+1}}{1-x} = x^n \underbrace{(\frac{x}{1-x})}_{\epsilon (x) \xrightarrow[x \to 0]{} 0}
+	\end{array}\]
+
+	Conclusion : ~\\
+	$\frac{1}{1-x} = 1+x+x^2+x^3 +...+x^n + x^n\epsilon(x)$ ~\\ ~\\
+	Remarque : $(\frac{1}{1-x})^{(17)} (0) = 17!$
+
+\item $f(x) = \sin(x) DL_4(0) ?$
+
+	\[\begin{array}{rcl}
+			g(0) &=& \sin(0) = 0 \\
+			g'(0) &=& \cos(0) = 1 \\
+			g''(0) &=& -\sin(0) = 0 \\
+			g'''(0) &=& -\cos(0) = -1 \\
+			g^{(4)}(0) &=& \sin(0) = 0
+	\end{array}\]
+
+	D'où $\sin(x) = x - \frac{x^3}{3!} + x^4 \epsilon (x)$
+
+
+	\paragraph{Remarque} comme $\sin$ est impaire, seuls les coefficients impairs apparaissent dans la partie principal.
+	\end{enumerate}
+
+	\section{Formule de Taylor-Lagrange} Qui aide à spécifier $\epsilon$
+
+	\paragraph{Théorème} $f:E \rightarrow \mathbb{R}$, I un intervalle et $x_0 \in I$ et $f C^n$ sur I.
+	\paragraph{} Pour tout x de I, il existe x entre x et $x_0$ tel que $f(x) = f(x_0)+f'(x_0)(x-x_0)+...+\frac{f^{(n-1)}(c)}{(n-1)!}(x-x_0)^{n-1} + \frac{f^{(n)}(c)}{n!}(x-x_0)^n$
+	\paragraph{Remarque} c dépend de x !
+
+	$\frac{f^{(n)}(c(x))}{n!}(x-x_0)^n$
+	\paragraph{Remarque} pour $n=1$ on retrouve le théorème des accroissements finis.
+
+	\begin{itemize}
+		\item On retrouve Taylor-Young en posant \[\epsilon (x) = \frac{1}{n!}(f^{(n)}(c)-f^{(n)}(x_0)) \]
+			Car f est $C^n$, le $f^{(n)}$ est continue.
+	\end{itemize}
+
+	\section{Opération usuelles sur les DL}
+
+	\paragraph{Théorème} $f,g : I \rightarrow \mathbb{R}$, I intervalle ouvert, $x_0 \in I$.
+	Si f et g admettent un DL à l'ordre n en $x_0$ alors :
+	\begin{itemize}
+		\item $f+g$ aussi dont la partie principale est la somme des parties principales des DL respective de f et g. ~\\
+			i.e si $f(x) = P(x) + x^n\epsilon_1(x)$ avec P polynôme de degré $\leq n$ et $\epsilon_1 \xrightarrow[x \to x_0]{} 0$ et si $g(x) = Q(x) + x^n\epsilon_2(x)$ avec Q polynôme de degrés $\leq n$ ~\\ ~\\
+			Alors $(f+g)(x) = (P+Q)(x) + x^n\epsilon_3(x)$
+		\item $f \cdot g$ aussi et sa partie principale est le produit des parties principales \ul{TRONQUE} à l'ordre n.
+	\end{itemize}
+
+	\paragraph{Exemple} $DL_2(0)$ de $e^x \cdot \sin(x)$ 
+
+	\[\begin{array}{rcl}
+			DL_2(0) \text{ de } e^x &:& 1+x+\frac{x^2}{2} + x^2 \epsilon (x) \\
+			DL_2(0) \text{ de } \sin(x) &=& x + x^2\epsilon(x)
+	\end{array}\]
+
+	Donc $DL_2(0)$ de $e^x \cdot \sin(x)$ est : $(1+x+\frac{x}{2})\cdot(x) + x^2\epsilon(x)$ À TRONQUER, c'est à dire : ~\\
+
+	\paragraph{Théorème} $f:E \rightarrow \mathbb{R}, g : J \rightarrow \mathbb{R}$ avec $f(I) \subset J$, $x_0 \in I$ ~\\
+	Si f admet un $DL_n(x_0)$ et que g admet un $DL_N(f(x_0))$ alors $gof$ admet un $DL_n(x_0)$ et sa partie principale est la composé des parties principales \ul{tronque} à l'ordre n. ~\\
+	i.e $f(x)=P(x) + x^n \epsilon(x)$ et $g(x) = Q(x) + x^n\epsilon(x)$ alors : ~\\
+	$gof(x) = R(x)+x^n \epsilon(x), R(x) = QoP(x)$ \ul{TRONQUE}

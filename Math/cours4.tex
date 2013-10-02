@@ -14,7 +14,7 @@
 
 \[\begin{array}{rccl}
 	f: &\mathbb{R}^{+*} &\rightarrow &\mathbb{R} \\
-	   & x & \rightarrow &x^{\alpha} \cdot x^{ln(x)^\beta}
+	   & x & \rightarrow &x^{\alpha} \cdot ln(x)^\beta
 \end{array}\]
 \[\alpha >0, \beta>0, \lim_{x \to 0} f(x) = 0\]
 
@@ -105,7 +105,7 @@ Alors $\lim_{x \to x_0} gof(x)$ existe et vaut m.
 
 \paragraph{Exemple} \[\begin{array}{rccl}
 	g:& y&\rightarrow & e^y \\
-	f:& x&\rightarrow \sqrt{1+x}
+		f:& x&\rightarrow & \sqrt{1+x}
 \end{array}\]
 
 \begin{itemize}
@@ -118,7 +118,7 @@ Alors $\lim_{x \to x_0} gof(x)$ existe et vaut m.
 \section{Limites infinies, et limites en l'infinie}
 \paragraph{Définition} $f:E\rightarrow \mathbb{R}, x_0$ adhérent à E
 
-On dit que f(x) tend vers $+\infty$ (ou $-\infty$) quand x tend vers $x_0$ si $\forall A > 0, \text{ il existe } \delta > 0 \text{ tel que } |x - x_0| < \delta > 0$, alors $f(x) > A$ (ou $f(x) < -A$ pour f(x) tend vers $-\infty$).
+On dit que f(x) tend vers $+\infty$ (ou $-\infty$) quand x tend vers $x_0$ si $\forall A > 0, \text{ il existe } \delta > 0 \text{ tel que } |x - x_0| < \delta$, alors $f(x) > A$ (ou $f(x) < -A$ pour f(x) tend vers $-\infty$).
 
 \paragraph{Exemple} \[\lim_{\substack{x \to 0 \\ x > 0}} \frac{1}{x} = +\infty\]
 ~\\
@@ -150,12 +150,12 @@ $\lim_{\substack{x \to 0 \\ x > 0}} f(x) = +\infty$
 Choisir $\delta = \frac{1}{A}$ suffit, en effet $0<x<\frac{1}{A}$ alors $\frac{1}{x} > \frac{1}{A}$.
 
 \paragraph{Exemple}
-$g(x) = 1+e^{-x}$ Montrons que \[\lim_{x \to +\infty} g(x) = 1\] et \[\lim_{x \to -\infty}g(x) = +\infty\]
+$g(x) = 1+e^{-x}$ Montrons que $\lim_{x \to +\infty} g(x) = 1$ et $\lim_{x \to -\infty}g(x) = +\infty$
 
 \paragraph{Exemple}
 \[\begin{array}{rccl}
 f:& ]-\frac{\pi}{2}; \frac{\pi}{2}[ &\rightarrow & \mathbb{R} \\
-	x&\rightarrow& tan(x)
+  &	x&\rightarrow& tan(x)
 \end{array}\]
 
 \[\lim_{\substack{x \to -\frac{\pi}{2} \\  x > - \frac{\pi}{2}}} tan(x) = -\infty\]

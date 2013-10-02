@@ -66,7 +66,7 @@ Cette fonction est injective car pour tout y de $\mathbb{R}$, il existe un $x \i
 	& x & \mapsto & x^2
 \end{array}\]
 
-Cette fonction n'est pas injective (-1 par exemple n'a pas d'antécédent) et pas injective car $y=4$ par exemple possède 2 antécédents.
+Cette fonction n'est pas surjective (-1 par exemple n'a pas d'antécédent) et pas injective car $y=4$ par exemple possède 2 antécédents.
 
 \paragraph{Remarque} : Si on considère 
 \[\begin{array}{rccl}
@@ -77,7 +77,7 @@ Cette fonction n'est pas injective (-1 par exemple n'a pas d'antécédent) et pa
 g est surjective (il y a toujours au minimum un antécédent) mais toujours pas injective
 Plus généralement, si on considère $f:E \rightarrow f(E)$ est toujours surjective.
 
-$sin : R \rightarrow [-1;1]$ est surjective mais pas injective : 0 est compris entre [-1;1] mais possède plusieurs antécédent ($k*\pi$ avec $k\in\mathbb{R}$)
+$sin : \mathbb{R} \rightarrow [-1;1]$ est surjective mais pas injective : 0 est compris entre [-1;1] mais possède plusieurs antécédent ($k*\pi$ avec $k\in\mathbb{R}$)
 
 
 \[\begin{array}{rccl}
@@ -99,9 +99,8 @@ g est la réciproque de f, notée $f^{-1}$
 	f: & \mathbb{R} & \rightarrow & \mathbb{R}^{*+} \\
 	   & x & \mapsto & exp(x)
 \end{array}\]
- et g 
  \[\begin{array}{rccl}
-	g: & \mathbb{R}{*+} & \rightarrow & \mathbb{R} \\
+	g: & \mathbb{R}^{*+} & \rightarrow & \mathbb{R} \\
 	   & x & \mapsto & ln(x)
  \end{array}\]
 
@@ -131,5 +130,5 @@ Soit x et x' dans $E \cap \mathbb{R}^-$ tels que $x \leq x'$ .
 	f(x') & = & -f(-x)
 \end{array}\]
 
-Comme $x, x' \in E \cap \mathbb{R}^+$, $-x, -x' \in E \cap \mathbb{R}^-$ et comme $x \leq x'$ et $-x \geq -x'$, $f(-x) \geq f(-x')$ car f est croissante sur $E\cap \mathbb{R}^+$ ~\\
-Conclusion, $-f(-x) \leq -f(-x')$ et donc $f(x) \leq f(x')$ et donc $f(x) \leq f(x')$. On a prouvé que $f_{|E \cap \mathbb{R}^-}$ est croissante.
+Comme $x, x' \in E \cap \mathbb{R}^-$, $-x, -x' \in E \cap \mathbb{R}^+$ et comme $x \leq x'$ et $-x \geq -x'$, $f(-x) \geq f(-x')$ car f est croissante sur $E\cap \mathbb{R}^+$ ~\\
+Conclusion, $-f(-x) \leq -f(-x')$ et donc $f(x) \leq f(x') \leq f(x')$. On a prouvé que $f_{|E \cap \mathbb{R}^-}$ est croissante.
