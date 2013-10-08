@@ -12,7 +12,7 @@ $\frac{dx}{dt} = v(t) = constante = c(t) \Rightarrow x(t) = c.t + k$
 
 Avec les conditions à \ul{t donne}, on fixe une valeur pour c et pour k.
 
-\paragraph{Chute d'un corps près de la surface de la terre}
+\subsection{Chute d'un corps près de la surface de la terre}
 
 \begin{wrapfigure}[5]{r}{0pt}
 \begin{tikzpicture}
@@ -73,7 +73,7 @@ m\ddot{z} &=& -mg \end{array} \right. \]
 			\dot{z}(t) &=& -gt \end{array} \right. \]
 \end{itemize}
 
-\paragraph{Exemples d'application du PFD} ~\\
+\subsection{Chute d'un corps dans un fluide} ~\\
 Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
 			x(t) \\
 			y(t) \\
@@ -174,7 +174,7 @@ La solution de l'équation Homogène : ~\\
 			~\\
 			Pour $t >> \tau$, alors $\begin{array}{rcl}
 				e^{-\frac{t}{\tau}} &\rightarrow& 0 \\
-			v_z \rightarrow -g\tau \end{array}$
+				v_z & \rightarrow -g\tau \end{array}$
 
 			\begin{tikzpicture}
 				\draw[fill=black] (0, 0) circle (0.05);
@@ -186,6 +186,7 @@ La solution de l'équation Homogène : ~\\
 				\draw[dashed] (0.2, -1.2) -- (0.2, 0);
 				\draw[dashed] (0.2, -1.2) -- (0, -1.2) node [left] {$-g\tau(0.63)$};
 				\node[below left] at (0, -2) {$-g\tau$};
+				\node[right, align=center] at (2.2, -0.5) {La vitesse tend vers \\ une vitesse constante : \\ on a un mouvement uniforme rectiligne};
 			\end{tikzpicture}
 
 			\paragraph{Calcul de z(t)}

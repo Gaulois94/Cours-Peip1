@@ -117,7 +117,8 @@ Donc $\ln (1+x) -x = -\frac{1}{2}x^2 + x^2 \epsilon(x)$
 		\draw[->] (-2, 0) -- (2, 0);
 		\draw[->] (0, -2) -- (0, 2);
 		\draw[blue, thick, domain=-2:2] plot(\x, {\x /2 - 1 / 4}) node [right]{$\Delta$};
-		\draw[red, domain=-2:2] plot(\x, {x/2 * (1-1/\x - 1 / (4*\x*\x))}) node [right] {$y=f(x)$};
+		\draw[red, domain=-2:-0.01] plot(\x, {\x/2 * (1-1/\x - 1 / (4*\x*\x))});
+		\draw[red, domain=0.01:2] plot(\x, {\x/2 * (1-1/\x - 1 / (4*\x*\x))}) node [right] {$y=f(x)$};
 	\end{tikzpicture}
 
 \end{wrapfigure}
@@ -126,7 +127,7 @@ Donc $\ln (1+x) -x = -\frac{1}{2}x^2 + x^2 \epsilon(x)$
 
 \[\begin{array}{rclr}
 f(x) &=& \frac{x^3}{2x^2}(\frac{1}{\frac{1}{2x^2} + \frac{1}{2x}+1}) \\
-	&=& \frac{x}{2}(\frac{1}{1+(\frac{1}{2x}+\underbrace{\frac{1}{2x^2}}_{u})})} \\
+	&=& \frac{x}{2}(\frac{1}{1+(\frac{1}{2x}+\underbrace{\frac{1}{2x^2}}_{u})}) \\
 u(y) &=& \frac{1}{2}y + \frac{1}{2}y^2 & \text{ avec } y = \frac{1}{2} \\
 \frac{1}{1+u} &=& 1-u+u^2+u^3 \epsilon (u) \\
 &=& 1 - (\frac{1}{2x} + \frac{1}{2x^2}) + (\frac{1}{2x} + \frac{1}{2x^2})^2 +  \frac{1}{x^2}\epsilon(\frac{1}{x}) \\
