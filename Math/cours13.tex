@@ -1,0 +1,105 @@
+\paragraph{Démonstration} Par définition des primitives, F et G sont $C^1$ et $(F-G)' = F' - G' = f-f=0$ ~\\
+Donc il existe une constante $c \in \mathbb{R}$ telle que $F-G=c$
+
+Attention : Soit $f : ]-1, 0[ \cup ]2, 3[$ et $f(x) = \left\{ \begin{array}{rcl}
+																1 &si& x \in ]-1, 0[ \\
+																3 &si& x \in ]2, 3[ \end{array}\right.$
+
+\paragraph{Remarque equivalente au théorème}
+Si $u : ]a, b[ \rightarrow \mathbb{R}$, de classe $C^1$ alors $\int_a^b u'(t)dt = u(b)-u(a)$
+
+\paragraph{3ème énoncé équivalent} ~\\
+Si $f : ]a, b[ \rightarrow \mathbb{R}$, continue, alors la fonction $F:[a, b] \rightarrow \mathbb{R}$ définie par \[F(x) = \int_c^x f(t)dt, \text{ pour } c \in [a, b]\]
+est \ul{LA} pritimive de f qui s'annule en c .
+
+Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
+
+\paragraph{Démonstration} 
+\begin{itemize}
+	\item $F(x) = 0$
+	\item On veut montrer que F'=f . Fixons$x_0 \in ]a, b[$. On veut montrer que $|\frac{F(x) - F(x_0}{x-x_0} - f(x_0)| \xrightarrow[x \to x_0]{?} 0$ ~\\
+
+	\item[a] \[\begin{array}{rclr}F(x) - F(x_0) &=& \int_c^x f(t)dt - \int_x^{x_0} f(t)dt \\
+&=& \int_c^x f(t)dt + \int_{x_0}^c f(t)dt \\
+&=& \int_{x_0}^x f(t)dt \text{ Par la relation de Chasles} \\
+\text{D'ou } \frac{F(x)-F(x_0)}{x-x_0} &=& \frac{1}{x-x_0} \int_{x_0}^x f(t)dt \end{array}\]
+
+	\item[b] \[\begin{array}{rcl}
+				f(x_0) \in \mathbb{R} \text{ donc } \int_{x_0}^x f(x_0)dt &=& f(x_0)\int_{x_0}^x dt \\
+&=& f(x_0)\cdot {[t]}^x_{x_0} = f(x_0)(x-x_0) \end{array}\]
+
+	Donc $f(x_0) = \frac{1}{x-x_0}\int_{x_0}^x f(x_0)dt$
+
+	\[\begin{array}{rcl}
+			\frac{F(x)-F(x_0)}{x-x_0} - f(x_0) &=& \frac{1}{x-x_0}\int^x_{x_0}f(t)dt - \frac{1}{x-x_0} \int_{x_0}^c f(x_0)dt \\
+											&=& \frac{1}{x-x_0} (\int_{x_0}^x f(t)dt - \int_{x_0}^x f(x_0)dt \\
+								   &=& \frac{1}{x-x_0} (\int_{x_0}^x (f(t) - f(x_0))dt)\end{array}\]
+
+		Soit $\epsilon > 0$, comme f est continue en $x_0$, i.e $\exists \delta > 0 \text{ tel que } \forall x \in ]a, b[, |x-x_0| < \delta \Rightarrow |f(x)-f(x_0| \leq \epsilon$ ~\\
+		Pour tout $x \in ]x_0-\delta, x_0+\delta[$ et pour tout t compris entre $x$ et $x_0, |t-x_0| \leq |x-x_0| < \delta$ pour ce choix de x.
+
+			Pour tout t entre $x$ et $x_0$, $|f(t)-f(x_0)| < \epsilon$ \[\begin{array}{rcl}
+				\frac{|F(x)-F(x_0)}{x-x_0} - f(x_0)| = |\frac{1}{x-x_0}|\cdot |\int_{x_0}^x (f(t)-f(x_0))dt| &\leq& |\frac{1}{x-x_0}|\cdot |\int_{x_0}^x |f(t)-f(x_0)|dt| \\
+																		  &\leq& \frac{1}{x-x_0}|\int_{x_0}^x \epsilon dt| = \frac{1}{x-x_0} \cdot \epsilon\cdot |x-x_0| \\
+																										  &&= \epsilon \end{array}\]
+\end{itemize}
+
+	\paragraph{Exemple} $f:[a, b] \rightarrow \mathbb{R}$, continue \[\underbrace{(\int_{e^x}^{\sin x} \frac{1}{1+t^2} dt)}_{H(x)}' = f(x)\]
+
+	Soit $c \in \mathbb{R}$, \[\begin{array}{rclr}
+		H(x) &=& -\int^{e^x}_c \frac{dt}{1+t^2} + \int_c^{\sin x} \frac{dt}{1+t^2} \\
+				   &=& -F(e^x) + F(\sin x) \text{ ou } F(x) = \int_c^x \frac{dt}{1+t^2} \end{array}\]
+
+	\begin{center}
+		Donc
+	\end{center}
+	\[\begin{array}{rcl}
+			H'(x) &=& -(F(e^x))' + (F(\sin x))' \\
+						   &=& - (e^x \cdot \frac{1}{1+(e^x)^2} + \cos x \cdot \frac{1}{1+(\sin x)^2} \\
+	H'(x) &=& \frac{-e^x}{1+e^{2x}} + \frac{\cos x}{1+\sin^2 x} \end{array}\]
+
+			\section{Intégration par parties}
+
+			\paragraph{Rappel} $f, g : [a, b] \rightarrow \mathbb{R}$, de classe $C^1, (f\cdot g)' = f'g+fg'$ ~\\
+			Donc $\int_a^b (fg)'(t)dt = \int_a^b(f'g)(t)dt + \int_a^b(fg')(t)dt$ ~\\
+			Ou encore ${\underbrace{[fg(t)]}_{\text{ Notation pour} ~\\ fg(b) - fg(a) } }^b_a = \int_a^b(f'g)(t)dt + \int_a^b(fg')(t)dt$ ~\\
+
+			D'où $\int_a^b f'(t)g(t)dt = [f(t)g(t)]_a^b - \int_a^b f(t)g'(t)dt$
+
+			\paragraph{Exemple} $\int_a^b ln(t)dt = ?$ \[ln(t) = 1 * ln(t)\]
+
+		Par intégration par partie, $\int_a^b ln(t)dt = [t\cdot \ln t]^b_a - \int_a^b \frac{t}{t}dt = (b \ln b - a \ln a) - \int_a^b dt$
+
+		\[\begin{array}{rcl}
+				\text{Donc } \int_a^b ln(t)dt &=& (b \ln b - a \ln a) - (b-a) \\
+										  &=& (b \ln b - b) - (a \ln a - a) \end{array}\]
+
+	\paragraph{Exemple 2} \[\begin{array}{rcl}
+		\int_a^b arctan(t)dt &=& [t arctan t]^b_a - \int_a^b \frac{t}{1+t^2} dt \\
+																								   &=& (b arctan b -a arctan a) - (\int_a^b \frac{t}{1+t^2} dt \end{array}\]
+
+		De plus, $\frac{t}{1+t^2} = \frac{f'(t)}{f(t)}$ avec $f(t) = 1+t^2 \geq 0$
+
+		\[\begin{array}{rcl}
+		\text{D'ou } \int_a^b \frac{1}{1+t^2} dt &=& \frac{1}{2}[\ln |f(x)|]^b_a \\
+		  &=& \frac{1}{2} (\ln(1+b^2) - \ln(1+a^2)) \end{array}\]
+
+		Donc une primitive de $arctan(x)$ est : $F(x) = x \cdot archtan x - \frac{1}{2}\ln(1+x^2)$
+
+		\paragraph{Exemple 3} $\int_a^b te^t dt = (b-1)e^b - (a-1)e^a$ avec $f'(t) = e^t$ et $g(t) = t$
+
+
+		\section{Changement de variable}
+
+		\paragraph{Rappels} $(Fou)' = u'F'ou$ . Donc $Fou$ est une primitive de $u' \cdot fou$ ~\\
+		Cf exemple 2 (précédent) : \[\begin{array}{rcl}
+				u(x) &=& 1+x^2 \\
+				F(x) &=& \ln x \\
+		\text{et } f(x) &=& \frac{1}{x} \end{array}\]
+
+				\paragraph{Cas fréquent} : $ \int^x u'(t)\cdot u(t) dt = \frac{1}{2}u^{x}$
+				\[\begin{array}{rcl}
+						\int^x \sin t \cos t dt &=& \frac{\sin^2 x}{2} \\
+						\int^x \frac{\ln t}{t} dt &=& \frac{\ln^2 x}{2} \\
+						\int^x \frac{arctan t}{1+t^2} dt &=& \frac{arctan^2 x}{2}\\
+						\int e^{2t} dt &=& \frac{e^{2x}}{2}\end{array}\]
