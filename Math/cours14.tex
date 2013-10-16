@@ -1,0 +1,160 @@
+\paragraph{Théorème} Soit $u:I \rightarrow J$ bijective et dérivable. Si G est une primitive de $fou\cdot u'$ sur I, alors $Gou^{-1}$ est une primitive de f sur J.
+
+\paragraph{Exemple} calcul de $\int\frac{x}{\sqrt{1+x}}dx$
+
+Soit $f:\begin{array}{rcl}
+ ]-1, +\infty[ &\rightarrow& \mathbb{R} \\
+x &\mapsto& \frac{x}{\sqrt{1+x}}\end{array}$
+et $u : \begin{array}{rcl}
+\mathbb{R}^{+*} & \rightarrow ]-1, +\infty[ \\
+t &\mapsto& t^2 -1\end{array}$ est bijective, et dérivable.
+
+On pose $x = t^2 - 1$ \[\begin{array}{rclr}
+	f(x) &=& \frac{x}{\sqrt{1+x}} \\
+	fou(x) &=& \frac{t^2 - 1}{\sqrt{t^2}} \\
+		&=& \frac{t^2 - 1}{t} & \text{Car } t > 0 \\
+	u'(t) &=& 2t \\
+(fou.u')(t) &=& \frac{t^2 -1}{t}\cdot 2t \\
+			&=& 2(t^2-1)
+\end{array}\]
+
+G est une primitive de $2(t^2 - 1)$ 
+
+\[\begin{array}{rcl}
+	G(x) &=& \int^x 2(t^2-1)dt \\
+&=& [\frac{2}{3}t^3 - 2t]^x \\
+&=& \frac{2}{3}x^3 - 2x\end{array}\]
+
+Par le théorème de changement de variable, $Gou'$ est une primitive de f avec $u^{-1} \begin{array}{rcl}
+																						]-1, +\infty[ &\rightarrow& \mathbb{R}^{+*} \\
+																									t &\mapsto& \sqrt{t+1}\end{array}$
+
+D'où $\frac{2}{3}(\sqrt{x+1})^3 - 2\sqrt{x+1}$ est une primitive de f sur $]-1, +\infty[$
+
+\paragraph{Exemple}
+
+\[\int_{-1}^1 \sqrt{1-x^2} dx \text{ air du demi cercle superieur du cercle trigo qui vaut } \frac{\pi}{2}\]
+
+Prenons : $x = \sin t$ et $\sin [\frac{-\pi}{2}, \frac{\pi}{2}] \rightarrow [-1, 1]$ bijective et $C^\infty$
+
+\[\begin{array}{rclr}
+\int_{-1}^1 \sqrt{1-x^2}dx &=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sqrt{1-\sin^2t} \cos t\cdot dt & \text{Changement de borne et de variable où l'on dérive} \\
+&=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (cost)^2 dt \\
+&=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{1+\cos(2t)}{2} dt \\
+&=& \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{dt}{2} + \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{cos(2t)}{2}dt \\
+&=& [\frac{t}{2}]^{\frac{\pi}{2}}_{-\frac{\pi}{2}} + \underbrace{[\frac{\sin(2t)}{4}]^{\frac{\pi}{2}}_{-\frac{\pi}{2}}}_{=0} \\
+&=& \frac{\pi}{4} +\frac{\pi}{4} = \frac{\pi}{2} \end{array}\]
+
+\paragraph{Remarque} Primitive de $x\mapsto \sqrt{1-x^2}$
+
+Comme $G: x \mapsto \frac{x}{2} + \frac{\sin(2x)}{4}$ est une primitive de $fou\cdot u'$, par le théorème, $Gou^{-1}$ est une primitive de f.
+
+Une primitive de f serait donc : \[F(x) \frac{1}{2} \arcsin (x) + \frac{\sin(2 \arcsin x)}{4}\]
+
+\[\begin{array}{lrcl}
+\text{De plus } & \sin(2t) &=& 2\sin t \cos t \\
+\text{Donc } & \sin(2\arcsin x) &=& 2 \sin(\arcsin x)\cos(\arcsin x) \\
+&&& 2x\sqrt{1+x^2}\\
+&F(x) &=& \frac{\arcsin x}{2} + \frac{1}{2}x\sqrt{1-x^2}
+\end{array}\]
+
+\paragraph{Théorème} $f: I \rightarrow \mathbb{R}$, I intervalle; $x_0 \in I$. On suppose que f admet un DL à l'ordre n en $x_0 = f(x) =  P(x) + x^n\epsilon(x)$ avec $\left\{
+\begin{array}{c}
+P \text{ polynome de degre } \leq n \\
+\epsilon \xrightarrow{x \to x_0}[] 0 \end{array}\right.$
+
+Alors une primitive F de f sur I admet un DL à l'ordre $n+1$ en $x_0$ : \[F(x) = F(x_0) + Q(x) + x^{n+1}\epsilon (x)\] avec Q la primitive de P qui s'annule en $x_0$
+
+\paragraph{Exemple} $f(x) = \frac{1}{1+x}$
+
+f admet un DL en $x_0=0$ à l'ordre 3 : $f(x) = 1-x+x^2 - x^3 + x^3 \epsilon(x)$
+
+Donc $F(x) = \ln(1+x)$ primitive de f sur $]-1; +\infty[$
+
+F admet un DL en 0 à l'ordre 4 : \[F(x) = 0+x-\frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{2} + x^4 \epsilon(x)\]
+
+\paragraph{Exemple 2} $f(x) = \frac{1}{1+x^2}$
+\[DL_4(0) = f(x) = 1-x^2 + x^4 + x^4 \epsilon (x)\]
+
+$F(x)=\arctan x$ primitive de $x \mapsto \frac{1}{1+x^2}$ admet un $DL_5(0)$.
+
+\[F(x) = 0 + x -  \frac{x^3}{3} + \frac{x^5}{3} + x^5 \epsilon(x)\]
+
+\section{Fractions rationnelles} ($\frac{P}{Q}$) avec P, Q des polynômes.
+
+On décompose Q en produit de polynômes de degré 1 et de degré 2 \ul{SANS RACINE}
+
+\[Q(x) = A_1^{\alpha_1} \cdot A_2^{\alpha_2} ... A_n^{\alpha_n} \cdot B_1^{\beta_1} \cdot B_2^{\beta_2} ... B_n^{\beta_n} . \]
+
+où $\left\{\begin{array}{c}
+		A_i(x) = a_i+b_i \\
+	B_i(x) = c_jx^2 + d_jx + e_i\end{array}\right.$
+
+	\paragraph{Exemple} $ Q(x) = x^3 - 1$ \[Q(x) = (x-1)(x^2 + x + 1) \]
+
+	\paragraph{Rappel}
+	\[\begin{array}{rcl}
+			x^3 - 1 &=&  (x-1)(x^2 + bx + c) \\
+						  &=& x^3 + bx^2 + cx - x^2 - bx - c \\
+					   &=& x^3 + (b-1)x^2 + (c-b)x - c \\
+			b &=& c = 1 \\
+			~\\
+			Q(x) &=& A_1(x) \cdot B_1(x) \\
+			A_1(x) &=& x-1 \text{ et } B_1(x) = x^2 + x + 1
+	\end{array}\]
+
+	Alors : 
+	\[\begin{array}{rcl}
+			\frac{P(x)}{Q(x)} &=& T(x) + \frac{C_{1,1}}{A_i} + \frac{C_{1,2}}{A_1^2} + ... + \frac{C_{1,\alpha_i}}{A_2^{\alpha_2}} \\
+								&& +\frac{C_{2,1}}{A_2} + \frac{C_{2,2}}{A_2^2} + ... + \frac{C_{2,\alpha_i}}{A_2^{\alpha_2}}  \\
+			&& + ...
+	\end{array}\]
+
+	Avec T(x) de même ordre que Q(x) si la différence entre P(x) et Q(x) est supérieur à 0 (sinon il n'existe pas).
+
+	\paragraph{Exemple} $\begin{array}{rcl}
+		\frac{1}{(x+2)^3 (x+7)} &=& \frac{A}{x+2} + \frac{B}{(x+2)^2} + \frac{C}{(x+2)^3} + \frac{D}{x+7} \\
+		&& + \frac{d_{1,1}x + e_{1,1}}{B_1(x)} +\frac{d_{1,2}x + e_{1,2}}{B_1(x)^2}  + ... + \frac{d_{1,3}x + e_{1,3}}{B_1(x)^3} \\
+		&& + \frac{d_{2,1}x + e_{2,1}}{B_2(x)} +\frac{d_{2,2}x + e_{2,2}}{B_2(x)^2}  + ... + \frac{d_{2,3}x + e_{2,3}}{B_2(x)^3} \\
+	\end{array}$, avec $A, B, C, D \in \mathbb{R}$
+
+	\paragraph{Retour sur l'exemlple}
+
+	\[\begin{array}{rclr}
+			\frac{P(x)}{Q(x)} &=& \frac{1}{x^3 -1} = \frac{1}{(x-1)(x^2 + x + 1} \\
+						   &=& T(x) + \frac{a}{x-1} + \frac{bx+c}{x^2 + x + 1} & \text{ avec a, b, c des réels} \\
+						   &=& \frac{a(x^2 + x + 1) + (bx+c)(x+1)}{(x-1)(x^2 + x + 1)} \end{array}\]
+
+			Trouver $a, b, c \in \mathbb{R}$ tels que \[\begin{array}{rcl}
+					ax^2 + ax + a + bx^2 - bx + cx - c &=& 1 \\
+					(a+b)x^2 + (a-b+c)x + (a-c) &=& 1 \\
+				a+b = 0, a-b+c = 0, a-c = 0\end{array}
+			\]
+			\[\left\{\begin{array}{rcl}
+						a &=& -b \\
+						2a + c &=& 0 \\
+					a&=& 1 + c \end{array}\right.
+						\Rightarrow \left\{\begin{array}{rcl}
+								a&=& \frac{1}{3} \\
+								b &=& -\frac{1}{3} \\
+						c &=& - \frac{2}{3}\end{array}\right.\]
+
+								\[\frac{1}{x^3 -1} = \frac{1}{3}(\frac{1}{x-1} - \frac{x+2}{x^2 +x + 1}\]
+
+Une primitive de $\frac{1}{x-1}$ est $x \mapsto \ln(|x-1|)$
+Que dire pour $\frac{x+2}{x^2 + x + 1}$ ? 
+
+\[\begin{array}{rcl}
+\frac{x+2}{x^2 + x + 1} &=& \underbrace{\frac{1}{2}\frac{2x+1}{x^2 + x + 1}}_{\text{Primitive de } \frac{1}{2} \ln(x^2 + x + 1)} + \underbrace{\frac{1}{2} \frac{3}{x^2 + x + 1} }_{\text{?}}\end{array}\]
+
+		\paragraph{Rappel} La pritmive de $\frac{1}{1+x^2}$ est $\arctan (x)$.
+
+		\[\begin{array}{rcl}
+				\frac{3}{2}\frac{1}{x^2 + x + 1} &=& \frac{3}{2}\frac{1}{(x+\frac{1}{2})^2 + \frac{3}{4}} \\
+									   &=& \frac{3}{2} \frac{1}{\frac{3}{4}(\frac{4}{3}(x+\frac{1}{2})^2 + 1)} \\
+									   &=& 2\frac{1}{\underbrace{[\frac{2}{\sqrt{3}}(x+\frac{1}{2})]}_{X}^2 + 1} (*)\\
+				X &=& \frac{2}{\sqrt{3}}(x+\frac{1}{2}) \rightsquigarrow 2\frac{1}{1+x^2}
+		\end{array}\]
+
+		Un primitive de (*) est : $2\arctan (\frac{2}{\sqrt{3}}(x+\frac{1}{2})) \frac{\sqrt{3}}{2}$ ~\\
+		\[\sqrt{3}\arctan(\frac{2}{\sqrt{3}}(x+\frac{1}{2}))^2\]

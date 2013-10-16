@@ -11,13 +11,11 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 \item Mouvement rectiligne amortie : F dépend de la fonction de la vitesse, et des frottements visqueux / fluide
 \end{itemize}
 
-\subsection{Lancé oblique d'un projectile}
-
-\begin{wrapfigure}[8]{r}{0pt}
+\begin{wrapfigure}[10]{r}{0pt}
 	\begin{tikzpicture}
 		\draw[->] (0, 0) -- (2, 0) node [right] {x};
 		\draw[->] (0, 0) -- (0, 2) node[above] {z};
-		\draw[->] (0, 0) -- (-0.5, -1.0.5) node[below left]{y};
+		\draw[->] (0, 0) -- (-0.5, -1.0) node[below left]{y};
 		\draw[red, ->] (0, 0) -- (0.2, 0) node[below]{$\vec{i}$};
 		\draw[red, ->] (0, 0) -- (0, 0.2) node[below]{$\vec{k}$};
 		\draw[red, ->] (0, 0) -- (-0.2, -0.2) node[below]{$\vec{j}$};
@@ -28,6 +26,8 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 		\draw[fill=black] (0, 0) circle (0.05) node [below] {$m$};
 	\end{tikzpicture}
 \end{wrapfigure}
+\subsection{Lancé oblique d'un projectile}
+
 
 \begin{itemize}
 	\item m ponctuelle
@@ -58,6 +58,8 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 			v_z &=& v_0 \sin(\alpha) \\
 			v_y &=& 0 \end{array} \right.
 			\text{D'où } 
+		\]
+		\[
 		\left\{
 		\begin{array}{rcl}
 				C_x &=& v_0 \cos(\alpha) \\
@@ -150,7 +152,7 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot & (2)\end{array}\]
 
 	On pose $\frac{k}{m}=\omega^2$ : \[\ddot{x}(t) + \omega^2 x(t) = 0\]
 	La fonction sinusoïdale est celle dont la dérivée second est le produit de cette fonction par une constante. ~\\
-	La solution générale est de la forme \fbox{$x(t) = A \cos(\omaga t) + B\sin(\omaga t)$} ~\\
+	La solution générale est de la forme \fbox{$x(t) = A \cos(\omega t) + B\sin(\omega t)$} ~\\
 	La vitesse : $\dot{x} = -A\omega \sin(\omega) t + B\omega \cos(\omega) t$
 
 	Pour déterminer A et B, on regarde les conditions initiales:
@@ -164,5 +166,5 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot & (2)\end{array}\]
 		\dot{x}(0) &=& B\omega \Rightarrow B=0\end{array}\right.
 			\text{D'ou } \left\{
 			\begin{array}{rcl}
-			x(t) &=& x_0\cos(\omaga t) \\
-		\dot{x}(t) &=& -x_0\omega\sin(\omaga t) \end{array}\right.\]
+			x(t) &=& x_0\cos(\omega t) \\
+		\dot{x}(t) &=& -x_0\omega\sin(\omega t) \end{array}\right.\]

@@ -1,0 +1,109 @@
+\paragraph{Exemple}
+
+\[\begin{array}{rclr}
+F(x) = \frac{3x^3 + 6x^2}{x^2+2x-3} &=& \underbrace{T(x)}_{\text{de degre} 1} + \frac{a}{x-1} + \frac{b}{x+3}\\
+x^2 + 2x - 3 &=& (x-1)(x+3) \\
+3x^3 + 6x^2 &=& T(x) (x^2 + 2x - 3) + R(x) & R(x) \text{ est de degré plus petit que celui de } Q(x) \\
+&=& (3x + c)(x^2 + 2x -3) + R(x) \\
+(3x + c)(x^2 +2x - 3) &=& 3x^3 + 6x^2 - 9x +cx^2 + 2cx -3c \\
+&=& 3x^3 +(6+c)x^2 +(-9+2c)x - 3c \\
+&=& 3x^3 + 6x^2 + (-9x) & c=0 \text{ pour retrouver } P(x)
+\end{array}\]
+
+\[\begin{array}{rcl}
+\text{ Donc }  3x^3 + 6x^2 &=& \underbrace{3x}_{T(x)}(x^2 + 2x - 3) + \underbrace{9x}_{R(x)} \\
+\\
+F(x) = \frac{3x^3 + 6x^2}{x^2 + 2x -3} &=& \frac{3x(x^2 +2x - 3) + 9x}{x^2 + 2x - 3} = 3x + \frac{9x}{x^2 + 2x - 3} \\
+&=& 3x + \frac{a}{x-1} + \frac{b}{x+3} \end{array}\]
+
+\paragraph{Exemple} 
+
+\[\begin{array}{rcl}
+	\frac{x^4 + 1}{x(x^2 - 1)^2} &=& \frac{a}{x} + \frac{b}{x-1} + \frac{c}{(x-1)^2} + \frac{d}{x+1} + \frac{e}{(x+1)^2} \\
+	x(x^2 -1)^2 &=& x(x-1)^2(x+1)^2 \end{array}\]
+
+\section{Fractions rationnelles en cos et en sin}
+
+\subsection{Polynômes}
+
+On cherche une primitive de $\cos^nx \cdot \sin^m x$.
+
+\begin{itemize}
+	\item Supposons que n ou m soit impair, par exemple : \[\begin{array}{rclr}
+			m&=& 2p + 1 \\
+\cos^n x \cdot \sin^{2p+1}x &=& \cos^n x \cdot (\sin^2 x)^p \cdot \sin x \\
+&=& \cos^n \cdot (1-\cos^2 x)^p \cdot \sin x \\
+\int f(x)dx = \int \cos^n x \cdot \sin^m x \cdot dx &=& -\int \cos^n x (1-\cos^2 x)^p (-\sin x) dx \\
+&=& - \int X^n (1-X^2)^p dX & \text{ avec } X = \cos x
+\end{array}\]
+	Donc si F est une primitive de $t^n  (1-t^2)^p$ alors $G(x) = -F \cos(x)$ est une primitive de $f$
+
+	\item Supposons que m \ul{et} n soient pairs
+	On peut par exemple remplacer $\sin^m x = (\sin^{2}x)^p = (1-\cos^2 x)^p$
+
+	Puis utiliser $\cos^2 x = \frac{1+\cos(2x)}{2}$ à répétition.
+
+\end{itemize}
+
+\paragraph{Exemple}
+	\[\begin{array}{rclr}
+		\int \cos^2 x \sin^2 x dx &=& \int \cos^2 x (1-\cos^2 x)dx \\
+&=& \int \cos^2 x dx - \int \cos^4 x dx \\
+\cos ^4 &=& (\cos^2 x)^2 = (\frac{1+\cos^2 x}{2})^2 \\
+\int \frac{1 + \cos 2 x}{2x} dx &=& \int \frac{1}{2} dx + \int \frac{\cos 2x}{2}dx \\
+&=& \frac{t}{2} + \frac{\sin 2t}{4} \\
+\int \cos^4 x dx &=& \frac{1}{4}(\int dx + 2\int \cos(2x) dx) + \int \cos^2(2x)dx \\
+&=& \frac{1}{4}(t + \sin(2t) + \int (\frac{1+\cos(4x)}{2}) dx) \\
+\cos^2(2x) &=& \frac{1+\cos(4x)}{2} & \text{ a finir } \end{array}\]
+
+\subsection{Fractions rationnelles}
+
+\[\begin{array}{c}
+	\frac{P(\cos x, \sin x)}{Q(\cos x, \sin x)} = R(\cos x, \sin x) \end{array}\]
+
+\paragraph{Regles de Bioche} : Si $R(\cos x, \sin x) dx$ est invariant par : \begin{itemize}
+\item $x \mapsto -x$ poser $x = \arccos (t)$ 
+\item $x \mapsto \pi - x$ poser $x = \arcsin (t)$
+\item $x \mapsto \pi + x$ poser $x = \arctan (t)$
+
+\end{itemize}
+
+\paragraph{Exemple} $\int \frac{1}{\sin x} dx$ ~\\
+$x \mapsto \sin x dx$
+
+\begin{itemize}
+	\item $\sin(-x)d(-x) = (-\sin x)(-dx) = \sin x dx$ OK
+	\item $\sin(\pi -x)d(\pi - x) = (\sin x)(-dx) = -\sin x dx$
+	\item $\sin(\pi + x)d(\pi + x) = (-\sin x)(dx) = -\sin x dx$
+\end{itemize}
+
+Sinon, on peut poser $t = \tan (\frac{x}{2})$
+
+\ul{En particulier}, \begin{itemize}
+\item $\sin x = \frac{2t}{1+t^2}$ 
+\item $\cos x = \frac{1-t^2}{1+t^2}$
+\item $dx = \frac{2dt}{1+t^2}$
+\end{itemize}
+
+\ul{En effet}, \[\begin{array}{rcl}
+\tan(\frac{x}{2}) &=& \frac{\sin(\frac{x}{2})}{\cos(\frac{x}{2})} = \frac{\sin(\frac{x}{2})\cos(\frac{x}{2})}{\cos^2(\frac{x}{2})} \\
+\text{et } \sin x &=& \sin(2\cdot \frac{x}{2}) = 2\sin(\frac{x}{2})\cos(\frac{x}{2}) \\
+\text{d'ou } 2\tan(\frac{x}{2})\cos^2(\frac{x}{2}) &=& \sin(x) \\
+\tan^2 (\frac{x}{2}) = \frac{\sin^2(\frac{x}{2})}{\cos^2(\frac{x}{2})} &=& \frac{1-\cos^2(\frac{x}{2})}{\cos^2(\frac{x}{2})} = \frac{1}{\cos^2(\frac{x}{2})} - 1 \\
+\text{Donc } \tan^2(\frac{x}{2})+1 &=& \frac{1}{\cos^2(\frac{x}{2})} \text{ soit } \cos^2(\frac{x}{2}) = \frac{1}{1+\tan^2(\frac{x}{2})} \\
+\text{Et on obtient } \frac{2\tan(\frac{x}{2})}{1+\tan^2(\frac{x}{2})} = \sin x \end{array}\]
+
+\paragraph{Exercice}  Montrer $\int\frac{\cos^3 x}{\sin^5 x} dx = - \frac{1}{4 \sin^4 x} + \frac{1}{2\sin^2 x}$
+
+\chapter{Equations différentielles}
+
+\paragraph{} Etude d'équations dont la variable est une fonction permettant de décrire des fonctions.
+\paragraph{Exemple} $f(x) = e^x$ est la seul fonction $C^1$ telle que \[\left\{\begin{array}{rcl}
+	f' &=& f \\
+	f(x) &=& 1 \end{array}\right.\]
+
+\paragraph{Exemple} Variation de population $y(t)$ en fonction du temps.
+
+\paragraph{Modèle 1} $y' = ky, k \in \mathbb{R}$ Ce modele est trop simpliste.
+\paragraph{Modèle 2} $y' = k(t) y$, k une fonction continue. La variation n'est pas nécessairement linéaire en la population.
+\paragraph{Modèle 3} $y' = k(t)g(y)$ avec k, g des fonctions continues. \fbox{$\frac{dy}{dt} = k(t)g(y)$}
