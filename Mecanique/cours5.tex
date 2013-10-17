@@ -2,17 +2,26 @@
 
 \ul{Remarque} Si $\sum \vec{F}=\vec{0}$, alors $m\vec{a}=\vec{0}$.
 
-Choix d'une direction $\vec{i} (\overrightarrow{ox}$ \[\begin{array}{rcl}
+Choix d'une direction $\vec{i} (\overrightarrow{ox})$ \[\begin{array}{rcl}
 	m\frac{d^2x}{dt^2} &=& 0 \\
 	m\frac{dv}{dt} &=& 0 \\
 	\frac{dv}{dt} &=& 0 \\
-v(t) = constante \end{array}{rcl} \]
+v(t) &=& constante \end{array}\]
 
 $\frac{dx}{dt} = v(t) = constante = c(t) \Rightarrow x(t) = c.t + k$
 
 Avec les conditions à \ul{t donne}, on fixe une valeur pour c et pour k.
 
+\newpage
+
 \subsection{Chute d'un corps près de la surface de la terre}
+
+\begin{itemize}
+	\item sans frottement
+	\item mass $m_i$ ponctuelle
+	\item vitesse $v_0 = 0$
+	\item altitude : h
+\end{itemize}
 
 \begin{wrapfigure}[5]{r}{0pt}
 \begin{tikzpicture}
@@ -27,13 +36,6 @@ Avec les conditions à \ul{t donne}, on fixe une valeur pour c et pour k.
 	\draw[fill=black] (1.5, 0) circle (0.05);
 \end{tikzpicture}
 \end{wrapfigure}
-
-\begin{itemize}
-\item sans frottement \begin{itemize}
-	\item mass $m_i$ ponctuelle
-	\item vitesse $v_0 = 0$
-	\item altitude : h
-\end{itemize}
 
 \[\begin{array}{rclr}
 	\text{Bilan des forces} &=& \vec{P} \\
@@ -52,12 +54,12 @@ m\ddot{z} &=& -mg \end{array} \right. \]
 			\dot{x} &=&C_1 \\
 			\dot{y} &=&C_2 \\
 			\dot{z} &=& -mg
-		\end{array}\right. \begin{array}{rclr}
+		\end{array}\right. \left\{\begin{array}{rclr}
 			\ddot{z} &=& -g \\
-		\dot{z} &=& -gt + C_z & \text{ On passe par la primitive} \end{array}
+		\dot{z} &=& -gt + C_z & \text{ On passe par la primitive} \end{array}\right.
 \]
 
-\[\dot{a}t=0 \text{ } \vec{v} \left\{ \begin{array}{rcl}
+\[\text{pour } t=0 \text{ } \vec{v} \left\{ \begin{array}{rcl}
 			\dot{x}(0) &=&0 \\
 			\dot{y}(0) &=&0 \\
 	\dot{z}(0) &=&0 \end{array}\right.\] 
@@ -65,13 +67,12 @@ m\ddot{z} &=& -mg \end{array} \right. \]
 			On remplace pour $t=0$ : ~\\
 			$\dot{x}(0) = C_1 = 0$ ~\\
 			$\dot{y}(0) = C_2 = 0$ ~\\
-			$\dot{z}(0) = (-gt+C_3) = C_3$
+			$\dot{z}(0) = (-gt+C_3) = C_3 = 0$
 			
-			\[\text{Donc :} \vec{v} \left\{ \begin{array}{rcl} 
+			\[\text{Donc : } \vec{v} \left\{ \begin{array}{rcl} 
 			\dot{x}(t) &=&0 \\
 			\dot{y}(t) &=&0 \\
 			\dot{z}(t) &=& -gt \end{array} \right. \]
-\end{itemize}
 
 \subsection{Chute d'un corps dans un fluide} ~\\
 Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
@@ -83,7 +84,7 @@ Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
 			y(t) &=& C_y \\
 			z(t) &=& \int{-gt dt} = -\frac{g}{2}t^2 + C_z \end{array} \right. \]
 
-		\[\text{a } t=0 \left\{ \begin{array}{rcl}
+		\[\text{ pour } t=0 \left\{ \begin{array}{rcl}
 					x(0)&=&0 \Rightarrow C_x = 0 \\
 					y(0)&=&0 \Rightarrow C_y = 0\\
 					z(0)&=&h \Rightarrow C_z = h

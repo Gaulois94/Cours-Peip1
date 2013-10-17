@@ -6,23 +6,26 @@
 \draw[->, thick] (0, 0) -- (150:4) node [left] {x};
 \draw[->, blue] (-0.5, 0) arc (0:-30:-0.5) node [left] {$\alpha$};
 \draw[fill=red, opacity=0.5] (150:2) --++ (60:0.5) --++ (-30:0.5) --++ (-120:0.5) -- cycle;
-\draw[->, thick, green] (150:1.8) --++ (60:1) node[above] {$\vec{R_N}$} node [midway] {$\vec{j}$};
-\draw[->, thick, green] (150:1.8) --++ (-80:1) node [below] {$\vec{P}$};
+\draw[->, thick, green] (150:1.8) --++ (-90:1) node [below] {$\vec{P}$};
 \draw[->, thick, green] (150:1.8) --++ (-30:1) node [above right] {$\vec{P_x}$};
 \draw[->, thick, green] (150:1.8) --++ (240:1) node [below left] {$\vec{P_y}$};
-\draw[->, thick, green] (150:1.8) --++ (150:1) node[above] {$\vec{F}$};
-\draw[->, thick, green] (150:1.8) --++ (100:1) node[above] {$\vec{F}$};
+\draw[->, thick, green] (150:1.8) --++ (150:0.7) node[above] {$\vec{F}$};
+\draw[->, thick, green] (150:1.8) --++ (90:1.1) node[above] {$\vec{R}$};
 \draw[->, red] (150:1.8) --++ (150:0.2) node [below] {$\vec{i}$};
+\draw[->, thick, red] (150:1.8) --++ (60:1) node[above] {$\vec{R_N}$} node [midway] {$\vec{j}$};
 \end{tikzpicture}
 \end{wrapfigure} 
 
 À l'équilibre, avec la loi statique : $\vec{P}+\vec{R}=\vec{0}$ ~\\
 En projection sur (x, y) : $\left\{ \begin{array}{rcl}
-\vec{R} &=& \vec{R_N} + \vec{F} = R_N \\
+		\vec{R} &=& \vec{R_N} + \vec{F} = F*\vec{i} + R_N*\vec{j} \\
 \vec{P} &=& \vec{P_x} + \vec{P_y} =  -mg*sin(\alpha) * \vec{i}-mg\cos(\alpha)\vec{j}
 \end{array}
 \right.
 $
+
+~\\
+~\\
 
 \[
 \vec{P} + \vec{R} + \vec{0} = \text{en projection}
@@ -48,14 +51,15 @@ Condition d'équilibre : \fbox{$\tan(\alpha) < k_s$}
 \chapter{Cinématique du point matériel}
 
 La cinématique est la description des mouvements sans s'intéressé à leur causes.
-Pour décrire un mouvement il faut connaître les trajectoires (position en fonction du temps), la vitesse ainsi que la vitesse et son accélération.
+Pour décrire un mouvement il faut connaître les trajectoires (position en fonction du temps), la vitesse ainsi que son accélération.
 
 \section{Trajectoire rectiligne}
 
 \begin{tikzpicture}
 	\draw[->] (0, 0) -- (4, 0) node [above] {x};
-	\draw[fill=black] (0,0) circle (0.05);
+	\draw[fill=black] (0,0) circle (0.05) node [above] {0};
 	\draw[fill=black] (2, 0) circle (0.05) node [above] {M} node [below] {$t_1$};
+	\draw[fill=black] (3,0) circle (0.05);
 	\node[below] at (3, 0) {$t_2$};
 	\draw[red, ->, thick] (0, 0) -- (1, 0) node [above] {$\vec{i}$};
 \end{tikzpicture}
@@ -80,11 +84,12 @@ $v(t) = \lim_{\substack{t_2 \to t_1 \\ \Delta t \to 0}} \frac{x(t_2) - x(t_1)}{t
 
 	On note la dérivée $/_t$ : \fbox{$\dot{x}(t) = \frac{dx}{dt}=v(t)$}
 
-\section{Accélération} : variation de $\vec{v}$ sur $[t_1, t_2]$ ~\\
+\section{Accélération} 
+L'accélération $\vec{a}$ sur [$t_1, t_2$] c'est la variation de $\vec{v}$ sur $[t_1, t_2]$ ~\\
 	$\vec{a} = \frac{d\vec{v}}{dt} = \frac{dv(t)}{dt}\vec{i} = \dot{v}\vec{i}$
 
 	or $ \begin{array}{rcl} v(t) &=& \frac{dx}{dt} \\
-	a = \frac{d}{dt}(\frac{dx}{dt})=\frac{d^2x}{dt^2}
+	a &=& \frac{d}{dt}(\frac{dx}{dt})=\frac{d^2x}{dt^2}
 \end{array}$
 
 donc \fbox{$\vec{a}=\dot{v}\vec{i} = \ddot{x}\vec{i}$}
@@ -115,13 +120,13 @@ $\overrightarrow{OM}(t) = x(t)\vec{i} + y(t)\vec{j} + z(t) \vec{k}$
 Le vecteur vitesse : \[
 	\begin{array}{rcl}
 		<\vec{v}(t)_{[t_1, t_2]}> &=& \frac{\overrightarrow{OM}(t_2) - \overrightarrow{OM}(t_1)}{t_2-t_1} \\
-		\vec{v}(t) &=& \frac{d(\overrightarrow{OM}_2-\overrightarrow{OM}_1}{dt} \\
-										   &=& \frac{d}{dt}[(x_2\vec{i}+y_2\vec{j}+z_2{k})-(x_1\vec{i}+y_1\vec{j}+z_1{k}) \\
+		\vec{v}(t) &=& \frac{d(\overrightarrow{OM}_2-\overrightarrow{OM}_1)}{dt} \\
+										   &=& \frac{d}{dt}[(x_2\vec{i}+y_2\vec{j}+z_2{k})-(x_1\vec{i}+y_1\vec{j}+z_1{k})] \\
 										   &=&\frac{dx}{dt}\vec{i} + \frac{dy}{dt}\vec{j}+\frac{dz}{dt}\vec{k} \\
 										   &=& \dot{x}\vec{i}+\dot{y}\vec{j}+\dot{z}\vec{k}
 \end{array}\]
 
-\section{vecteur accélération} : 
+\section{vecteur accélération} 
 
 $<\vec{a}>_{[t_1, t_2]} = \frac{\vec{v}(t_2)-\vec{v}(t_1)}{t_2-t_1}$ pour tout $t_2-t_1 = \Delta t \to \delta t$
 
@@ -173,15 +178,15 @@ pour des masses constantes : $\left\{ \begin{array}{rcl}
 
 	\begin{enumerate}
 		\item \ul{identifier le systeme} et repérer les \ul{points} dont on veut étudier le comportement
-		\item faire le bilan des force qui agissent en \ul{ce point} $\downarrow$ prodire le comportement des points en applicant le principe fondamentale de la dynamique : $\sum\vec{F}=m\vec{a}$
-		\item définit la base orthonormé qui permet de "simplifier".
+		\item faire le bilan des force qui agissent en \ul{ce point} $\downarrow$ prédire le comportement des points en applicant le principe fondamentale de la dynamique : $\sum\vec{F}=m\vec{a}$
+		\item définit la base orthonormé qui permet de "simplifier" l'étude.
 		\item on somme les forces et on les projette sur la base.
 	\end{enumerate}
 
 	\[\begin{array}{rcl}
 			\vec{F}&=&F_x\vec{i}+F_y\vec{j}+F_z\vec{k} \\
 			F_x&=&(x, y, z, \dot{x}, \dot{y}, \dot{z}, t) = m\dot{x} \\
-			F_x&=&(x, y, z, \dot{x}, \dot{y}, \dot{z}, t) = m\dot{y} \\
-			F_x&=&(x, y, z, \dot{x}, \dot{y}, \dot{z}, t) = m\dot{z}
+			F_y&=&(x, y, z, \dot{x}, \dot{y}, \dot{z}, t) = m\dot{y} \\
+			F_z&=&(x, y, z, \dot{x}, \dot{y}, \dot{z}, t) = m\dot{z}
 	\end{array}\]
 	Solution des Equations différentielles.
