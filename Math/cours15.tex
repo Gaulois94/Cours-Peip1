@@ -46,15 +46,20 @@ On cherche une primitive de $\cos^nx \cdot \sin^m x$.
 \end{itemize}
 
 \paragraph{Exemple}
-	\[\begin{array}{rclr}
+	\[\begin{array}{rcl}
 		\int \cos^2 x \sin^2 x dx &=& \int \cos^2 x (1-\cos^2 x)dx \\
 &=& \int \cos^2 x dx - \int \cos^4 x dx \\
-\cos ^4 &=& (\cos^2 x)^2 = (\frac{1+\cos^2 x}{2})^2 \\
-\int \frac{1 + \cos 2 x}{2x} dx &=& \int \frac{1}{2} dx + \int \frac{\cos 2x}{2}dx \\
+			\cos ^4(x) &=& (\cos^2 x)^2 = (\frac{1+\cos 2x}{2})^2 \\
+\int \frac{1 + \cos 2 x}{2} dx &=& \int \frac{1}{2} dx + \int \frac{\cos 2x}{2}dx \\
 &=& \frac{t}{2} + \frac{\sin 2t}{4} \\
-\int \cos^4 x dx &=& \frac{1}{4}(\int dx + 2\int \cos(2x) dx) + \int \cos^2(2x)dx \\
+\int \cos^4 x dx &=& \frac{1}{4}(\int dx + 2\int \cos(2x) dx + \int \cos^2(2x)dx) \\
 &=& \frac{1}{4}(t + \sin(2t) + \int (\frac{1+\cos(4x)}{2}) dx) \\
-\cos^2(2x) &=& \frac{1+\cos(4x)}{2} & \text{a finir } \end{array}\]
+\cos^2(2x) &=& \frac{1+\cos(4x)}{2} \\
+			\int \cos^2(2x) &=& \int \frac{1}{2}dx + \int \frac{\cos(4x)}{2}dx \\
+		   &=& \frac{t}{2} + \frac{\sin(4x)}{8} \\
+			\text{D'où } \int \cos^2x \cdot \sin^2x dx &=& \frac{t}{2} + \frac{\sin(2t)}{4} + \frac{1}{4} (t + \sin(2t) + \frac{t}{2} + \frac{\sin(4t)}{8}) \\
+	   &=& \frac{7t}{8} + \frac{1}{2}\sin(2t) + \frac{\sin(4t)}{32}
+	\end{array}\]
 
 \subsection{Fractions rationnelles}
 
