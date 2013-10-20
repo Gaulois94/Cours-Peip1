@@ -1,20 +1,80 @@
-\begin{wrapfigure}[4]{r}{0pt}
+\begin{wrapfigure}[0]{r}{0pt}
 \begin{tikzpicture}
 	\draw[fill=black] (0, 0) circle (0.1) node [above] {$R$};
 	\draw[->, red, thick] (0, 0) -- (2, 0) node [right] {$x$};
 	\draw[->, red, thick] (0, 0) -- (0, -1.4);
-	\node [left] at (0, -1.4) {$z$};
+	\node[red, left, label=$z$] at (0, -1.4) {};
 	\draw[->, green] (0, 0) -- (1, -0.5) node [below right] {$\vec{v_0}$};
 	\draw[blue, thin] (0, 0) .. controls (0.5, -0.2) and (0.8, -0.3) .. (1, -0.8);
 \draw[blue, dashed, thin] (0, 0) .. controls (1, -0.2) and (1.3, -0.4) .. (1.7, -0.9) -- (1.8, -1.2) node [above right] {v uniforme};
 \end{tikzpicture}
 \end{wrapfigure}
 
-\paragraph{} Chute d'une masse m solide dans un liquide visqueux, avec une vitesse initial $v_0$. 
+\subsection{Chute d'une masse m solide dans un liquide visqueux, avec une vitesse initial $v_0$.}
 \begin{itemize}
+	\item Lancé à une vitesse $v_0$ avec un angle $(\vec{k}, \vec{v_0}) = \alpha$.
 	\item liquide de viscosité  $\eta$.
 	\item force de frottement : $\vec{f} = -(6\pi\eta R) \vec{v}$ d'après la relation d'Einstein.
 \end{itemize}
+
+\paragraph{Bilan des forces}
+\begin{itemize}
+	\item Le poids $\vec{P}$
+	\item Une force de frottement $\vec{f}$
+\end{itemize}
+
+\[
+	m\vec{a} = \vec{P} + \vec{f} \Rightarrow
+	\left\{\begin{array}{rcl}
+			\ddot{x} &=& f_x \\
+			\ddot{y} &=& 0 \\
+			\ddot{z} &=& P_z + f_z
+\end{array}\right. 
+\Rightarrow
+\left\{
+\begin{array}{rclr}
+	\ddot{x} &=& \frac{-6\pi\eta R}{m} \dot{x} \\
+	\ddot{y} &=& 0 \\
+	\ddot{z} &=& -g \cdot \frac{-6\pi\eta R}{m} \dot{z}
+\end{array}\right.\]
+
+On pose $\frac{1}{\tau} = \frac{6\pi\eta R}{m}$ On a donc :
+
+\paragraph{Sur l'axe des x}
+
+\[\begin{array}{rcl}
+		\dot{v_x} + \frac{v_x}{\tau} &=& 0
+\end{array}\]
+
+Comme dans la chute d'un corps dans un liquide visqueux, cette equation a pour solution $v_x(t) = K \cdot e^{-\frac{t}{\tau}}$
+
+A $t=0$, $v_x(0) = \sin(\alpha) v_0$, donc $K = \sin(\alpha)\cdot v_0$ (car $e^{-\frac{0}{\tau}} = 1$), d'où \[v_x(t) = \sin(\alpha)\cdot v_0 \cdot e^{-\frac{t}{\tau}}\]
+
+On remarque que pour $t$ très très grand, $v_x(t)$ tend vers 0, et que donc l'objet sera considéré comme étant en chute libre.
+\paragraph{Sur l'axe des z}
+
+\[\begin{array}{rcl}
+		\dot{v_z} + \frac{v_z}{\tau} &=& -g (3)
+\end{array}\]
+
+\begin{itemize}
+	\item[Solution homogène : ] $v_z^{(H)}(t) = K \cdot e^{-\frac{t}{\tau}}$. 
+	\item[Solution particulière : ] $v_z^{(P)} = g \Rightarrow \dot{v}_z^{(P)} = 0$. En remplaçant $v_z$ et $\dot{v}_z$ par $v_z^{(P)}$ et $\dot{v}_z^{(P)}$ dans l'équation (3), on a ceci : \[\begin{array}{rcl}
+				\dot{v_z}^{(P)} + \frac{v_z^{(P)}}{\tau} &=& -g \\
+				0 + \frac{v_z^{(P)}}{\tau} &=& -g \\
+				v_z^{(P)} &=& -g\tau
+\end{array}\]
+\end{itemize}
+
+La solution de l'équation différentielle (3) est donc :
+\begin{center}
+	\fbox{$v_z(t) = v_z^{(H)} + v_z^{(P)} = Ke^{-\frac{t}{\tau}} -g\cdot \tau$}
+\end{center}
+
+a $t=0$, $v_z = \cos(\alpha) \cdot v_0$. On trouve donc $K = \cos(\alpha)\cdot v_0 + g \tau$ d'où \[v_z = (\cos(\alpha)\cdot v_0 + g \tau)\cdot e^{-\frac{t}{\tau}} - g\tau\]
+
+On remarque que pour $t$ très très grand, la vitesse en z ($v_z$) tend vers une constante $-g \tau$. Comme $v_x$ tend à être nul, l'objet sera considéré pour $t$ suffisamment grand comme ayant un mouvement rectiligne uniforme vertical vers le bas.
+
 
 \chapter{Energies}
 \section{Energies mécaniques}

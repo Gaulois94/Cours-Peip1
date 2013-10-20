@@ -74,7 +74,6 @@ m\ddot{z} &=& -mg \end{array} \right. \]
 			\dot{y}(t) &=&0 \\
 			\dot{z}(t) &=& -gt \end{array} \right. \]
 
-\subsection{Chute d'un corps dans un fluide} ~\\
 Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
 			x(t) \\
 			y(t) \\
@@ -90,7 +89,7 @@ Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
 					z(0)&=&h \Rightarrow C_z = h
 			\end{array} \right. \]
 
-	\paragraph{Exemples d'application du PFD}
+\subsection{Chute d'un corps dans un fluide} ~\\
 			\begin{wrapfigure}[5]{r}{0pt}
 				\begin{tikzpicture}
 					\draw[thick] (-1, 3) -- (-1, 0) -- (1, 0) -- (1, 3);
@@ -107,7 +106,8 @@ Les positions à chaque \ul{t} : \[\left\{ \begin{array}{r}
 			\end{wrapfigure}
 
 			\begin{itemize}
-				\item m : ponctuelle. \[t=0 \left\{ \begin{array}{rcl} z&=&h \\
+				\item m : ponctuelle.
+				\item \[t=0 \left\{ \begin{array}{rcl} z&=&h \\
 			v &=& 0 \end{array}\right. \]
 				\item Bilan des forces : $\vec{P} = m\vec{g}$, force de frottement visqueux / fluide : $\vec{f} = -\lambda \vec{v}$
 				\item PFD : \[\begin{array}{rclr}
@@ -139,14 +139,14 @@ On pose : $\frac{\lambda}{m} = \frac{1}{\tau} \Rightarrow \dot{v}_z + \frac{v_z}
 La solution de $(3)'$ est la solution de l'équation sans second membre (ou équation homogène) ~\\
 				\fbox{$\dot{v}_z + \frac{v_z}{\tau} = 0$} (équation homogène) + Une \ul{Solution particuliere} de $(3)$ ~\\
 				\[\begin{array}{rcl}
-					V_z &=& V_z^{(P)} + V_z^{(H)}
+					v_z &=& V_z^{(P)} + V_z^{(H)}
 				\end{array}\]
 				~\\
 
 La solution de l'équation Homogène : ~\\
 	$\dot{v}_z + \frac{v_z}{\tau} = 0$ est de la forme : ~\\
 	\begin{center}
-	\fbox{$v_z^H(t) = K * e^{-\frac{t}{\tau}}$}
+	\fbox{$V_z^H(t) = K * e^{-\frac{t}{\tau}}$}
 	\end{center}
 	~\\
 
@@ -155,23 +155,23 @@ La solution de l'équation Homogène : ~\\
 	\dot{V}_z^{(P)} &=& 0 \end{array}\]
 
 			On remplace dans (3)' : 
-			$0 + \frac{V_z^P}{\tau} = -g \Rightarrow v_z^{(P)} = -g\tau$ 
+			$0 + \frac{V_z^P}{\tau} = -g \Rightarrow V_z^{(P)} = -g\tau$ 
 
 			Donc la solution de l'équation différentielle de $(3)$ est :
 
 			\begin{center}
-				\fbox{$v_z(t) = V_z^H + v_z^P = Ke^{-\frac{t}{\tau}} -g\cdot \tau$}
+				\fbox{$v_z(t) = V_z^H + V_z^P = Ke^{-\frac{t}{\tau}} -g\cdot \tau$}
 			\end{center}
 
 			à $t=0$ $v_z=0$
 			\[\begin{array}{rcl}
 					v_z(0) &=& K * (1) - g\tau = 0 \\
-					K &=& g\tau \Rightarrow \begin{array}{rcl} 
+					K &=& g\tau \Rightarrow \left\{\begin{array}{rcl} 
 						v_z(t) &=&  g \tau e^{-\frac{t}{\tau}} - g \tau \\
-						&=& -g\tau[1-e^{-\frac{t}{\tau}}] \end{array}
+						&=& -g\tau[1-e^{-\frac{t}{\tau}}] \end{array}\right.
 			\end{array} \]
 
-			à $t=0$, $e^{-\frac{1}{\tau}} = 1$ et $v_z=0$ ~\\
+			à $t=0$, $e^{-\frac{t}{\tau}} = 1$ et $v_z=0$ ~\\
 			~\\
 			Pour $t >> \tau$, alors $\begin{array}{rcl}
 				e^{-\frac{t}{\tau}} &\rightarrow& 0 \\
@@ -195,8 +195,8 @@ La solution de l'équation Homogène : ~\\
 			\[\begin{array}{rcl}
 					v_z(t) &=& \dot{z}(t) \\
 					z(t) &=& \int{\dot{z}(t)} = \int{[-g\tau (1-e^{-\frac{t}{\tau}})]dt} \\
-							   &=& \int{[(-g\tau)dt + (g\tau e^{-\frac{t}{\tau}})]dt} \\
-							   &=& -g\tau \cdot t + g\tau\int{e^{-\frac{t}{\tau}} dt} + g\tau(-\cfrac{1}{\cfrac{1}{\tau}})e^{-\frac{t}{\tau}}+K_z \\
+							   &=& \int{[(-g\tau)]dt + \int[(g\tau e^{-\frac{t}{\tau}})]dt} \\
+							   &=& -g\tau \cdot t + g\tau(-\frac{1}{\frac{1}{\tau}})e^{-\frac{t}{\tau}}+K_z \\
 							   &=& -g\tau t - g\tau^2 e^{-\frac{t}{\tau}} + K_z \\
 						 &=& -g\tau ^2 [\frac{t}{\tau}+ e^{-\frac{t}{\tau}}] + K_z
 			\end{array}\]

@@ -1,14 +1,24 @@
-Pour $t >> \tau, \begin{array}{rcl}
+Pour $t >> \tau, \left\{\begin{array}{rcl}
 e^{-\frac{t}{\tau}} &\rightarrow& 0 \\
 (\frac{t}{\tau})-1 &\rightarrow& \frac{t}{\tau}
-\end{array}$ D'où ~\\
-\begin{center}\fbox{$z(t) \simeq h-gt\tau $}\end{center}
+\end{array}\right.$~\\
+\begin{center}D'où \fbox{$z(t) \simeq h-gt\tau $}\end{center}
 D'où le mouvement uniforme rectiligne pour $t >> \tau$
 
 \paragraph{Rappels}
 \begin{itemize}
-\item Mouvement rectiligne uniformément accéléré : $\vec{F} \overrightarrow{Constante}$
+\item Mouvement rectiligne uniformément accéléré : $\vec{F} = \overrightarrow{Constante}$
 \item Mouvement rectiligne amortie : F dépend de la fonction de la vitesse, et des frottements visqueux / fluide
+\end{itemize}
+
+\subsection{Lancé oblique d'un projectile}
+
+\begin{itemize}
+	\item m ponctuelle
+	\item lancé avec $\vec{v} = \vec{v_0}$
+	\item On néglige les forces de frottement avec l'air ainsi que la poussé d'archimède
+	\item bilan des forces: \[\vec{P} = m \vec{g} = m \cdot g \cdot \vec{k}\]
+	\item PFD : $m\vec{a} = \vec{P} = -mg\vec{k}$
 \end{itemize}
 
 \begin{wrapfigure}[10]{r}{0pt}
@@ -19,23 +29,13 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 		\draw[red, ->] (0, 0) -- (0.2, 0) node[below]{$\vec{i}$};
 		\draw[red, ->] (0, 0) -- (0, 0.2) node[below]{$\vec{k}$};
 		\draw[red, ->] (0, 0) -- (-0.2, -0.2) node[below]{$\vec{j}$};
-		\draw[blue] (0, 0) .. controls (0.7, 1.5) and (1.7, 1.5) .. (2, 0);
+		\draw[blue] (0, 0) .. controls (0.3, 1.5) and (1.7, 1.5) .. (2, 0);
 		\draw[thick, green, ->] (0, 0) -- (45:1cm) node [above] {$\vec{v_0}$};
 		\draw[blue, ->] (0.3, 0) arc (0:45:0.3) node [right] {$\alpha$};
 		\draw[red, dashed] (0, 0) -- (1.7, 1.7) node [above right] {$y$};
 		\draw[fill=black] (0, 0) circle (0.05) node [below] {$m$};
 	\end{tikzpicture}
 \end{wrapfigure}
-\subsection{Lancé oblique d'un projectile}
-
-
-\begin{itemize}
-	\item m ponctuelle
-	\item lancé avec $\vec{v} = \vec{v_0}$
-	\item On néglige les forces de frottement avec l'air ainsi que la poussé d'archimède
-	\item bilan des forces: \[\vec{P} = m \vec{g} = m \cdot g \cdot \vec{k}\]
-	\item PFD : $m\vec{a} = \vec{P} = -mg\vec{k}$
-\end{itemize}
 
 \[\left\{
 		\begin{array}{rcl}
@@ -57,9 +57,9 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 			v_x &=& v_0 \cos(\alpha) \\
 			v_z &=& v_0 \sin(\alpha) \\
 			v_y &=& 0 \end{array} \right.
-			\text{D'où } 
 		\]
 		\[
+		\text{D'où } 
 		\left\{
 		\begin{array}{rcl}
 				C_x &=& v_0 \cos(\alpha) \\
@@ -73,7 +73,7 @@ D'où le mouvement uniforme rectiligne pour $t >> \tau$
 
 \[\begin{array}{rcl}
 		\overrightarrow{OM} &=& x(t)\vec{i} + y(t) \vec{j} + z(t) \vec{k} \\
-		x(t) &=& v_0\cos(\alpha) \cdot + C'_x \\
+		x(t) &=& v_0\cos(\alpha) \cdot t + C'_x \\
 		y(t) &=& C'_y = 0 \\
 z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot t + C'_z \end{array}\]
 
@@ -81,7 +81,6 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot t + C'_z \end{array}\]
 			\left\{ \begin{array}{rcl}
 			x &=& 0 \\
 			y &=& 0 \\
-			z &=& 0 \\
 			z &=& 0\end{array}\right.\]
 
 		\[\left\{\begin{array}{rcl}
@@ -90,19 +89,19 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot t + C'_z \end{array}\]
 			C'_z &=& 0 \end{array}\right.\]
 
 D'où un mouvement uniforme par rapport à $Ox$, et un mouvement uniforme accéléré par rapport à $Oz$.
-Le mouvement est dans le plan de $\vec{v_0}$ car par de $\vec{F} \perp  \vec{v_0}$
+Le mouvement est dans le plan de $\vec{v_0}$ car abscence de $\vec{F} \perp  \vec{v_0}$
 
 \paragraph{Équation de la trajectoire $z(x)$ }
 
 \[\begin{array}{rclr}
 		x(t) &=& v_0 \cos(\alpha) t & (1) \\
-z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot & (2)\end{array}\]
+z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot t & (2)\end{array}\]
 	
 	Ce qui donne : $t = \frac{x}{v_0\cos(\alpha)} \Rightarrow z=-\frac{1}{2}g\frac{x^2}{v_0^2\cos(\alpha)^2} + v_0 \sin(\alpha) \cdot \frac{x}{v_0\cos(\alpha)}$ ~\\ ~\\
 \begin{center} D'où \fbox{$z(x) = x-(\frac{g}{2v_0^2 \cos(\alpha)^2}x + \tan(\alpha))$}\end{center}
 
 	Ceci est : \begin{itemize}
-		\item Un équation d'une parabole 
+		\item Une équation d'une parabole 
 		\item Passant par : $(x,z) = (0, 0)$
 	\end{itemize}
 	
@@ -114,11 +113,11 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot & (2)\end{array}\]
 
 	\paragraph{Hauteur maximal}
 	Elle est maximal pour $z'(x) = 0$ et, comme la trajectoire est une parabole, elle est symétrique par une droite parallèle à $O_z$ passant par $\frac{x_p}{2}$
-	\[z(\frac{x_p}{2}) = \text{ hauteur }\] 
+	\[z(\frac{x_p}{2}) = \text{ hauteur maximal }\] 
 
 	\subsection{Oscillateurs harmoniques}
 
-	\begin{wrapfigure}[6]{r}{0pt}
+	\begin{wrapfigure}[1]{r}{0pt}
 		\begin{tikzpicture}[rotate=90]
 			\draw[fill=blue, opacity=0.75] (0, 0) rectangle (0.5, 3);
 			\draw[] (0.25, 3) --+ (0, 0.2);
@@ -166,5 +165,5 @@ z(t) &=& -\frac{1}{2}gt^2 + v_0 \sin(\alpha)\cdot & (2)\end{array}\]
 		\dot{x}(0) &=& B\omega \Rightarrow B=0\end{array}\right.
 			\text{D'ou } \left\{
 			\begin{array}{rcl}
-			x(t) &=& x_0\cos(\omega t) \\
+				x(t) &=& x_0\cos(\omega t) + B\sin(\omega t) \\
 		\dot{x}(t) &=& -x_0\omega\sin(\omega t) \end{array}\right.\]
