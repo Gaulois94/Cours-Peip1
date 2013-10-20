@@ -50,14 +50,49 @@ De plus, tan est bijective, de réciproque $arctan \mathbb{R} \rightarrow ]-\fra
 	On note $z=\tan x, $ $arctan'(z) = \frac{1}{1+z^2}$
 
 	\paragraph{Exercice} a)
+
 $\begin{array}{rcl}
 f:&]-\frac{\pi}{2}, \frac{\pi}{2}[&\rightarrow ]-1, 1[ \\
 							 &x&\mapsto \sin x
 \end{array}$
 
-f est bijective et $f'(x)$ ne s'annule pas, donc $\forall x \in ]-1, 1[, archsin'(x) = \frac{1}{\sqrt{1-x^2}}$
+f est bijective et $f'(x)$ ne s'annule pas, donc ~\\
+\begin{center}
+	\fbox{$\forall x \in ]-1, 1[, \arcsin'(x) = \frac{1}{\sqrt{1-x^2}}$}
+\end{center}
 
-b) de même, $arccos'(x) = -\frac{1}{\sqrt{1-x^2}}$ sur $]-1, 1[$
+En effet, \[\begin{array}{rcl}
+		\arcsin(\sin(x)) &=& x \\
+		(\arcsin(\sin(x)))' &=& x' \\
+		\cos(x) * \arcsin '(\sin(x)) &=& 1 \\
+		\arcsin '(\sin(x) &=& \frac{1}{\cos(x)} \\
+		\\
+		\cos^2(x) &=& 1 - \sin^2(x) \\
+		\cos(x) &=& \sqrt{1-\sin^2(x)}
+\end{array}\]
+
+On note $z = \sin(x)$, on a \[\begin{array}{rcl}
+		\arcsin'(\sin(x)) &=& \frac{1}{\sqrt{1-\sin^2(x)}} \\
+		\arcsin'(z) &=& \frac{1}{\sqrt{1-z^2}} \\
+\end{array}\]
+
+b)
+de même, $\arccos'(x) = -\frac{1}{\sqrt{1-x^2}}$ sur $]-1, 1[$
+
+	En effet, \[\begin{array}{rcl}
+		\arccos(\cos(x)) &=& x \\
+		(\arccos(\cos(x)))' &=& x' \\
+		-\sin(x) * \arccos '(\cos(x)) &=& 1 \\
+		\arccos '(\cos(x) &=& -\frac{1}{\sin(x)} \\
+		\\
+		\sin^2(x) &=& 1 - \cos^2(x) \\
+		\sin(x) &=& \sqrt{1-\cos^2(x)}
+\end{array}\]
+
+On note $z = \cos(x)$, on a \[\begin{array}{rcl}
+\arcsin'(\cos(x)) &=& -\frac{1}{\sqrt{1-\cos^2}} \\
+\arcsin'(z) &=& -\frac{1}{\sqrt{1-z^2}}
+\end{array}\]
 
 	\section{Extreima et points critiques}
 

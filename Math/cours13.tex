@@ -62,7 +62,7 @@ Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
 
 			\paragraph{Rappel} $f, g : [a, b] \rightarrow \mathbb{R}$, de classe $C^1, (f\cdot g)' = f'g+fg'$ ~\\
 			Donc $\int_a^b (fg)'(t)dt = \int_a^b(f'g)(t)dt + \int_a^b(fg')(t)dt$ ~\\
-			Ou encore ${\underbrace{[fg(t)]}_{\text{ Notation pour} ~\\ fg(b) - fg(a) } }^b_a = \int_a^b(f'g)(t)dt + \int_a^b(fg')(t)dt$ ~\\
+			Ou encore ${\underbrace{[fg(t)]^b_a}_{\text{ Notation pour} ~\\ fg(b) - fg(a) } } = \int_a^b(f'g)(t)dt + \int_a^b(fg')(t)dt$ ~\\
 
 			D'où $\int_a^b f'(t)g(t)dt = [f(t)g(t)]_a^b - \int_a^b f(t)g'(t)dt$
 
@@ -75,8 +75,8 @@ Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
 										  &=& (b \ln b - b) - (a \ln a - a) \end{array}\]
 
 	\paragraph{Exemple 2} \[\begin{array}{rcl}
-		\int_a^b arctan(t)dt &=& [t arctan t]^b_a - \int_a^b \frac{t}{1+t^2} dt \\
-																								   &=& (b arctan b -a arctan a) - (\int_a^b \frac{t}{1+t^2} dt \end{array}\]
+		\int_a^b \arctan(t)dt &=& [t \arctan t]^b_a - \int_a^b \frac{t}{1+t^2} dt \\
+																								   &=& (b \cdot \arctan b -a \cdot \arctan a) - (\int_a^b \frac{t}{1+t^2} dt \end{array}\]
 
 		De plus, $\frac{t}{1+t^2} = \frac{f'(t)}{f(t)}$ avec $f(t) = 1+t^2 \geq 0$
 
@@ -84,10 +84,16 @@ Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
 		\text{D'ou } \int_a^b \frac{1}{1+t^2} dt &=& \frac{1}{2}[\ln |f(x)|]^b_a \\
 		  &=& \frac{1}{2} (\ln(1+b^2) - \ln(1+a^2)) \end{array}\]
 
-		Donc une primitive de $arctan(x)$ est : $F(x) = x \cdot archtan x - \frac{1}{2}\ln(1+x^2)$
+		Donc une primitive de $\arctan(x)$ est : $F(x) = x \cdot \arctan x - \frac{1}{2}\ln(1+x^2)$
 
 		\paragraph{Exemple 3} $\int_a^b te^t dt = (b-1)e^b - (a-1)e^a$ avec $f'(t) = e^t$ et $g(t) = t$
 
+		En effet, \[\begin{array}{rcl}
+				\int_a^b (f'g)t dt &=& [fg(t)]^b_a - \int_a^b (fg')(t)dt \\
+				\int_a^b (e^t \cdot t dt) &=& b e^b - a e^a - \int_a^b e^t dt \\
+									   &=& b e^b - a e^a - e^b + e^a \\
+									   &=& e^b (b-1) - e^a (a-1)
+		\end{array}\]
 
 		\section{Changement de variable}
 

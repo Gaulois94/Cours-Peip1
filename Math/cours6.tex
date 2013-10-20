@@ -73,7 +73,7 @@ Le minimum de $\sin_([0, 4\pi])$ est -1. Il est atteint en $\frac{3\pi}{2}$ et $
 		\paragraph{Corollaire} supposons $f : \mathbb{R} \rightarrow \mathbb{R}$ continue. ~\\
 		Si $\lim_{x \to -\infty} f(x) = +\infty$ et $\lim_{x \to +\infty} f(x) = +\infty$, alors f admet un minimum mais pas de maximum.
 
-		\paragraph{Idée de démonstration}
+\paragraph{Idée de démonstration}
 \begin{tikzpicture}[scale=0.5]
 	\clip (7, 7) rectangle (-5, -0.9);
 	\draw[domain=-3:3, red] plot(\x, {\x * \x});
@@ -83,6 +83,10 @@ Le minimum de $\sin_([0, 4\pi])$ est -1. Il est atteint en $\frac{3\pi}{2}$ et $
 \end{tikzpicture}
 
 Cette fonction admet un minimum (0) mais jamais de maximum.
+
+Comme $\lim_{x \to +\infty} f(x) = +\infty$, alors il existe un réel A et $x_0$ tel que $\forall x > x_0; f(x) > A$ De même, comme $\lim_{x \to -\infty} f(x) = + \infty$ il existe un réel $A$ et $-x_0$ tel que $\forall x < -x_0; f(x) > A$
+
+Dans l'intervalle $]-x_0, x_0[$ comme f est continue, $f(]-x_0, x_0[)$ est un intervalle continue. Or un intervalle continu admet forcément un minimum, dans $]-x_0, x_0[$, il existe un $c$ tel que $f(x) > f(c)$. Or, comme $\forall x < -x_0$ et $\forall x > x_0$, $f(x) > A$, on à $f(x) > A > f(x)$. Donc f admet bien un minimum et pas de maximum. 
 
 \paragraph{Corollaire} $f : [a, b] \rightarrow \mathbb{R}$ continue. ~\\
 Si pour tout $x \in [a, b], f(x) > 0$ alors le minimum de $Im(f) > 0$,~\\

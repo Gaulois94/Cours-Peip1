@@ -47,7 +47,11 @@
 \begin{document}
 \arraycolsep=1.4pt\def\arraystretch{2.2}
 
+\renewcommand\thepage{}
 \tableofcontents
+\newpage
+\renewcommand\thepage{\arabic{page}}
+\setcounter{page}{1}
 
 \input{cours1}
 \input{cours2}

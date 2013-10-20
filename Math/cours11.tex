@@ -114,6 +114,7 @@ Donc $\ln (1+x) -x = -\frac{1}{2}x^2 + x^2 \epsilon(x)$
 \begin{wrapfigure}[5]{r}{0pt}
 
 	\begin{tikzpicture}
+		\clip  (-2, -2) -- (4, -2) -- (4, 2) -- (-2, 2) -- cycle;
 		\draw[->] (-2, 0) -- (2, 0);
 		\draw[->] (0, -2) -- (0, 2);
 		\draw[blue, thick, domain=-2:2] plot(\x, {\x /2 - 1 / 4}) node [right]{$\Delta$};
@@ -127,7 +128,7 @@ Donc $\ln (1+x) -x = -\frac{1}{2}x^2 + x^2 \epsilon(x)$
 
 \[\begin{array}{rclr}
 f(x) &=& \frac{x^3}{2x^2}(\frac{1}{\frac{1}{2x^2} + \frac{1}{2x}+1}) \\
-	&=& \frac{x}{2}(\frac{1}{1+(\frac{1}{2x}+\underbrace{\frac{1}{2x^2}}_{u})}) \\
+	&=& \frac{x}{2}(\frac{1}{1+(\underbrace{\frac{1}{2x}+\frac{1}{2x^2}}_{u})}) \\
 u(y) &=& \frac{1}{2}y + \frac{1}{2}y^2 & \text{ avec } y = \frac{1}{2} \\
 \frac{1}{1+u} &=& 1-u+u^2+u^3 \epsilon (u) \\
 &=& 1 - (\frac{1}{2x} + \frac{1}{2x^2}) + (\frac{1}{2x} + \frac{1}{2x^2})^2 +  \frac{1}{x^2}\epsilon(\frac{1}{x}) \\
@@ -138,6 +139,6 @@ f(x) &=& \frac{x}{2}(1-\frac{1}{2x}-\frac{1}{4x^2}+\frac{1}{x^2}\epsilon (x)) \\
 &=& \frac{x}{2} - \frac{1}{4} - \frac{1}{8x} + \frac{1}{x}\epsilon (x) \\
 &=& \frac{x}{2} - \frac{1}{4} - \frac{1}{8x} + \frac{1}{x}\epsilon (x) \\
 f(x) - (\frac{x}{2}-\frac{1}{4}) &=& \underbrace{-\frac{1}{8x} +  \frac{1}{x}\epsilon (x) }_{\text{asymptote}} \xrightarrow[x \to \pm \infty]{} 0 \\
-\Delta &=& y & \frac{1}{2}x - \frac{1}{4};
+\Delta &=& y = \frac{1}{2}x - \frac{1}{4}
 \end{array}\]
 
