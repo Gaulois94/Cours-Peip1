@@ -145,7 +145,7 @@ où $\left\{\begin{array}{c}
 								b &=& -\frac{1}{3} \\
 						c &=& - \frac{2}{3}\end{array}\right.\]
 
-								\[\frac{1}{x^3 -1} = \frac{1}{3}(\frac{1}{x-1} - \frac{x+2}{x^2 +x + 1}\]
+								\[\frac{1}{x^3 -1} = \frac{1}{3}(\frac{1}{x-1} - \frac{x+2}{x^2 +x + 1})\]
 
 Une primitive de $\frac{1}{x-1}$ est $x \mapsto \ln(|x-1|)$
 Que dire pour $\frac{x+2}{x^2 + x + 1}$ ? 
@@ -153,13 +153,13 @@ Que dire pour $\frac{x+2}{x^2 + x + 1}$ ?
 \[\begin{array}{rcl}
 \frac{x+2}{x^2 + x + 1} &=& \underbrace{\frac{1}{2}\frac{2x+1}{x^2 + x + 1}}_{\text{Primitive de } \frac{1}{2} \ln(x^2 + x + 1)} + \underbrace{\frac{1}{2} \frac{3}{x^2 + x + 1} }_{\text{?}}\end{array}\]
 
-		\paragraph{Rappel} La pritmive de $\frac{1}{1+x^2}$ est $\arctan (x)$.
+		\paragraph{Rappel} La primitive de $\frac{1}{1+x^2}$ est $\arctan (x)$.
 
 		\[\begin{array}{rcl}
 				\frac{3}{2}\frac{1}{x^2 + x + 1} &=& \frac{3}{2}\frac{1}{(x+\frac{1}{2})^2 + \frac{3}{4}} \\
 									   &=& \frac{3}{2} \frac{1}{\frac{3}{4}(\frac{4}{3}(x+\frac{1}{2})^2 + 1)} \\
-									   &=& 2\frac{1}{\underbrace{[\frac{2}{\sqrt{3}}(x+\frac{1}{2})]}_{X}^2 + 1} (*)\\
-				X &=& \frac{2}{\sqrt{3}}(x+\frac{1}{2}) \rightsquigarrow 2\frac{1}{1+x^2}
+									   &=& 2\frac{1}{\underbrace{[\frac{2}{\sqrt{3}}(x+\frac{1}{2})]}_{X^2} + 1} (*)\\
+				X &=& \frac{2}{\sqrt{3}}(x+\frac{1}{2}) \rightsquigarrow 2\frac{1}{1+X^2}
 		\end{array}\]
 
 		Un primitive de (*) est : $2\arctan (\frac{2}{\sqrt{3}}(x+\frac{1}{2})) \frac{\sqrt{3}}{2}$ ~\\

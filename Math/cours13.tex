@@ -17,11 +17,11 @@ Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
 \paragraph{Démonstration} 
 \begin{itemize}
 	\item $F(x) = 0$
-	\item On veut montrer que F'=f . Fixons$x_0 \in ]a, b[$. On veut montrer que $|\frac{F(x) - F(x_0}{x-x_0} - f(x_0)| \xrightarrow[x \to x_0]{?} 0$ ~\\
+	\item On veut montrer que F'=f . Fixons$x_0 \in ]a, b[$. ~\\On veut montrer que $|\frac{F(x) - F(x_0}{x-x_0} - f(x_0)| \xrightarrow[x \to x_0]{?} 0$ ~\\
 
 	\item[a] \[\begin{array}{rclr}F(x) - F(x_0) &=& \int_c^x f(t)dt - \int_x^{x_0} f(t)dt \\
 &=& \int_c^x f(t)dt + \int_{x_0}^c f(t)dt \\
-&=& \int_{x_0}^x f(t)dt \text{ Par la relation de Chasles} \\
+&=& \int_{x_0}^x f(t)dt & \text{ Par la relation de Chasles} \\
 \text{D'ou } \frac{F(x)-F(x_0)}{x-x_0} &=& \frac{1}{x-x_0} \int_{x_0}^x f(t)dt \end{array}\]
 
 	\item[b] \[\begin{array}{rcl}
@@ -76,7 +76,7 @@ Ce théorème s'appelle le \ul{"Theoreme fondamental de calcul integral"}
 
 	\paragraph{Exemple 2} \[\begin{array}{rcl}
 		\int_a^b \arctan(t)dt &=& [t \arctan t]^b_a - \int_a^b \frac{t}{1+t^2} dt \\
-																								   &=& (b \cdot \arctan b -a \cdot \arctan a) - (\int_a^b \frac{t}{1+t^2} dt \end{array}\]
+							&=& (b \cdot \arctan b -a \cdot \arctan a) - (\int_a^b \frac{t}{1+t^2} dt) \end{array}\]
 
 		De plus, $\frac{t}{1+t^2} = \frac{f'(t)}{f(t)}$ avec $f(t) = 1+t^2 \geq 0$
 

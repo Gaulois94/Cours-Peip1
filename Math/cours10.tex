@@ -4,7 +4,7 @@
 \end{itemize}
 
 \paragraph{Théorème} Si un tel développement limité existe, alors il est unique.
-\paragraph{Exemple} $p(x) = x^4 + 3x^2 -x 17$ . $DL_3(0) = 17 -x +3x^2 + x^3\cdot \epsilon(x)$
+\paragraph{Exemple} $p(x) = x^4 + 3x^2 -x + 17$ . $DL_3(0) = 17 -x +3x^2 + x^3\cdot \epsilon(x)$
 
 \paragraph{Formule de Taylor-Young}
 \paragraph{Théorème} $f : I \rightarrow R, I$ intervalle ouvert et $x_0 \in I$ ~\\
@@ -46,8 +46,8 @@ avec $\epsilon (x) \xrightarrow[x \to x_0]{} 0$ pour $\delta > 0, ]x_0-\delta, x
 	pour $q=1$ : ~\\
 	$\frac{1-x^N}{1-x} = 1+x+x^2+...+x^{N-1}$ ~\\ ~\\
 	\[\text{Donc } \begin{array}{rcl}
-			\frac{1}{1-x} - \underbrace{(1+x+x^2 + ...+x^n)}_{N-1=n} &=& \frac{1}{1+x} - \frac{1-x^{n+1}}{1+x} \\
-				   &=& \frac{1-(1-x^{n+1}}{1-x} \\
+			\frac{1}{1-x} - \frac{\overbrace{(1+x+x^2 + ...+x^n)}^{N-1=n}}{1-x} &=& \frac{1}{1+x} - \frac{1-x^{n+1}}{1+x} \\
+			   &=& \frac{1-(1-x^{n+1})}{1-x} \\
 				   &=& \frac{x^{n+1}}{1-x} = x^n \underbrace{(\frac{x}{1-x})}_{\epsilon (x) \xrightarrow[x \to 0]{} 0}
 	\end{array}\]
 
@@ -103,7 +103,8 @@ avec $\epsilon (x) \xrightarrow[x \to x_0]{} 0$ pour $\delta > 0, ]x_0-\delta, x
 			DL_2(0) \text{ de } \sin(x) &=& x + x^2\epsilon(x)
 	\end{array}\]
 
-	Donc $DL_2(0)$ de $e^x \cdot \sin(x)$ est : $(1+x+\frac{x}{2})\cdot(x) + x^2\epsilon(x)$ À TRONQUER, c'est à dire : ~\\
+	Donc $DL_2(0)$ de $e^x \cdot \sin(x)$ est : $(1+x+\frac{x^2}{2})\cdot(x) + x^2\epsilon(x)$ À TRONQUER, c'est à dire : 
+	\[e^x \cdot \sin(x) = x + \frac{3}{2}x^2 +x^2 \epsilon(x)\]
 
 	\paragraph{Théorème} $f:E \rightarrow \mathbb{R}, g : J \rightarrow \mathbb{R}$ avec $f(I) \subset J$, $x_0 \in I$ ~\\
 	Si f admet un $DL_n(x_0)$ et que g admet un $DL_N(f(x_0))$ alors $gof$ admet un $DL_n(x_0)$ et sa partie principale est la composé des parties principales \ul{tronque} à l'ordre n. ~\\

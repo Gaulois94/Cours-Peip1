@@ -48,7 +48,7 @@ $(E) :  \overbrace{y'}^{\text{ordre 1}} = a(t)\underbrace{y}_{\text{"linéaire"}
 \paragraph{Résoudre (E)} c'est trouver toutes les fonctions $C^1$ qui vérifient (E) pour tout $t \in I$. Ici (par (E)), ceci est faisable.
 
 \paragraph{Résolution}
-\subsection{Équation homogène associée (on oublie "$b(t)$"}
+\subsection{Équation homogène associée (on oublie "$b(t)$")}
 
 \[(E_0) y' = a(t) y\]
 Est une équations à variables séparables. Supposons que y ne s'annule pas.
@@ -104,7 +104,7 @@ où $\left\{\begin{array}{rcl}
 				   &=& a(t)y + b(t)e^{-A(t)} - a(t)ye^{A(t)} \\
 					  &=& b(t)e^{-A(t)} \end{array}\]
 
-			Donc $z = \int b(s)e^{-A(s)} ds$, c'est à dire il existe une constante $C \in \mathbb{R}$ tel que $z(t) = \int_\alpha^t b(s)e^{-A(s)}ds + C$. D'où 
+			Donc $z = \int b(s)e^{-A(s)} ds$, c'est à dire il existe une constante $C \in \mathbb{R}$ tel que \[z(t) = \int_\alpha^t b(s)e^{-A(s)}ds + C\]. D'où 
 			\begin{center}
 				\fbox{$y(t) = z(t)e^{A(t)} = e^{A(t)}(C+\int_\alpha^t e^{-A(s)}b(s)ds$)}
 			\end{center}
@@ -120,7 +120,7 @@ où $\left\{\begin{array}{rcl}
 
 Le tout étant des constantes, $C_0$ est une constante unique.
 
-\paragraph{Remarque} Si on avait choisie $\alpha = t_0$, alors $C_0 = y_0e^{-A(t_0)}$ et la solution de (E) qui vérifie $y(t_0)=y_0$ est : \[y(t) = e^{A(t)}(y_0e^{-A(t_0)} + \int_{t_0}^t e^{-A(s)b(s) ds)}\]
+\paragraph{Remarque} Si on avait choisie $\alpha = t_0$, alors $C_0 = y_0e^{-A(t_0)}$ et la solution de (E) qui vérifie $y(t_0)=y_0$ est : \[y(t) = e^{A(t)}(y_0e^{-A(t_0)} + \int_{t_0}^t e^{-A(s)}b(s) ds)\]
 
 \paragraph{Remarque} le système $\left\{\begin{array}{rcl} y' &=& a(t)y + b(t) \\
 y(t_0) &=& y_0\end{array}\right.$ est nommé "Problème de Cauchy".
