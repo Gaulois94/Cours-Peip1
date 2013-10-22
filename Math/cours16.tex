@@ -1,0 +1,128 @@
+Pour g différent de 0, \[\frac{dy}{g(y)} = k(t)dt\]
+
+Par "primitivisation" : \[\int \frac{dy}{g(y)} = \int h(t)dt\]
+
+\paragraph{Exemple} \[\begin{array}{rcl}
+		g : & y \mapsto	& y^2 \\
+			& \mathbb{R} \to & \mathbb{R}^+ \\
+\\
+		k : &t \mapsto & 6t \\
+			&\mathbb{R} \to \mathbb{R} \\
+\\
+		(E)	&y' = &6t y^2 
+\end{array}\]
+
+ou encore
+
+\[\begin{array}{rclr}
+	\int \frac{dy}{y^2}& = &\int 6t dt \\
+	\text{Soit } -\frac{1}{y} &=& 3t^2 + c, & c \in \mathbb{R} \\
+	\text{On obtient} y(t) &=& \frac{1}{-3t^2 - c} \\
+							&=& \frac{1}{d - 3t^2}, & d \in \mathbb{R}
+\end{array}\]
+
+C'est à dire la fonction $y(t) = \frac{1}{d-3t^2}$ avec $d \in \mathbb{R}$ sont des solutions de (E), sur I (à préciser)
+
+\paragraph{2ème étape} Utiliser les conditions initiales pour trouver d.
+
+Conditions initiales : $y(0) = 2$ (on avait deux individus à l'instant $t=0$)	
+
+
+En particulier, $y(0) = \frac{1}{d} = 2$ ~\\
+soit $d = \frac{1}{2}$
+
+D'où $y(t) = \frac{2}{1-6t^2}$ est une solution de (E) qui vérifie $g(0) = 2$
+
+Problème : quel est l'intervalle I ?
+
+La fonction y est définie sur : $]-\infty; -\frac{\sqrt{6}}{6}[ \cup ]-\frac{\sqrt{6}}{6}; \frac{\sqrt{6}}{6}[ \cup ]\frac{\sqrt{6}}{6}; +\infty[$
+
+Ici, $y : t \mapsto \frac{2}{1-6t^2}$ est solution de (E) sur $]-\frac{\sqrt{6}}{6}; \frac{\sqrt{6}}{6}[$ et vérifie $y(0) = 2$
+
+\paragraph{Remarque} On cherchait une fonction dérivable (pour $"y'"$ soit défini). Si on trouve y, en fait y est de classe $C^1$ (car $k(t)g(t)$ est continue)
+
+\section{Équations différentielles linéaires, d'ordre 1}
+
+$(E) :  \overbrace{y'}^{\text{ordre 1}} = a(t)\underbrace{y}_{\text{"linéaire"}} + \underbrace{b(t)}_{\text{Non homogène}}$ avec $a, b : I \to \mathbb{R}$ avec I une intervalle ouvert  et a, b des fonctions continue.
+
+\paragraph{Résoudre (E)} c'est trouver toutes les fonctions $C^1$ qui vérifient (E) pour tout $t \in I$. Ici (par (E)), ceci est faisable.
+
+\paragraph{Résolution}
+\subsection{Équation homogène associée (on oublie "$b(t)$"}
+
+\[(E_0) y' = a(t) y\]
+Est une équations à variables séparables. Supposons que y ne s'annule pas.
+
+On réécrit : $\int \frac{dy}{y} = \int a(t) dt$ ~\\
+Soit $ln(|y|) = \int_{t_0}^t a(s)ds + c$ pour $c \in \mathbb{R}; t_0 \in I$
+
+Via l'exponentielle, on obtient : \[|y(t)| = \exp(c+\int_{t_0}^t a(s)ds)\]
+
+ou encore : \[\begin{array}{rclr}
+|y(t)| &=& d \cdot e^{A(t)} & \text{avec primitive de a choisie}  \\
+A(t) &=& \int_{t_0}^t a(s)ds & d \in \mathbb{R}^{+*}
+\end{array}\]
+
+\paragraph{Remarque} Si $y(t) = 0$, y solution de (E) alors $y'(t) = 0$
+
+\paragraph{Remarque 2} Il y a trois cas mutuellement exclusif :
+\begin{itemize}
+	\item $y(t) = 0$ pour tout $t \in I; y(t) = 0\cdot e^{A(t)}$
+	\item $y(t) > 0$ pour tout $t \in I; y(t) = d \cdot e^{A(t)}$ avec $d>0$
+	\item $y(t) < 0$ pour tout $t \in I; y(t) = d \cdot e^{A(t)}$ avec $d<0$
+\end{itemize}
+
+$y(t)$ ne peux donc pas s'annuler sur I, car sinon il y(t) serait une constante pour tout $t \in I$.
+
+\paragraph{} Les solutions de ($E_0$) sont les fonctions $y : I \rightarrow \mathbb{R}$ définie par $y(t) = de^{A(t)}$ avec $A(t) = \int_{t_0}^t a(s)ds$
+\paragraph{Remarque} y est bien $C^1$
+
+\subsection{Et le b ? : équations non homogène}
+
+\paragraph{Théorème} Soit $a, b : I \rightarrow \mathbb{R}$ continue. Toutes les solutions de l'équation (E) \ul{sur I} sont les fonctions $C^1$ \[y(t) = e^{A(t)} (C + \int_\alpha^t e^{-A(t)} b(s)ds\]
+
+où $\left\{\begin{array}{rcl}
+	C &\in& \mathbb{R} \\
+	\alpha &\in& I \\
+	A(t) \text{ primitive de } a(t)\end{array}\right.$
+
+	\paragraph{Démonstration} \begin{itemize}
+		\item y est de classe $C^1$ sur I
+\item reste à voir si y satisfait (E) ?\end{itemize}
+
+	\[\begin{array}{rcl}
+			y'(t) &=& {e^{A(t)}} '(C + \int_\alpha^t e^{-A(t)} b(s)ds + e^{A(t)} e^{-A(t)} b(t) \\
+						   &=& a(t) y(t) + b(t) \\
+	\text{car } y'(t) &=& a(t)e^{A(t)}(C + \int_\alpha^t e^{-A(t)}b(s)ds) + b(t)\end{array}\]
+
+	Reste à voir si toutes les solutions sont de la forme ci dessus.
+
+	On pose $z(t) = y(t) e^{-A(t)}$
+
+	\[\begin{array}{rcl}
+			z'(t) = (y\cdot e^{-A(t)})' &=& y'e^{-A(t)} + y(-a(t))e^{-A(t)} \\
+				   &=& a(t)y + b(t)e^{-A(t)} - a(t)ye^{A(t)} \\
+					  &=& b(t)e^{-A(t)} \end{array}\]
+
+			Donc $z = \int b(s)e^{-A(s)} ds$, c'est à dire il existe une constante $C \in \mathbb{R}$ tel que $z(t) = \int_\alpha^t b(s)e^{-A(s)}ds + C$. D'où 
+			\begin{center}
+				\fbox{$y(t) = z(t)e^{A(t)} = e^{A(t)}(C+\int_\alpha^t e^{-A(s)}b(s)ds$)}
+			\end{center}
+
+			\paragraph{Théorème}
+			Soit $a, b : I \rightarrow \mathbb{R}$ continue avec I un intervalle ouvert ~\\
+			Il existe une unique solution de $y' = a(t) y + b(t)$ telle que pour $t_0$ et $y_0 \in \mathbb{R}, y(t_0) = y_0$
+
+			\paragraph{Démonstration} C'est la solution avec $C_0$ qui vérifie : \[\begin{array}{rcl}
+					y(t_0) &=& y_0 \\
+					e^{A(t_0)}(C_0 + \int_\alpha^t e^{-A(s)bsds}) &=& y_0 \\
+			\text{c'est à dire } C_0 &=& y_0e^{-A(t_0)} - \int_\alpha^t e^{-A(s)}b(s)ds\end{array}\]
+
+Le tout étant des constantes, $C_0$ est une constante unique.
+
+\paragraph{Remarque} Si on avait choisie $\alpha = t_0$, alors $C_0 = y_0e^{-A(t_0)}$ et la solution de (E) qui vérifie $y(t_0)=y_0$ est : \[y(t) = e^{A(t)}(y_0e^{-A(t_0)} + \int_{t_0}^t e^{-A(s)b(s) ds)}\]
+
+\paragraph{Remarque} le système $\left\{\begin{array}{rcl} y' &=& a(t)y + b(t) \\
+y(t_0) &=& y_0\end{array}\right.$ est nommé "Problème de Cauchy".
+
+La théorème ci dessus est un cas particulière du théorème de Cauchy Lipschitz.
