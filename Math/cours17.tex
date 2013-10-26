@@ -1,0 +1,157 @@
+\subsection{b' et le b ? Variation de la constante}
+
+\paragraph{Rappel} Solution de $y'=a(t)y$ est $C\exp({A(t)})$ avec $A = \int^t a(s)ds$ et $C \in \mathbb{R}$
+
+On cherche une solution de $y'=a(t)y+b(t)$. On fait "varier" la constante. C'est à dire on considère $C(t)e^{A(t)}=y(t)$
+
+Alors si $y$ est bien solution de (E), \[\begin{array}{rclr}
+y'&=&a(t)y + b(t) \\
+C'(t)e^{A(t)} + C(t)(a(t)+e^{A(t})) &=& a(t)C(t)e^{A(t)} + b(t) \\
+\text{On obtient } C'(t)e^{A(t)} &=& b(t) \\
+\text{Soit } C'(t)&=& b(t)e^{A(t)} \\
+\text{Donc } C(t) &=& \int^t_\alpha b(s)e^{-A(s)} ds + D & D \in \mathbb{R} \end{array}\]
+
+\subsection{Équations non-résolues}
+
+\[u(t)y' = v(t)y+w(t) \text{ } (F)\] Avec $u, v, w : I \rightarrow \mathbb{R}$ continues, (I un intervalle ouvert).
+
+On travaille sur les intervalles où $u$ ne s'annule pas. ~\\
+Sur $J \subset I$ J un intervalle ouvert où u ne s'annule pas, on réécrit (F) comme $y' = \underbrace{\frac{v(t)}{u(t)}}_{a(t)}y + \underbrace{\frac{w(t)}{u(t)}_{b(t)}} $
+
+On regarde si on peut "raccorder" les solutions de manière $C^1$
+
+\paragraph{Remarque} On perd l'unicité des solutions (même en imposant des conditions initiales)
+
+\paragraph{Exemple} \[(\sin t)y' - (\cos t)y = e^t\cdot\sin^2t \text{ } (E)\]
+
+$(E)$ n'est pas résolue !
+
+On se restreint aux intervalles où $\sin t \neq 0$. Par exemple $\underbrace{]-\pi, 0[}_{J^-}$ et $\underbrace{]0, \pi[}_{J^+}$
+
+Sur $J^-$ ou $J^+$, (E) s'écrit \[y' = \frac{\cos t}{\sin t}y + e^t \sin t (F)\]
+
+Les solutions de l'équation différent homogène associée \[y' = \frac{\cos t}{\sin t} y \text{ } (E_0)\]
+
+Les solutions sont \[\begin{array}{rclr}
+y(t) &=& C \exp(\int^t_\alpha \underbrace{\frac{\cos s}{\sin s}}_{\frac{\sin't}{\sin t}}ds) &\text{sur} J^+ (\alpha \in J^+) \\
+y(t) &=& C \exp(\int^t_\alpha \frac{\sin's}{\sin s}ds) \\ 
+y(t) &=& C \exp([\ln(|\sin t|)]^t_\alpha)) \\ 
+y(t) &=& C \exp([\ln(|\sin t|)]^t_{\frac{\pi}{2}}) & \text{On choisi } \alpha = \frac{\pi}{2}
+\end{array}\]
+
+Soit $\begin{array}{rclr}y(t) &=& C\exp(\ln(|\sin t|)) \\
+&=& C|\sin t| & C \in \mathbb{R}\\
+&=& C\cdot \sin t & \text{sur } J^+\end{array}$
+
+Sur $J^-$, on choisit $\alpha = -\frac{\pi}{2}$ et on obtient \[\begin{array}{rclr}
+y(t) &=& C\cdot |\sin t|&, C \in \mathbb{R} \\
+&=& D \cdot \sin t&, D \in \mathbb{R}\end{array}\]
+
+Résolution de l'équations non homogène.
+
+Sur $J^+$
+
+On cherche juste \[\begin{array}{rcl}
+&&\int e^{-A(s)}b(s)ds \\
+&=& \int \frac{1}{\sin s} \cdot e^s \cdot \frac{\sin^2 s}{\sin s} ds \\
+&=& \int e^s ds \\
+&=& e^t + C\end{array}\]
+
+D'où la solution particulière étant :
+\[\begin{array}{rcl}
+y &=& e^{A(t)}\int e^{-A(s)}b(s) ds \\
+&=& e^{A(t)}\cdot(e^t + C) \\
+&=& \sin t (e^t + C)\end{array}\]
+
+D'où la solution générale de (F) sur $J^+$ est :
+
+\begin{center}
+	\fbox{$y(t) = \sin t (C+e^t), C\in \mathbb{R}$}
+\end{center}
+
+De même, sur $J^-$ la solution générale de (F) est : $y(t) = \sin t(D+e^t), D\int \mathbb{R}$
+
+Existe-t-il des fonctions continues vérifiant (F) sur $I = ]-\pi, \pi[$
+
+si une telle fonction f existe alors f et en particulier solution sur $J^-$ et $J^+$ donc \[\left\{\begin{array}{rcl}
+	\sin t(C + e^t) & \text{si } t \in J^- \\
+	\sin t(D + e^t) & \text{si } t \in J^+\end{array}\right.\] 
+
+On veut prolonger en 0 :\[\lim_{\substack{t \to 0 \\ t > 0}} f(t) = 0 = \lim_{\substack{\to 0 \\ t < 0}}\]
+
+De plus
+\[\begin{array}{rclr}
+	f'(t)  &=& \sin t(C+e^t) + \sin t(e^t) & \text{Sur } J^-\\
+		&=& \cos t(C +e^t) + \sin t \cdot e^t \\
+\text{Donc } \lim_{\substack{t \to 0 \\ t < 0}} f'(t) &=& C+1 = \lim_{\substack{t \to 0 \\ t > 0}} f'(t) \end{array}\]
+
+Par le théorème de prolongement $C^1$, f est $C^1$ si et seulement si $C=D$
+
+Donc les solutions de $(E)$ sur $I = ]-\pi, \pi[$ sont les fonctions \[f(t) = \sin t(C+e^t), C\in \mathbb{R}\]
+
+\paragraph{Remarque} Il y a une infinité de solutions de (E) sur $]-\pi, \pi[$ tel que $y(0)=0$. Cependant, aucune ne satisfait $y(0)=3$
+
+Finalement, si $t_0 \in J^-$ ou $J^+$ et si $y_0 \in \mathbb{R}$. Il y a une unique solution qui satisfait $y(t_0)=y_0$
+
+\chapter{Les nombres complexes}
+	\section{Définitions, représentations}
+
+
+\begin{wrapfigure}[6]{r}{0pt}
+
+\begin{tikzpicture}
+	\draw[red] (-2, 0) -- (2, 0) node [midway, below] {$\mathbb{R}$};
+	\draw[blue] (0, -2) -- (0, 2) node [midway, left] {$\mathbb{R}$};
+	\draw[green] (0, 0) -- (45:0) coordinate(A) node [midway, above] {$r$};
+	\draw[fill=black] (A) circle (0.05) node [right] {$z$};
+	\draw[dashed] (A) --+(0,-1.44) node [left] {$y$}; 
+	\draw[dashed] (A) --+(-1.44, 0) node [below] {$x$}; 
+
+	\draw[green] (0, 0) -- (-45:0) coordinate(B) node [midway, below] {$r$};
+	\draw[fill=black] (A) circle (0.05) node [right] {$\overline{z}$};
+	\draw[dashed] (B) --+(0,1.44) node [left] {$-y$}; 
+
+	\draw[blue] (0.5, 0) arc (0:30:0.5) node [right] {$\theta$};
+	\draw[blue] (0.5, 0) arc (30:0:0.5) node [right] {$-\theta$};
+\end{tikzpicture}
+
+\end{wrapfigure}
+On note i un nombre tel que $i^2 = -1$
+
+\begin{table} {l|c|r}
+{} & Euclidien & Polaire \\
+\hline
+$z \in \mathbb{C}$ & $x+y, x, y \in \mathbb{R}$ & $re^{i\theta}$
+$Re(z)$  &$x$&   $r \cos \theta & r \geq 0, \theta \in \mathbb{R}$ \\
+$Im(z)$	& $y$ & $r \sin \theta$ \\
+$|z|$ & $\sqrt{x^2 + y^2}$ & r \\
+$arg(z)$&$\arccos(\frac{x}{\sqrt{x^2 + y^2}})=\arcsin(\frac{y}{\sqrt{x^2 + y^2}}) $ & $\theta$ \\
+$\overline(z)$ : conjugué & $x-iy$ & $r\cdot e^{-i\theta}$ \\
+nombre réels & $x \in \mathbb{R}$ & $r$ \\
+imaginaire purs & $iy, y \in \mathbb{R}$ & $re^{i(\frac{\pi}{2} + k\pi)}, k \in \mathbb{Z}$
+\end{table}
+
+\paragraph{Propriétés} \[z = x+iy = re^{i\theta}, z' = x'+iy' = r'e^{i\theta '}\]
+
+\begin{itemize}
+	\item $z = z'$
+		\begin{itemize}
+			\item $x = x'$ et $y=y'$
+			\item $r=r'$ et $\theta = \theta' + 2k\pi, k \in \mathbb{Z}$
+		\end{itemize}
+	Donc $z=0 \left\{ \begin{array}{rcl}
+					x &=& 0 \text{ et } y = 0\\
+					r &=& 0\end{array}\right.$
+	
+	\item[addition] \[z+z' = (x+x') + i(y+y')\]
+	\item[multiplication] \[\begin{array}{rcl}
+		z\cdot z' &=& (xx' - yy') + i(xy'+x'y) \\
+&=& rr'e^{i\theta \cdot \theta'}\end{array}\]
+
+	\item[multiplication par $a \in \mathbb{R}$]
+		\[\begin{array}{rclr}
+			az &=& (ax) + i(ay) \\
+&=& (|a|r)e^{i\theta} & \text{si } a > 0 \\
+&=& (|a|r)e^{i(\theta + \pi)} & \text{si } a < 0 \end{array}\]
+
+\end{itemize}
