@@ -4,7 +4,7 @@
 		\item PFD : $\sum_i \vec{F_i} = m\vec{a}$
 		\item Sur une seule dimension : \[\left\{\begin{array}{rcl}
 			\vec{v} &=& \dot{x} \cdot \vec{i} \\
-			\vec{F_i} &=& F_i x \vec{i}
+						\vec{F_i} &=& F_{ix} \vec{i}
 		\end{array}\right.\]
 	\end{itemize}
 		\[\begin{array}{rclr}
@@ -13,8 +13,8 @@
 			m\ddot{x}\dot{x} &=& \sum_i F_{ix} \cdot \dot{x} \\
 			m(\frac{d}{dt}(\dot{x(t)}))^2 \frac{1}{2} &=& \sum_i F_{ix} \cdot \dot{x} \\
 			\int_A^B m(\frac{d}{dt}(\dot{x(t)}))^2 \frac{1}{2} dt &=& \int_A^B \sum_i F_{ix} dx & \dot{x} = \frac{dx}{dt} \\
-			\frac{1}{2} m [\dot{x(t)}^2]_A^B &=& \int_A^B \sum_i F_{ix} dx = \int_A^B \sum_i dW(F_{ix}) dx \\
-			\text{D'où } \frac{1}{2}m [\dot{x}]^B_A = \sum_i W_{A \to B} (\vec{F_i})
+				\frac{1}{2} m [\dot{x(t)}^2]_A^B &=& \int_A^B \sum_i F_{ix} \vec{i}dx = \int_A^B \sum_i dW(F_{ix}\vec{i}) dx \\
+			\text{D'où } \frac{1}{2}m [\dot{x}^2]^B_A = \sum_i W_{A \to B} (\vec{F_i})
 		\end{array}\]
 
 \paragraph{Exemple d'utilisation}
@@ -152,11 +152,10 @@ Sur chaque direction, $W_{A \to B} = \int_A^B F_{x, y, z} d(x, y, z) = E_p (x, y
 
 \paragraph{En 3D} \[dW = \vec{F}\vec{dl} = -dE_p\]
 
-Ou $\vec{F} = -(\frac{dE_p}{dx}\vec{i} + \frac{dE_p}{dy}\vec{j} + \frac{dE_p}{dz}\vec{k}$
+Ou $\vec{F} = -(\frac{dE_p}{dx}\vec{i} + \frac{dE_p}{dy}\vec{j} + \frac{dE_p}{dz}\vec{k})$ ~\\
 À l'inverse, \[\begin{array}{rcl}
-		dE_p(x, y, z) &=& F_xdx \\
-							   &=& Fy dy \\
-					  &=& F_z dz
+		dE_p(x, y, z) &=& F_xdx + Fy dy + F_z dz \\
+												 &=& \overrightarrow{grad}(E_p)
 \end{array}\]
 
 $E_p$ est connu à une constante près.

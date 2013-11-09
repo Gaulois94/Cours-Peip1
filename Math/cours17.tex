@@ -97,39 +97,37 @@ Finalement, si $t_0 \in J^-$ ou $J^+$ et si $y_0 \in \mathbb{R}$. Il y a une uni
 	\section{Définitions, représentations}
 
 
-\begin{wrapfigure}[6]{r}{0pt}
-
 \begin{tikzpicture}
-	\draw[red] (-2, 0) -- (2, 0) node [midway, below] {$\mathbb{R}$};
-	\draw[blue] (0, -2) -- (0, 2) node [midway, left] {$\mathbb{R}$};
-	\draw[green] (0, 0) -- (45:0) coordinate(A) node [midway, above] {$r$};
+	\draw[red] (-2, 0) -- (2, 0) node [midway, below right] {$\mathbb{R}$};
+	\draw[blue] (0, -2) -- (0, 2) node [midway, above left] {$I}$};
+	\draw[green] (0, 0) -- (45:1.44) coordinate(A) node [midway, above] {$r$};
+	\getxy{\x}{\y}{A}
+	\draw[green] (0, 0) -- (-45:1.44) node [midway, above] {$r$};
 	\draw[fill=black] (A) circle (0.05) node [right] {$z$};
-	\draw[dashed] (A) --+(0,-1.44) node [left] {$y$}; 
-	\draw[dashed] (A) --+(-1.44, 0) node [below] {$x$}; 
+	\draw[dashed] (A) --(0,\y) node [left] {$y$}; 
+	\draw[dashed] (A) --(\y, 0) node [below right] {$x$}; 
 
-	\draw[green] (0, 0) -- (-45:0) coordinate(B) node [midway, below] {$r$};
-	\draw[fill=black] (A) circle (0.05) node [right] {$\overline{z}$};
-	\draw[dashed] (B) --+(0,1.44) node [left] {$-y$}; 
+	\draw[fill=black] (\x, -\y) circle (0.05) node [right] {$\overline{z}$};
+	\draw[dashed] (\x, -\y) --(0,-\y) node [left] {$-y$}; 
 
-	\draw[blue] (0.5, 0) arc (0:30:0.5) node [right] {$\theta$};
-	\draw[blue] (0.5, 0) arc (30:0:0.5) node [right] {$-\theta$};
+	\draw[blue] (0.5, 0) arc (0:45:0.5) node [right] {$\theta$};
+	\draw[blue] (0.5, 0) arc (0:-45:0.5) node [right] {$-\theta$};
 \end{tikzpicture}
 
-\end{wrapfigure}
 On note i un nombre tel que $i^2 = -1$
 
-\begin{table} {l|c|r}
+\begin{tabular} {r|c|l}
 {} & Euclidien & Polaire \\
 \hline
-$z \in \mathbb{C}$ & $x+y, x, y \in \mathbb{R}$ & $re^{i\theta}$
-$Re(z)$  &$x$&   $r \cos \theta & r \geq 0, \theta \in \mathbb{R}$ \\
+$z \in \mathbb{C}$ & $x+y, x, y \in \mathbb{R}$ & $re^{i\theta}$ \\
+$Re(z)$  &$x$&   $r \cos \theta : r \geq 0, \theta \in \mathbb{R}$ \\
 $Im(z)$	& $y$ & $r \sin \theta$ \\
 $|z|$ & $\sqrt{x^2 + y^2}$ & r \\
 $arg(z)$&$\arccos(\frac{x}{\sqrt{x^2 + y^2}})=\arcsin(\frac{y}{\sqrt{x^2 + y^2}}) $ & $\theta$ \\
 $\overline(z)$ : conjugué & $x-iy$ & $r\cdot e^{-i\theta}$ \\
 nombre réels & $x \in \mathbb{R}$ & $r$ \\
 imaginaire purs & $iy, y \in \mathbb{R}$ & $re^{i(\frac{\pi}{2} + k\pi)}, k \in \mathbb{Z}$
-\end{table}
+\end{tabular}
 
 \paragraph{Propriétés} \[z = x+iy = re^{i\theta}, z' = x'+iy' = r'e^{i\theta '}\]
 
@@ -154,4 +152,11 @@ imaginaire purs & $iy, y \in \mathbb{R}$ & $re^{i(\frac{\pi}{2} + k\pi)}, k \in 
 &=& (|a|r)e^{i\theta} & \text{si } a > 0 \\
 &=& (|a|r)e^{i(\theta + \pi)} & \text{si } a < 0 \end{array}\]
 
+	\item[conjugués et opération]
+		\[\begin{array}{rcl}
+				\overline(z+z') &=& \overline(z) + \overline(z') , \overline(-z) = -\overline(z) \\
+				\overline(z\cdot z') = \overline(z) \cdot \overline(z') \\
+				z+\overline(z) &=& 2Re(z) \\
+				z - \overline(z) = 2 Im(z) \\
+		z\overline(z) &=& Re(z)^2 + Im(z)^2 = |z|^2\end{array}\]
 \end{itemize}

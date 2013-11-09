@@ -1,0 +1,195 @@
+\section{POlynôme de degré 2 à  coefficient réels}
+
+$P(x) = ax^2 + bx + c, (a, b, c) \in \mathbb{R}^3$
+
+Discriminant $\Delta = b^2 - 4ac$
+
+\begin{itemize}
+	\item[$\Delta > 0$] il y a 2 racines réels : $\frac{-b \pm \sqrt{\Delta}}{2a}$
+	\item[$\Delta = 0$] il existe une racine double : $\frac{-b}{2a}$
+	\item[$\Delta < 0$] il n'y a pas de racines réels, mais il existe 2 racines réels conjugués $\frac{-b \pm i\sqrt{-\Delta}}{2a}$
+\end{itemize}
+
+\paragraph{Remarque}, il existe une seul formule : $\sqrt{-b \pm \delta}{2a}$ avec $\delta$ tel que $\delta^2 = \Delta$.
+
+\paragraph{Exemple}
+
+\[\begin{array}{rcl}
+	x^2 + 1 &=& 0 \\
+	\Delta &=& 0 - 4 = -4 < 0\\
+	\text{Les racines sont} &:& \frac{-0 \pm i\sqrt{4}}{2} = \pm i\end{array}\]
+
+\paragraph{Exemple} $x^2 -2x + 2$
+
+\[\begin{array}{rcl}
+	\Delta &=& 4 - 4\cdot 2 = -4 < 0 \\
+	\text{2 racines complexe} &:& \sqrt{2 \pm i\sqrt{4}}{2} = 1 \pm i\end{array}\]
+
+\section{Fonctions complexes}
+
+\[f : A \rightarrow \mathbb{C} \text{ avec } A \cup \mathbb{C}\]
+
+$Re, Im, |z| \mathbb{C}  \rightarrow \mathbb{R}$
+
+\[\left.\begin{array}{rcl}
+	\mathbb{C} &\rightarrow & \mathbb{C} \\
+	z &\to& \overline{z}
+\end{array}\right) \text{Symétrie d'axe } O_x\]
+
+\[
+\begin{array}{rcl}
+\exp : \mathbb{R} &\rightarrow& \mathbb{C} \\
+\theta &\to& e^{i\theta} = \cos(\theta) + i \sin(\theta)\end{array}\]
+
+\[
+\begin{array}{rcl}
+\exp : \mathbb{R} &\rightarrow& \mathbb{R} \\
+x &\to& e^{x}\end{array}\]
+
+\begin{wrapfigure}[6]{c}{0pt}
+	\begin{tikzpicture}
+		\draw[] (-2, 0) -- (4, 0);
+		\draw[] (0, -2) -- (0, 2);
+		\draw[] (0, 0) circle(1);
+		\draw[thick, red] (0, 0) (30:1) node[right] {$e^{i\theta}$};
+	\end{tikzpicture}
+\end{wrapfigure}
+
+On cherche à définir une fonction exponentielle $\exp : \mathbb{C} \rightarrow \mathbb{C}$
+
+tel que \[\begin{array}{rcl}
+\forall(z_1, z_2) &\in& \mathbb{C}^2 \\
+e^{z_1 + z_2} &=& e^{z_1}\cdot e^{z_2}\end{array}\]
+
+En particulier, on a pour $z = x+iy$
+
+\[\begin{array}{rclr}
+	e^z &=& e^x \cdot e^{iy} \\
+		&=& re^{i\theta} \\
+		e^z &=& e^{Re(z)} (\cos(Im(2)) + i \sin(Im(2))) & \text{Definition de l'exponentielle complexe} \\
+		|e^z| &=& e^{Re(z)}
+\end{array}\]
+
+\paragraph{Remarque} comme pour les fonctions réelles, $f : A \rightarrow \mathbb{C}$
+
+\begin{itemize}
+	\item f est injective si pour tous $z_1 \in A, z_2 \in A, z_1 \neq z_2 \Rightarrow f(z_1) \neq f(z_2)$
+
+	\item f est surjective si $\forall z \in \mathbb{Z}, \exist z' \in A, \text{ tq } f(z') = z$
+	\item f est bijective si elle est injective et surjective.
+\end{itemize}
+
+\paragraph{Exemple} $\exp : \mathbb{C} \rightarrow \mathbb{C}$ n'est pas surjective : $|e^z| = e^{Re(z)} > 0$. 0 n'a donc pas d'antécédent par $\exp$
+
+n'est pas injective.
+\[\begin{array}{rclr}
+z_1 = x + iy \neq z_2 &=& x+i(y+2\pi) \\
+e^{z_2} = e^x \cdot e^{i(y+2\pi)} &= e^x \cdot e^{iy} \\
+&&& = e^{z_2}\end{array}\]
+
+\paragraph{Remarque}
+On a bien:
+\[\begin{array}{rl}
+	\forall z_1 \in \mathbb{C},& \forall z_2 \in\mathbb{C} \\
+e^{z_1 + z_2} =& e^{z_1}\cdot e^{z_2}
+\end{array}\]
+
+\[\forall z \in \mathbb{C}, \overline{e^z} = e^{\overline{z}}\]
+
+\[\begin{array}{rcl}
+	z &=& x+iz \\
+\overline{e^{z}} &=& \overline{e^x \cdot e^{iy}} = \overline{e^x} \cdot \overline{e^{iy}} \\
+&=& e^x \cdot e^{iy} \\
+&=& e^{x-iy} = e^{\overline{z}}\end{array}\]
+
+\section{Equation différentielles, linéaires d'ordre 1. homogènes et complexes}
+
+\subsection{Cas particulier des fonctions à valeur complexes}
+
+$f : I \rightarrow \mathbb{C}, I$ intervalle ouvert de $\mathbb{R}$.
+
+On peut écrire pour tout $t \in I$
+
+\[f(t) = \underbrace{Re(f(t))}_{f_1} + i\underbrace{Im(f(t))}_{f_2}\]
+
+avec $f_1, f_2 : I \rightarrow \mathbb{R}$
+
+\paragraph{Remarque}
+
+\[\begin{array}{rcl}
+	f_1 &=& \frac{1}{2}(f + \overline{f}) = Re o f \\
+	f_2 &=& \frac{1}{2}(f - \overline{f}) = Im o f
+\end{array}\]
+
+\paragraph{Proposition} $f : I \rightarrow \mathbb{C}, t_0 \in I$
+
+f est continue en $t_0$ si et seulement si $Re(f), Im(f) I \rightarrow \mathbb{R}$ sont continues en $t_0$
+
+\paragraph{Proposition} $f : I \rightarrow \mathbb{C}, t_0 \in I$
+
+f est dérivable en $t_0$ si et seulement si $Re(f), Im(f) I \rightarrow \mathbb{R}$ sont dérivable en $t_0$
+ET $f'(t_0) = (Re(f))'(t_0) + i (Im(f))'(t_0)$
+
+\paragraph{Proposition} $f : I \rightarrow \mathbb{C}, t_0 \in I$
+
+f est intégrable en $I$ si et seulement si $Re(f), Im(f) I \rightarrow \mathbb{R}$ sont intégrables sur $I$
+ET $\int f(t)dt = (\int Re(f(t))dt) + i (\int Im(f(t))dt)$
+
+\paragraph{Remarque}
+
+$z_n \rightarrow l$ avec $z_n \in \mathbb{C}, l \in \mathbb{C}$
+
+\[\Rightarrow \left\{\begin{array}{rcl}
+	Re(z_n) &\rightarrow& Re(l) \\
+	Im(z_n) &\rightarrow& Im(l)\end{array}\right.\]
+
+\paragraph{Exemple}
+
+\[\begin{array}{rcl}
+	\mathbb{R} &\rightarrow& \mathbb{C} \\
+	t &\mapsto& e^{it} = \cos t + i \sin t
+\end{array}\]
+
+est continue sur $\mathbb{R}$ et de classe $C^\infty$
+
+\[\begin{array}{rcl}
+	f(t) &=& e^{it} = \cos t + i \sin t \\
+	f'(t) &=& (\cos 't) + i(\sin 't) \\
+		&=& -\sin t + i \cos t \\
+		&=& i(\cos t + i \sin t) \\
+		&=& i\cdot(e^{it}) \\
+							\\
+	\text{et } \int f(t)dt &=& (\int\cos t dt) + i (\int \sin t dt) \\
+		&=& \sin t - i \cos t \\
+		&=&  \frac{1}{i}(i \sin t + \cos t) \\
+		&=& \frac{1}{i} e^{it} + (c_1 + i c_2)
+\end{array}\]
+
+\subsection{Equation différentielle d'ordre 1 homogène}
+
+\paragraph{Théorème} Soit $a : I \rightarrow \mathbb{C}$
+
+(I intervalle ouvert de $\mathbb{R}$) continue. Les solutions de l'équation différentielle \[(E) z' = az\]
+Sont \[\left\{\begin{array}{rclr}
+z : I & \rightarrow& \mathbb{R} \\
+t &\mapsto & De^{A(t)} & D \in \mathbb{C}\end{array}\right.\]
+
+et $A(t)=\int a(s)ds$ (une primitive de a).
+
+\paragraph{Exemple} $E : z' = (2+8it)$
+
+\[\begin{array}{rcl}
+	a : \mathbb{R} & \rightarrow & \mathbb{C}\\
+t &\mapsto & 2+8it\end{array}\]
+
+Toutes les solutions de (E) sont les fonctions du type \[\begin{array}{rclr}
+z : \mathbb{R} &\rightarrow& \mathbb{C}\\
+z(t) &=& De^{A(t)} & D \in \mathbb{C}
+\\
+A(t) &=& \int a(s) ds = \int (2+8is)ds \\
+&=& (\int 2ds) + i(\int 8s ds) \\
+&=& 2t + i(4t^2) \\
+z(t) &=& De^{(2t +4it^2)}
+\end{array}\]
+
+avec $D \in \mathbb{C}$
