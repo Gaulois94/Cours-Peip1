@@ -79,11 +79,11 @@ $y(t)$ ne peux donc pas s'annuler sur I, car sinon il y(t) serait une constante 
 
 \subsection{Et le b ? : équations non homogène}
 
-\paragraph{Théorème} Soit $a, b : I \rightarrow \mathbb{R}$ continue. Toutes les solutions de l'équation (E) \ul{sur I} sont les fonctions $C^1$ \[y(t) = e^{A(t)} (C + \int_\alpha^t e^{-A(t)} b(s)ds\]
+\paragraph{Théorème} Soit $a, b : I \rightarrow \mathbb{R}$ continue. Toutes les solutions de l'équation (E) \ul{sur I} sont les fonctions $C^1$ \[y(t) = e^{A(t)} (C + \int_\alpha^t e^{-A(s)} b(s)ds)\]
 
 où $\left\{\begin{array}{rcl}
-	C &\in& \mathbb{R} \\
-	\alpha &\in& I \\
+	C \in \mathbb{R} \\
+	\alpha \in I \\
 	A(t) \text{ primitive de } a(t)\end{array}\right.$
 
 	\paragraph{Démonstration} \begin{itemize}
@@ -91,9 +91,9 @@ où $\left\{\begin{array}{rcl}
 \item reste à voir si y satisfait (E) ?\end{itemize}
 
 	\[\begin{array}{rcl}
-			y'(t) &=& {e^{A(t)}} '(C + \int_\alpha^t e^{-A(t)} b(s)ds + e^{A(t)} e^{-A(t)} b(t) \\
-						   &=& a(t) y(t) + b(t) \\
-	\text{car } y'(t) &=& a(t)e^{A(t)}(C + \int_\alpha^t e^{-A(t)}b(s)ds) + b(t)\end{array}\]
+			y'(t) &=& {e^{A(t)}} '(C + \int_\alpha^t e^{-A(s)} b(s)ds) + e^{A(t)} e^{-A(t)} b(t) \\
+	&=& a(t)e^{A(t)}(C + \int_\alpha^t e^{-A(s)}b(s)ds) + b(t)\\
+						   &=& a(t) y(t) + b(t) \end{array}\]
 
 	Reste à voir si toutes les solutions sont de la forme ci dessus.
 
@@ -101,7 +101,7 @@ où $\left\{\begin{array}{rcl}
 
 	\[\begin{array}{rcl}
 			z'(t) = (y\cdot e^{-A(t)})' &=& y'e^{-A(t)} + y(-a(t))e^{-A(t)} \\
-				   &=& a(t)y + b(t)e^{-A(t)} - a(t)ye^{A(t)} \\
+				 &=& a(t)ye^{-A(t)} + b(t)e^{-A(t)} - a(t)ye^{-A(t)} \\
 					  &=& b(t)e^{-A(t)} \end{array}\]
 
 			Donc $z = \int b(s)e^{-A(s)} ds$, c'est à dire il existe une constante $C \in \mathbb{R}$ tel que \[z(t) = \int_\alpha^t b(s)e^{-A(s)}ds + C\]. D'où 
@@ -115,7 +115,7 @@ où $\left\{\begin{array}{rcl}
 
 			\paragraph{Démonstration} C'est la solution avec $C_0$ qui vérifie : \[\begin{array}{rcl}
 					y(t_0) &=& y_0 \\
-					e^{A(t_0)}(C_0 + \int_\alpha^t e^{-A(s)bsds}) &=& y_0 \\
+				e^{A(t_0)}(C_0 + \int_\alpha^t e^{-A(s)}bsds) &=& y_0 \\
 			\text{c'est à dire } C_0 &=& y_0e^{-A(t_0)} - \int_\alpha^t e^{-A(s)}b(s)ds\end{array}\]
 
 Le tout étant des constantes, $C_0$ est une constante unique.

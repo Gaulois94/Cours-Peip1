@@ -6,9 +6,9 @@ On cherche une solution de $y'=a(t)y+b(t)$. On fait "varier" la constante. C'est
 
 Alors si $y$ est bien solution de (E), \[\begin{array}{rclr}
 y'&=&a(t)y + b(t) \\
-C'(t)e^{A(t)} + C(t)(a(t)+e^{A(t})) &=& a(t)C(t)e^{A(t)} + b(t) \\
+C'(t)e^{A(t)} + C(t)(a(t)\cdot e^{A(t)}) &=& a(t)C(t)e^{A(t)} + b(t) \\
 \text{On obtient } C'(t)e^{A(t)} &=& b(t) \\
-\text{Soit } C'(t)&=& b(t)e^{A(t)} \\
+\text{Soit } C'(t)&=& b(t)e^{-A(t)} \\
 \text{Donc } C(t) &=& \int^t_\alpha b(s)e^{-A(s)} ds + D & D \in \mathbb{R} \end{array}\]
 
 \subsection{Équations non-résolues}
@@ -16,7 +16,7 @@ C'(t)e^{A(t)} + C(t)(a(t)+e^{A(t})) &=& a(t)C(t)e^{A(t)} + b(t) \\
 \[u(t)y' = v(t)y+w(t) \text{ } (F)\] Avec $u, v, w : I \rightarrow \mathbb{R}$ continues, (I un intervalle ouvert).
 
 On travaille sur les intervalles où $u$ ne s'annule pas. ~\\
-Sur $J \subset I$ J un intervalle ouvert où u ne s'annule pas, on réécrit (F) comme $y' = \underbrace{\frac{v(t)}{u(t)}}_{a(t)}y + \underbrace{\frac{w(t)}{u(t)}_{b(t)}} $
+Sur $J \subset I$ J un intervalle ouvert où u ne s'annule pas, on réécrit (F) comme $y' = \underbrace{\frac{v(t)}{u(t)}}_{a(t)}y + \underbrace{\frac{w(t)}{u(t)}}_{b(t)} $
 
 On regarde si on peut "raccorder" les solutions de manière $C^1$
 
@@ -35,7 +35,7 @@ Les solutions de l'équation différent homogène associée \[y' = \frac{\cos t}
 Les solutions sont \[\begin{array}{rclr}
 y(t) &=& C \exp(\int^t_\alpha \underbrace{\frac{\cos s}{\sin s}}_{\frac{\sin't}{\sin t}}ds) &\text{sur} J^+ (\alpha \in J^+) \\
 y(t) &=& C \exp(\int^t_\alpha \frac{\sin's}{\sin s}ds) \\ 
-y(t) &=& C \exp([\ln(|\sin t|)]^t_\alpha)) \\ 
+y(t) &=& C \exp([\ln(|\sin t|)]^t_\alpha) \\ 
 y(t) &=& C \exp([\ln(|\sin t|)]^t_{\frac{\pi}{2}}) & \text{On choisi } \alpha = \frac{\pi}{2}
 \end{array}\]
 
@@ -53,6 +53,7 @@ Sur $J^+$
 
 On cherche juste \[\begin{array}{rcl}
 &&\int e^{-A(s)}b(s)ds \\
+&=& \int \frac{1}{e^{ln({\sin s})}} \cdot e^s \sin s ds \\
 &=& \int \frac{1}{\sin s} \cdot e^s \cdot \frac{\sin^2 s}{\sin s} ds \\
 &=& \int e^s ds \\
 &=& e^t + C\end{array}\]
@@ -69,7 +70,7 @@ D'où la solution générale de (F) sur $J^+$ est :
 	\fbox{$y(t) = \sin t (C+e^t), C\in \mathbb{R}$}
 \end{center}
 
-De même, sur $J^-$ la solution générale de (F) est : $y(t) = \sin t(D+e^t), D\int \mathbb{R}$
+De même, sur $J^-$ la solution générale de (F) est : $y(t) = \sin t(D+e^t), D\in \mathbb{R}$
 
 Existe-t-il des fonctions continues vérifiant (F) sur $I = ]-\pi, \pi[$
 
@@ -77,7 +78,7 @@ si une telle fonction f existe alors f et en particulier solution sur $J^-$ et $
 	\sin t(C + e^t) & \text{si } t \in J^- \\
 	\sin t(D + e^t) & \text{si } t \in J^+\end{array}\right.\] 
 
-On veut prolonger en 0 :\[\lim_{\substack{t \to 0 \\ t > 0}} f(t) = 0 = \lim_{\substack{\to 0 \\ t < 0}}\]
+			On veut prolonger en 0 :\[\lim_{\substack{t \to 0 \\ t > 0}} f(t) = 0 = \lim_{\substack{t \to 0 \\ t < 0}} f(t)\]
 
 De plus
 \[\begin{array}{rclr}
@@ -99,7 +100,7 @@ Finalement, si $t_0 \in J^-$ ou $J^+$ et si $y_0 \in \mathbb{R}$. Il y a une uni
 
 \begin{tikzpicture}
 	\draw[red] (-2, 0) -- (2, 0) node [midway, below right] {$\mathbb{R}$};
-	\draw[blue] (0, -2) -- (0, 2) node [midway, above left] {$I}$};
+	\draw[blue] (0, -2) -- (0, 2) node [midway, above left] {$I$};
 	\draw[green] (0, 0) -- (45:1.44) coordinate(A) node [midway, above] {$r$};
 	\getxy{\x}{\y}{A}
 	\draw[green] (0, 0) -- (-45:1.44) node [midway, above] {$r$};
@@ -155,8 +156,8 @@ imaginaire purs & $iy, y \in \mathbb{R}$ & $re^{i(\frac{\pi}{2} + k\pi)}, k \in 
 	\item[conjugués et opération]
 		\[\begin{array}{rcl}
 				\overline(z+z') &=& \overline(z) + \overline(z') , \overline(-z) = -\overline(z) \\
-				\overline(z\cdot z') = \overline(z) \cdot \overline(z') \\
+				\overline(z\cdot z') &=& \overline(z) \cdot \overline(z') \\
 				z+\overline(z) &=& 2Re(z) \\
-				z - \overline(z) = 2 Im(z) \\
+				z - \overline(z) &=& 2 Im(z) \\
 		z\overline(z) &=& Re(z)^2 + Im(z)^2 = |z|^2\end{array}\]
 \end{itemize}
