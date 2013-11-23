@@ -152,8 +152,8 @@ Em &=& Ec + Ep \\
 	\draw[->, thick] (0, 0) -- (0, 3);
 	\draw[->, thick] (0, 0) -- (5, 0) node [left] {t};
 	\draw[green] (5, 2) -- (0, 2) node [right] {Em};
-	\draw[red] plot(\x, {1+cos(\x r)}) node [left] {Ep};
-	\draw[blue] plot(\x, {1+sin(\x r)}) node [left] {Ec};
+	\draw[red, domain=0:3] plot(\x, {1+cos(\x r)}) node [left] {Ep};
+	\draw[blue, domain=0:3] plot(\x, {1+sin(\x r)}) node [left] {Ec};
 	\draw[<->] (0, 2.3) -- (3.14, 2.3) node [midway, above] {$\frac{T}{2}$};
 	\draw[<->] (0, -0.3) -- (1.55, -0.3) node [midway, below] {$\frac{T}{4}$};
 \end{tikzpicture}

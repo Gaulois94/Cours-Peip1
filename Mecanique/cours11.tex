@@ -1,0 +1,158 @@
+\section{Oscillateur forcé}
+
+Soit un oscillateur harmonique libre. On excite avec une force extérieur $F_{ext}(t) = F_{ext}\cos(\omega t)$
+
+Le PFD :
+\begin{itemize}
+	\item force de rappel($-kx$)
+	\item force extérieur $F_{ext}(t)$
+\end{itemize}
+
+L'équation différentielles du mouvement : \[\ddot{x}(t)+\omega_0^2 x(t) = \frac{F_{ext}}{m}\cos(\omega t)\]
+
+La solution de cette équation différentielles est de la forme \[x(t) = x_p + x_h\]
+
+On cherche les formes complexes de $x(t)$ : $\tilde{x_p}$ et $\tilde{x_h}$
+
+\[x(t) = Re(\tilde{x}(t))\]
+
+\subsection{Solution homogène}
+\[\begin{array}{rcl}
+		\ddot{x}_h + \omega^2 + x_h &=& 0 \\
+		\ddot{x}_h &=& X_0\cos(\omega_0 t + \varphi_0) 
+	\end{array}
+\]
+
+Vu au point 1.1 et 1.2.
+
+\subsection{Solution particulière}
+
+\[\begin{array}{rccl}
+		\tilde{x}_p &=& \tilde{A}e^{i\omega t} &\tilde{A} = A e^{i\varphi} \\
+		\dot{\tilde{x_p}} &=& i \omega \tilde{x_p} \\
+		\ddot{\tilde{x_p}} & -\omega^2 \tilde{x_p} \\
+		-\omega^2 \tilde{x_p}+\omega_0^2\tilde{x}_p &=& \frac{F_{ext}}{m}e^{i\omega t} & \forall t \\
+		(-\omega^2 + \omega_0^2)\tilde{x_p} &=& \frac{F_{ext}}{m} e^{i\omega t} \\
+		(-\omega^2 + \omega_0^2) \tilde{A}e^{i\omega t} &=& \frac{F_{ext}}{m} \\
+		\tilde{A} &=& \frac{F_{ext}}{m} \cdot \frac{1}{\omega_0^2 - \omega^2} \\
+		\omega_0^2 = \frac{k}{m} & \Rightarrow & \tilde{A} = \frac{F_{ext}}{k}\cdot \frac{\omega_0^2}{\omega_0^2 - \omega^2} \\
+		\text{Comme } \tilde{A} &=& Ae^{i\varphi} &  x = Ae^{i(\omega t + \varphi)}\\
+		Re &=& \frac{F_{ext}}{k} \cdot \frac{\omega_0^2}{\omega_0^2 - \omega^2} \cdot \cos(\omega t + \varphi)\\
+		   &=& A \cos(\omega t + \varphi) \\
+		A &=&\frac{F_{ext}}{k} \cdot \frac{\omega_0^2}{|\omega_0^2 - \omega^2|} \\
+		\cos(\omega t + \varphi) &=& \cos(\omega t) & \varphi = 0, \omega < \omega_0 \\
+																					   &&& \varphi = \pi, \omega > \omega_0 \end{array}\]
+
+		Solution générale :
+		\[\begin{array}{rcl}
+				x(t) &=& X_0\cos(\omega_0 t + \varphi_0) + A\cos(\omega t + \varphi) \\
+						   &=& X_0\cos(\omega_0 t + \varphi_0) + A_{ext}(\frac{\omega_0^2}{|\omega_0^2 - \omega^2|}) \cos(\omega t + \varphi)& \text{avec } A_{ext} = \frac{F_{ext}}{k}
+			\end{array}\]
+
+	\section{Oscillateur amorti}
+
+	\begin{itemize}
+		\item Oscillateur Harmonique
+		\item Force de frottement visqueux, $\lambda : \vec{f} = - \lambda \dot{x}\vec{i}$
+	\end{itemize}
+
+	L'équation différentielle du mouvement : \[\ddot{x} + \frac{\lambda}{m} \dot{x} + \omega_0^2 x = 0\]
+
+	Choix de changement de variable :
+	\[\begin{array}{rcl}
+			\omega_0 &=& \sqrt{\frac{k}{m}} \\
+	{[\frac{\lambda}{m}]} &=& T^{-1}\end{array}\]
+
+	On définit $\frac{\lambda}{m} = \frac{2}{\tau}$
+
+	\[\ddot{x} + \frac{2}{\tau} + \omega_0^2 x = 0\]
+
+	Oscillation harmonique ammortie
+
+	La solution générale est de la forme \[x(t) = e^{-rt}\] avec r quelconque !
+
+	\[\begin{array}{rcl}
+			\dot{x} &=& -rx \\
+			\ddot{x} &=& r^2 x \\
+			r^2 x - \frac{2}{\tau} rx + \omega_0^2 x &=& 0\\
+		r^2 - \frac{2}{\tau} + \omega_0^2 &=& 0\] est l'équation caractéristique de l'équation différentielle.
+
+	Solution de l'équation caractéristique :
+	\[\begin{array}{rcl}
+		r_{\pm} &=& \frac{-b \pm \sqrt{\Delta}}{2a}; &  \text{ avec } a=1, b=-\frac{2}{\tau}, c = \omega_0^2 \\
+							   &=& \frac{1}{\tau} \pm  \sqrt{\frac{1}{\tau^2} - \omega_0^2} \\
+			&=& \frac{1}{\tau^2} \sqrt{1 - \omega_0^2 \tau^2}\end{array}\]
+
+	Selon les valeurs de $\frac{1}{\tau^2}$ et $\omega_0^2$, on aura deux types de solutions.o
+	\paragraph{Cas $\omega_0 \tau < 1$ ($\lambda$ grands, frottement fort}
+
+	$r_{\pm}$ sont réelles :
+	\[\begin{array}{rccl}
+			x(t) &=& Ae^{-r_+\cdott} + Be^{-r_- \cdot t} & A, B\text{ sont à définir avec les conditions initiales }\\
+			   &=& \frac{1}{r_+ - r_-} [-r_+ x_0 + v_0)e^{-r_- \cdot t} - (r_- \cdot x_0 + v_0)e^{-r_+ \cdot t}
+	\end{array}\]
+
+	Pour des temps longs :
+	\[r_{\pm} = \frac{1}{\tau}[1\pm\sqrt{1-\omega^2 \tau^2}]\]
+
+	$e^{-r_+ \cdot t} \xrightarrow[]{t \to +\infty} 0$
+
+	Le comportement de x suis $e^{-r_- \cdot t}$
+
+	\paragraph{Cas $\omega_0 \tau > 1$, frottement faible}
+	\[r_{\pm} = \frac{1}{\tau} \pm \sqrt{\frac{1}{\tau}\omega_0^2} = \frac{1}{\tau^2} \pm i \sqrt{\omega_0^2 - \frac{1}{\tau^2}}\]
+
+	On note $\omega_1^2 = \omega_0^2 - \frac{1}{\tau}$
+
+	La solution générale est de la forme : 
+	\[\begin{array}{rcl}
+			x(t) &=& Ce^{-r_+ \cdot t} + De^{-r_- \cdot t} \\
+					   &=& e^{-\frac{t}{\tau}} (Ce^{i\omega t} + De^{-i\omega_1 t} \end{array}\]
+
+	Pour que la solution soit réelle, $C = \overline{D}$
+On note $C = \overline{D} = \frac{\tilde{k}}{2}$
+
+\[\frac{\tilde{k}}{2} = \frac{K}{2}e^{i\varphi}\]
+
+On remplace dans $x(t)$ :
+\[\begin{array}{rcl}
+		x(t) &=& e^{-\frac{t}{\tau}} \cdot \frac{K}{2} (e^{i(\omega_1 t + \varphi)} + e^{-i(\omega_1 t + \varphi)} \\
+				   &=& K \cdot e^{-\frac{t}{\tau}}(\cos(\omega_1 t + \varphi)) \\
+				   &=& x(t) &=& e^{-\frac{t}{\tau}}(a\cos(\omega_1 t) + b \sin(\omega_1 \cdot t))
+		\end{array}\]
+
+	$\omega_1$ est une pseudo pulsation.
+	$T_1 = \frac{2\pi}{\omega_1}$
+
+	\[\begin{array}{rcl}
+			\omega_1 &=& \sqrt{\omega_0^2 - \frac{1}{\tau^2}} = \omega_0 \sqrt{1-\frac{1}{\omega_0^2 \tau^2}} \\
+			T_1 &=& \frac{T_0}{\sqrt{1 - \frac{1}{\omega_0^2  \tau^2}}} \\
+	\text{ On observe que  } T_1 > T_0\end{array}\]
+
+	La variation d'amplitude sur une période : $x(t) \hookrightarrow x(t + T)$
+
+	$e^{-\frac{t}{\tau}}$. On définit :
+
+	\[\begin{array}{rcll}
+		\delta &=& -(\ln(e^{-\frac{T}{\tau}})) \\
+						   &=& \frac{T}{\tau} & \text{ décrément }
+	\end{array}\]
+
+	\subsection{Exercice}
+	Calcules $E_m$ de l'oscillateur harmonique amorti
+
+	Définir $Q = \frac{E_m(t)}{E_m(t+T)}$ (facteur de qualité)
+
+	\subsection{Exercice}
+	\ul{Oscillateur amorti forcé}
+
+	PFD : frottements et force extérieur.
+
+	Calculer la solution de l'équation différentielle.
+
+	\[\begin{array}{rcl}
+			x(t) &=& x_p(t) + x_h(t) \\
+			\tilde{x}_{particuliere} &=& \tilde{A}e^{i\omega t} \\
+								   &=& Ae^{i\varphi } \cdot e^{i \varphi}\\
+			A &=& \frac{\omega_0^2}{\sqrt{(\omega^2 - \omega_0^2) + \frac{2\omega}{\tau}}} \\
+	\tan (\varphi) &=& \frac{\frac{2\omega}{\tau}}{\omega^2 - \omega_0^2} \end{array}\]
