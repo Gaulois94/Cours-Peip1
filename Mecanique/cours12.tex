@@ -1,0 +1,47 @@
+\section{Oscillateur amortie forcée}
+
+Soit un ressort de raideur k soumis aux forces extérieurs $\vec{F} = \vec{F_{ext}}\cdot \cos(\omega t)$ et aux frottements.
+
+PFD :
+\[\begin{array}{rcl}
+	m\vec{a} &=& (-kx -\lambda \dot{x} + F_{ext})\vec{i} \\
+	\ddot{x} + \underbrace{\frac{\lambda}{m}}_{\frac{2}{\tau}}\dot{x} + \underbrace{\frac{k}{m}}_{\omega_0^2} x &=& \frac{F_{ext}}{m} \cos(\omega t)
+\end{array}\]
+
+\subsection{Solution de l'équation différentielle}
+
+\[\begin{array}{rclr}
+	x(t) &=& x^H(t) + x^P(t) \\
+	x(t) &=& Re(\tilde{x}(t)) \\
+	\frac{d^2\tilde{x}}{dt^2} + \frac{2}{\tau}\frac{d\tilde{x}}{dt} + \omega_0^2 \tilde{x} &=& \frac{F_{ext}}{m} e^{i\omega t} & (e^{i\omega t} = \cos(\omega t) + i\sin(\omega t)) \\
+	&=& \frac{F_{ext}}{k}\omega_0^2e^{i\omega t} \\
+	&=& A_{ext}\omega_0^2 e^{i\omega t} \\
+	\text{ Solution particulière : } \tilde{x}^{(P)}(t) &=& \tilde{A}e^{i\omega t} & \tilde{A} = Ae^{i\varphi} \\
+	\dot{\tilde{x}}^{(P)} &=& (i\omega)\tilde{A}e^{i\omega t}  = (i\omega)\tilde{x}^{(P)} \\
+	\ddot{\tilde{x}}^{(P)} &=& (i\omega)^2\tilde{A}e^{i\omega t} = -\omega^2\tilde{x}^{(P)}
+\end{array}\]
+
+Et on remplace dans l'équation différentielle : 
+\[\begin{array}{rcl}
+	-\omega^2\tilde{x}^{(P)} + \frac{2}{\tau}(i\omega)\tilde{x}^{(P)} + \omega_0^2\tilde{x}^{(P)} &=& A_{ext}\omega_0^2e^{i\omega t}
+\end{array}\]
+
+On replace $\tilde{x}^{(P)}$ par $\tilde{A}e^{i\omega t}$:
+\[\begin{array}{rcl}
+	(-\omega^2 + \frac{2}{\tau}(i\omega) + \omega_0^2)\cdot \tilde{A}e^{i\omega t} &=& A_{ext}i\omega_0^2 e^{i\omega t} \\
+	\tilde{A} &=& \frac{A_{ext}\omega_0^2}{(\omega_0^2 - \omega^2)+ \frac{2}{\tau}(i\omega)} \\
+	\tilde{x}^{(P)} &=& \frac{\omega_0^2A_{ext}}{(\omega_0^2 - \omega^2)+\frac{2}{\tau}i\omega}e^{i\omega t} = Ae^{i(\omega t + \varphi)}
+\end{array}\]
+
+\subsection{Solution réels}
+
+\[\begin{array}{rclr}
+	x^{(P)} &=& Re(\tilde{x}^{(P)}) = A\cos(\omega t + \varphi) \\
+	A &=& |\tilde{A}| & \varphi = arg(\tilde{A}) \\
+	&=& \frac{A_{ext}\omega_0^2}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\frac{2}{\tau}\omega)^2}}\\
+	\tan(\varphi) &=& \frac{2\omega \tau}{\omega_0^2 - \omega^2}
+\end{array}\]
+
+Observation : À force constante, $A = \frac{A_{ext}}{\omega_0^2}$
+
+$A \xrightarrow[\omega \to +\infty]{} 0$
