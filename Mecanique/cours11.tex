@@ -44,7 +44,7 @@ Vu au point 1.1 et 1.2.
 																					   &&& \varphi = \pi, \omega > \omega_0 \end{array}\]
 
 		Solution générale :
-		\[\begin{array}{rcl}
+		\[\begin{array}{rclr}
 				x(t) &=& X_0\cos(\omega_0 t + \varphi_0) + A\cos(\omega t + \varphi) \\
 						   &=& X_0\cos(\omega_0 t + \varphi_0) + A_{ext}(\frac{\omega_0^2}{|\omega_0^2 - \omega^2|}) \cos(\omega t + \varphi)& \text{avec } A_{ext} = \frac{F_{ext}}{k}
 			\end{array}\]
@@ -75,10 +75,10 @@ Vu au point 1.1 et 1.2.
 			\dot{x} &=& -rx \\
 			\ddot{x} &=& r^2 x \\
 			r^2 x - \frac{2}{\tau} rx + \omega_0^2 x &=& 0\\
-		r^2 - \frac{2}{\tau} + \omega_0^2 &=& 0\] est l'équation caractéristique de l'équation différentielle.
+	r^2 - \frac{2}{\tau} + \omega_0^2 &=& 0\end{array}\] est l'équation caractéristique de l'équation différentielle.
 
 	Solution de l'équation caractéristique :
-	\[\begin{array}{rcl}
+	\[\begin{array}{rclr}
 		r_{\pm} &=& \frac{-b \pm \sqrt{\Delta}}{2a}; &  \text{ avec } a=1, b=-\frac{2}{\tau}, c = \omega_0^2 \\
 							   &=& \frac{1}{\tau} \pm  \sqrt{\frac{1}{\tau^2} - \omega_0^2} \\
 			&=& \frac{1}{\tau^2} \sqrt{1 - \omega_0^2 \tau^2}\end{array}\]
@@ -88,7 +88,7 @@ Vu au point 1.1 et 1.2.
 
 	$r_{\pm}$ sont réelles :
 	\[\begin{array}{rccl}
-			x(t) &=& Ae^{-r_+\cdott} + Be^{-r_- \cdot t} & A, B\text{ sont à définir avec les conditions initiales }\\
+			x(t) &=& Ae^{-r_+\cdot t} + Be^{-r_- \cdot t} & A, B\text{ sont à définir avec les conditions initiales }\\
 			   &=& \frac{1}{r_+ - r_-} [-r_+ x_0 + v_0)e^{-r_- \cdot t} - (r_- \cdot x_0 + v_0)e^{-r_+ \cdot t}
 	\end{array}\]
 
@@ -115,10 +115,10 @@ On note $C = \overline{D} = \frac{\tilde{k}}{2}$
 \[\frac{\tilde{k}}{2} = \frac{K}{2}e^{i\varphi}\]
 
 On remplace dans $x(t)$ :
-\[\begin{array}{rcl}
+\[\begin{array}{rclr}
 		x(t) &=& e^{-\frac{t}{\tau}} \cdot \frac{K}{2} (e^{i(\omega_1 t + \varphi)} + e^{-i(\omega_1 t + \varphi)} \\
 				   &=& K \cdot e^{-\frac{t}{\tau}}(\cos(\omega_1 t + \varphi)) \\
-				   &=& x(t) &=& e^{-\frac{t}{\tau}}(a\cos(\omega_1 t) + b \sin(\omega_1 \cdot t))
+				   x(t) &=& e^{-\frac{t}{\tau}}(a\cos(\omega_1 t) + b \sin(\omega_1 \cdot t))
 		\end{array}\]
 
 	$\omega_1$ est une pseudo pulsation.
@@ -144,7 +144,7 @@ On remplace dans $x(t)$ :
 	Définir $Q = \frac{E_m(t)}{E_m(t+T)}$ (facteur de qualité)
 
 	\subsection{Exercice}
-	\ul{Oscillateur amorti forcé}
+	\ul{Oscillateur amorti force}
 
 	PFD : frottements et force extérieur.
 

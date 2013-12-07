@@ -179,5 +179,5 @@ En $\frac{1}{2}, y''(\frac{1}{2}) = (0, -6)$ : Une tangente vertical.
 \begin{tikzpicture}
 	\draw[->] (0, -3) -- (0, 5) node [left] {$y$};
 	\draw[->] (-1, 0) -- (9, 0) node [right] {$x$};
-	\draw[smooth,samples=100,domain=-2:2,blue] plot ({3*\x -6*\x*\x + 4 *\x*\x*\x},{3*\x*(1-\x)});
+	\draw[smooth,samples=100,domain=-0.5:1,blue] plot ({3*\x -6*\x*\x + 4 *\x*\x*\x},{3*\x*(1-\x)});
 \end{tikzpicture}
