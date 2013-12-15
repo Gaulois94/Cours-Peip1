@@ -55,9 +55,9 @@ Or en $x=x_e$, $\frac{dEp}{dx} = 0$ par définition de l'équation d'équilibre.
 
 \[\begin{array}{rcl}
 		\text{Donc } \underbrace{\frac{dEp}{dx}}_{x \simeq x_e} \simeq \underbrace{\frac{dEp}{dx}}_{x = x_e} + \underbrace{\frac{d^2 Ep}{dx}}_{x = x_e} \cdot  \overbrace{(x-x_e)}^{\Delta x}
-		\underbrace{frac{dEp}{dx} }_{x \to x_e} &\simeq& \underbrace{(\frac{(d^2 Ep)}{dx^2})}_{x = x_e} \cdot \overbrace{(x-x_e)} \\
-		\underbrace{frac{dEp}{dx} }_{x \to x_e}\cdot \Delta x &\simeq& \underbrace{(\frac{(d^2 Ep)}{dx^2})}_{x = x_e} \cdot (\Delta x)^2  \\
-		\underbrace{frac{dEp}{dx} }_{x \to x_e}\cdot \Delta x > 0 &\Rightarrow& \underbrace{\frac{d^2Ep}{dx^2}}_{x=x_e} > 0 \Rightarrow x_e \text{ est un minimum }
+		\underbrace{\frac{dEp}{dx} }_{x \to x_e} &\simeq& \underbrace{(\frac{(d^2 Ep)}{dx^2})}_{x = x_e} \cdot \overbrace{(x-x_e)} \\
+		\underbrace{\frac{dEp}{dx} }_{x \to x_e}\cdot \Delta x &\simeq& \underbrace{(\frac{(d^2 Ep)}{dx^2})}_{x = x_e} \cdot (\Delta x)^2  \\
+		\underbrace{\frac{dEp}{dx} }_{x \to x_e}\cdot \Delta x > 0 &\Rightarrow& \underbrace{\frac{d^2Ep}{dx^2}}_{x=x_e} > 0 \Rightarrow x_e \text{ est un minimum }
 \end{array}\]
 
 \[\begin{array}{rcl}
@@ -153,7 +153,7 @@ Em &=& Ec + Ep \\
 	\draw[->, thick] (0, 0) -- (5, 0) node [left] {t};
 	\draw[green] (5, 2) -- (0, 2) node [right] {Em};
 	\draw[red, domain=0:3] plot(\x, {1+cos(\x r)}) node [left] {Ep};
-	\draw[blue, domain=0:3] plot(\x, {1+sin(\x r)}) node [left] {Ec};
+	\draw[blue, domain=0:3] plot(\x, {1-cos(\x r)}) node [left] {Ec};
 	\draw[<->] (0, 2.3) -- (3.14, 2.3) node [midway, above] {$\frac{T}{2}$};
 	\draw[<->] (0, -0.3) -- (1.55, -0.3) node [midway, below] {$\frac{T}{4}$};
 \end{tikzpicture}
