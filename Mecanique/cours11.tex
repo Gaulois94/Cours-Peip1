@@ -18,8 +18,8 @@ On cherche les formes complexes de $x(t)$ : $\tilde{x_p}$ et $\tilde{x_h}$
 
 \subsection{Solution homogène}
 \[\begin{array}{rcl}
-		\ddot{x}_h + \omega^2 + x_h &=& 0 \\
-		\ddot{x}_h &=& X_0\cos(\omega_0 t + \varphi_0) 
+		\ddot{x}_h + \omega^2 \cdot x_h &=& 0 \\
+		x_h &=& X_0\cos(\omega_0 t + \varphi_0) 
 	\end{array}
 \]
 
@@ -33,7 +33,7 @@ Vu au point 1.1 et 1.2.
 		\ddot{\tilde{x_p}} & -\omega^2 \tilde{x_p} \\
 		-\omega^2 \tilde{x_p}+\omega_0^2\tilde{x}_p &=& \frac{F_{ext}}{m}e^{i\omega t} & \forall t \\
 		(-\omega^2 + \omega_0^2)\tilde{x_p} &=& \frac{F_{ext}}{m} e^{i\omega t} \\
-		(-\omega^2 + \omega_0^2) \tilde{A}e^{i\omega t} &=& \frac{F_{ext}}{m} \\
+		(-\omega^2 + \omega_0^2) \tilde{A}e^{i\omega t} &=& \frac{F_{ext}}{m}e^{i\omega t} \\
 		\tilde{A} &=& \frac{F_{ext}}{m} \cdot \frac{1}{\omega_0^2 - \omega^2} \\
 		\omega_0^2 = \frac{k}{m} & \Rightarrow & \tilde{A} = \frac{F_{ext}}{k}\cdot \frac{\omega_0^2}{\omega_0^2 - \omega^2} \\
 		\text{Comme } \tilde{A} &=& Ae^{i\varphi} &  x = Ae^{i(\omega t + \varphi)}\\
