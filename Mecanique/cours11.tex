@@ -18,7 +18,7 @@ On cherche les formes complexes de $x(t)$ : $\tilde{x_p}$ et $\tilde{x_h}$
 
 \subsection{Solution homogène}
 \[\begin{array}{rcl}
-		\ddot{x}_h + \omega^2 \cdot x_h &=& 0 \\
+		\ddot{x}_h + \omega_0^2 \cdot x_h &=& 0 \\
 		x_h &=& X_0\cos(\omega_0 t + \varphi_0) 
 	\end{array}
 \]
@@ -30,7 +30,7 @@ Vu au point 1.1 et 1.2.
 \[\begin{array}{rccl}
 		\tilde{x}_p &=& \tilde{A}e^{i\omega t} &\tilde{A} = A e^{i\varphi} \\
 		\dot{\tilde{x_p}} &=& i \omega \tilde{x_p} \\
-		\ddot{\tilde{x_p}} & -\omega^2 \tilde{x_p} \\
+		\ddot{\tilde{x_p}} &=& -\omega^2 \tilde{x_p} \\
 		-\omega^2 \tilde{x_p}+\omega_0^2\tilde{x}_p &=& \frac{F_{ext}}{m}e^{i\omega t} & \forall t \\
 		(-\omega^2 + \omega_0^2)\tilde{x_p} &=& \frac{F_{ext}}{m} e^{i\omega t} \\
 		(-\omega^2 + \omega_0^2) \tilde{A}e^{i\omega t} &=& \frac{F_{ext}}{m}e^{i\omega t} \\
@@ -65,7 +65,7 @@ Vu au point 1.1 et 1.2.
 
 	On définit $\frac{\lambda}{m} = \frac{2}{\tau}$
 
-	\[\ddot{x} + \frac{2}{\tau} + \omega_0^2 x = 0\]
+	\[\ddot{x} + \frac{2}{\tau}\cdot \dot{x} + \omega_0^2 x = 0\]
 
 	Oscillation harmonique ammortie
 
@@ -75,7 +75,7 @@ Vu au point 1.1 et 1.2.
 			\dot{x} &=& -rx \\
 			\ddot{x} &=& r^2 x \\
 			r^2 x - \frac{2}{\tau} rx + \omega_0^2 x &=& 0\\
-	r^2 - \frac{2}{\tau} + \omega_0^2 &=& 0\end{array}\] est l'équation caractéristique de l'équation différentielle.
+	r^2 - \frac{2}{\tau}\cdot r + \omega_0^2 &=& 0\end{array}\] est l'équation caractéristique de l'équation différentielle.
 
 	Solution de l'équation caractéristique :
 	\[\begin{array}{rclr}
