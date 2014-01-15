@@ -81,10 +81,10 @@ Vu au point 1.1 et 1.2.
 	\[\begin{array}{rclr}
 		r_{\pm} &=& \frac{-b \pm \sqrt{\Delta}}{2a}; &  \text{ avec } a=1, b=-\frac{2}{\tau}, c = \omega_0^2 \\
 							   &=& \frac{1}{\tau} \pm  \sqrt{\frac{1}{\tau^2} - \omega_0^2} \\
-			&=& \frac{1}{\tau^2} \sqrt{1 - \omega_0^2 \tau^2}\end{array}\]
+						 &=& \frac{1}{\tau}(1\pm\sqrt{1 - \omega_0^2 \tau^2})\end{array}\]
 
-	Selon les valeurs de $\frac{1}{\tau^2}$ et $\omega_0^2$, on aura deux types de solutions.o
-	\paragraph{Cas $\omega_0 \tau < 1$ ($\lambda$ grands, frottement fort}
+	Selon les valeurs de $\frac{1}{\tau}$ et $\omega_0^2$, on aura deux types de solutions.o
+	\paragraph{Cas $\omega_0 \tau < 1$ ($\lambda$ grands, frottement fort)}
 
 	$r_{\pm}$ sont réelles :
 	\[\begin{array}{rccl}
@@ -100,14 +100,14 @@ Vu au point 1.1 et 1.2.
 	Le comportement de x suis $e^{-r_- \cdot t}$
 
 	\paragraph{Cas $\omega_0 \tau > 1$, frottement faible}
-	\[r_{\pm} = \frac{1}{\tau} \pm \sqrt{\frac{1}{\tau}\omega_0^2} = \frac{1}{\tau^2} \pm i \sqrt{\omega_0^2 - \frac{1}{\tau^2}}\]
+	\[r_{\pm} = \frac{1}{\tau} \pm \sqrt{\frac{1}{\tau^2} - \omega_0^2} = \frac{1}{\tau} \pm i \sqrt{\omega_0^2 - \frac{1}{\tau^2}}\]
 
-	On note $\omega_1^2 = \omega_0^2 - \frac{1}{\tau}$
+	On note $\omega_1^2 = \omega_0^2 - \frac{1}{\tau^2}$
 
 	La solution générale est de la forme : 
 	\[\begin{array}{rcl}
 			x(t) &=& Ce^{-r_+ \cdot t} + De^{-r_- \cdot t} \\
-					   &=& e^{-\frac{t}{\tau}} (Ce^{i\omega t} + De^{-i\omega_1 t} \end{array}\]
+					   &=& e^{-\frac{t}{\tau}} (Ce^{i\omega_1 t} + De^{-i\omega_1 t}) \end{array}\]
 
 	Pour que la solution soit réelle, $C = \overline{D}$
 On note $C = \overline{D} = \frac{\tilde{k}}{2}$
@@ -116,7 +116,7 @@ On note $C = \overline{D} = \frac{\tilde{k}}{2}$
 
 On remplace dans $x(t)$ :
 \[\begin{array}{rclr}
-		x(t) &=& e^{-\frac{t}{\tau}} \cdot \frac{K}{2} (e^{i(\omega_1 t + \varphi)} + e^{-i(\omega_1 t + \varphi)} \\
+		x(t) &=& e^{-\frac{t}{\tau}} \cdot \frac{K}{2} (e^{i(\omega_1 t + \varphi)} + e^{-i(\omega_1 t + \varphi)}) \\
 				   &=& K \cdot e^{-\frac{t}{\tau}}(\cos(\omega_1 t + \varphi)) \\
 				   x(t) &=& e^{-\frac{t}{\tau}}(a\cos(\omega_1 t) + b \sin(\omega_1 \cdot t))
 		\end{array}\]
